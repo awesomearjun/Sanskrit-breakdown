@@ -1,0 +1,10 @@
+Language: Cpp
+BasedOnStyle: clang-format
+IndentWidth: 4
+AccessModifierOffset: -4
+DerivePointerAlignment: false
+PointerAlignment: Right
+BreakBeforeBraces: Allman
+AlignOperands: Align
+PenaltyBreakAssignment: 6
+AllowShortIfStatementsOnASingleLine: false
