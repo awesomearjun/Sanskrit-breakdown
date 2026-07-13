@@ -1,0 +1,1082 @@
+[
+  {
+    "originalTagForm": "भू",
+    "cleanLookupForm": "भू",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "सत्तायाम्",
+    "englishMeaning": "to be, to exist, to become"
+  },
+  {
+    "originalTagForm": "डुकृञ्",
+    "cleanLookupForm": "कृ",
+    "conjugationClass": "CLASS_8_U_INFIX",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "करणे",
+    "englishMeaning": "to do, to make, to perform"
+  },
+  {
+    "originalTagForm": "गम्ळ्",
+    "cleanLookupForm": "गम्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ",
+    "englishMeaning": "to go, to move, to approach"
+  },
+  {
+    "originalTagForm": "दृशिर्",
+    "cleanLookupForm": "दृश्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रेक्षणे",
+    "englishMeaning": "to see, to behold, to perceive"
+  },
+  {
+    "originalTagForm": "वद्",
+    "cleanLookupForm": "वद्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "व्यक्तायां वाचि",
+    "englishMeaning": "to speak, to say, to tell"
+  },
+  {
+    "originalTagForm": "ज्ञा",
+    "cleanLookupForm": "ज्ञा",
+    "conjugationClass": "CLASS_9_NA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अवबोधने",
+    "englishMeaning": "to know, to understand, to perceive"
+  },
+  {
+    "originalTagForm": "युध्",
+    "cleanLookupForm": "युध्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "सम्प्रहारे",
+    "englishMeaning": "to fight, to wage battle, to struggle"
+  },
+  {
+    "originalTagForm": "त्यज्",
+    "cleanLookupForm": "त्यज्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "हानौ",
+    "englishMeaning": "to abandon, to leave, to renounce"
+  },
+  {
+    "originalTagForm": "लभ्",
+    "cleanLookupForm": "लभ्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "प्राप्तौ",
+    "englishMeaning": "to obtain, to get, to receive"
+  },
+  {
+    "originalTagForm": "स्था",
+    "cleanLookupForm": "स्था",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "गतिनिवृत्तौ",
+    "englishMeaning": "to stand, to remain, to be established"
+  },
+  {
+    "originalTagForm": "अस्",
+    "cleanLookupForm": "अस्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "भुवि",
+    "englishMeaning": "to be, to exist"
+  },
+  {
+    "originalTagForm": "दा",
+    "cleanLookupForm": "दा",
+    "conjugationClass": "CLASS_3_DUPLICATED",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "दाने",
+    "englishMeaning": "to give, to grant, to offer"
+  },
+  {
+    "originalTagForm": "धा",
+    "cleanLookupForm": "धा",
+    "conjugationClass": "CLASS_3_DUPLICATED",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "धारणपोषणयोः",
+    "englishMeaning": "to put, to place, to hold, to support"
+  },
+  {
+    "originalTagForm": "इण्",
+    "cleanLookupForm": "इ",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ",
+    "englishMeaning": "to go, to move"
+  },
+  {
+    "originalTagForm": "पा",
+    "cleanLookupForm": "पा",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "पाने रक्षणे च",
+    "englishMeaning": "to drink, to protect"
+  },
+  {
+    "originalTagForm": "मन्",
+    "cleanLookupForm": "मन्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "ज्ञाने",
+    "englishMeaning": "to think, to consider, to regard"
+  },
+  {
+    "originalTagForm": "विद्",
+    "cleanLookupForm": "विद्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "ज्ञाने",
+    "englishMeaning": "to know, to find, to understand"
+  },
+  {
+    "originalTagForm": "वच्",
+    "cleanLookupForm": "वच्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "परिभाषणे",
+    "englishMeaning": "to speak, to declare, to recite"
+  },
+  {
+    "originalTagForm": "श्रु",
+    "cleanLookupForm": "श्रु",
+    "conjugationClass": "CLASS_5_NU_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "श्रवणे",
+    "englishMeaning": "to hear, to listen, to learn"
+  },
+  {
+    "originalTagForm": "नी",
+    "cleanLookupForm": "नी",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रापणे",
+    "englishMeaning": "to lead, to guide, to carry"
+  },
+  {
+    "originalTagForm": "आप्ऌ",
+    "cleanLookupForm": "आप्",
+    "conjugationClass": "CLASS_5_NU_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "व्याप्तौ",
+    "englishMeaning": "to obtain, to reach, to pervade"
+  },
+  {
+    "originalTagForm": "चर्",
+    "cleanLookupForm": "चर्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ भक्षणे च",
+    "englishMeaning": "to move, to wander, to practice"
+  },
+  {
+    "originalTagForm": "पत्ऌ",
+    "cleanLookupForm": "पत्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ",
+    "englishMeaning": "to fall, to fly, to go"
+  },
+  {
+    "originalTagForm": "सद्ऌ",
+    "cleanLookupForm": "सद्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "विशरणगत्यवसादनेषु",
+    "englishMeaning": "to sit, to settle, to sink"
+  },
+  {
+    "originalTagForm": "सेव्",
+    "cleanLookupForm": "सेव्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "सेवने",
+    "englishMeaning": "to serve, to follow, to honor"
+  },
+  {
+    "originalTagForm": "यज्",
+    "cleanLookupForm": "यज्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "देवपूजासङ्गतिकरणदानेषु",
+    "englishMeaning": "to sacrifice, to worship, to offer"
+  },
+  {
+    "originalTagForm": "ईक्ष्",
+    "cleanLookupForm": "ईक्ष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "दर्शने",
+    "englishMeaning": "to see, to behold, to consider"
+  },
+  {
+    "originalTagForm": "भज्",
+    "cleanLookupForm": "भज्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "सेवायाम्",
+    "englishMeaning": "to share, to serve, to worship"
+  },
+  {
+    "originalTagForm": "शक्ऌ",
+    "cleanLookupForm": "शक्",
+    "conjugationClass": "CLASS_5_NU_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "शक्तौ",
+    "englishMeaning": "to be able, to have power"
+  },
+  {
+    "originalTagForm": "अर्ह्",
+    "cleanLookupForm": "अर्ह्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पूजायाम्",
+    "englishMeaning": "to deserve, to be worthy, to be able"
+  },
+  {
+    "originalTagForm": "हन्",
+    "cleanLookupForm": "हन्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "हिंसागत्योः",
+    "englishMeaning": "to strike, to kill, to destroy"
+  },
+  {
+    "originalTagForm": "हृञ्",
+    "cleanLookupForm": "हृ",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "हरणे",
+    "englishMeaning": "to take, to carry away, to remove"
+  },
+  {
+    "originalTagForm": "जि",
+    "cleanLookupForm": "जि",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "जये",
+    "englishMeaning": "to conquer, to win, to overcome"
+  },
+  {
+    "originalTagForm": "वृतु",
+    "cleanLookupForm": "वृत्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "वर्तने",
+    "englishMeaning": "to turn, to exist, to proceed"
+  },
+  {
+    "originalTagForm": "भृञ्",
+    "cleanLookupForm": "भृ",
+    "conjugationClass": "CLASS_3_DUPLICATED",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "धारणपोषणयोः",
+    "englishMeaning": "to bear, to support, to nourish"
+  },
+  {
+    "originalTagForm": "स्मृ",
+    "cleanLookupForm": "स्मृ",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "चिन्तायाम्",
+    "englishMeaning": "to remember, to recollect"
+  },
+  {
+    "originalTagForm": "रम्",
+    "cleanLookupForm": "रम्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "क्रीडायाम्",
+    "englishMeaning": "to delight, to rejoice, to enjoy"
+  },
+  {
+    "originalTagForm": "नम्",
+    "cleanLookupForm": "नम्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रह्वत्वे शब्दे च",
+    "englishMeaning": "to bow, to bend, to salute"
+  },
+  {
+    "originalTagForm": "वन्द्",
+    "cleanLookupForm": "वन्द्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "अभिवादनस्तुत्योः",
+    "englishMeaning": "to praise, to salute, to worship"
+  },
+  {
+    "originalTagForm": "मुच्ऌ",
+    "cleanLookupForm": "मुच्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "मोक्षणे",
+    "englishMeaning": "to release, to free, to abandon"
+  },
+  {
+    "originalTagForm": "मुह्",
+    "cleanLookupForm": "मुह्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "वैचित्त्ये",
+    "englishMeaning": "to be confused, to be deluded"
+  },
+  {
+    "originalTagForm": "काङ्क्ष्",
+    "cleanLookupForm": "काङ्क्ष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "इच्छायाम्",
+    "englishMeaning": "to desire, to long for, to expect"
+  },
+  {
+    "originalTagForm": "इष्",
+    "cleanLookupForm": "इष्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "इच्छायाम्",
+    "englishMeaning": "to wish, to desire, to seek"
+  },
+  {
+    "originalTagForm": "द्विष्",
+    "cleanLookupForm": "द्विष्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अप्रीतौ",
+    "englishMeaning": "to hate, to dislike, to be hostile"
+  },
+  {
+    "originalTagForm": "स्पृश्",
+    "cleanLookupForm": "स्पृश्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "संस्पर्शने",
+    "englishMeaning": "to touch, to contact"
+  },
+  {
+    "originalTagForm": "क्षिप्",
+    "cleanLookupForm": "क्षिप्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रेरणे",
+    "englishMeaning": "to throw, to cast, to send"
+  },
+  {
+    "originalTagForm": "विश्",
+    "cleanLookupForm": "विश्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रवेशने",
+    "englishMeaning": "to enter, to penetrate"
+  },
+  {
+    "originalTagForm": "दिश्",
+    "cleanLookupForm": "दिश्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अतिसर्जने",
+    "englishMeaning": "to show, to direct, to command"
+  },
+  {
+    "originalTagForm": "नश्",
+    "cleanLookupForm": "नश्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अदर्शने",
+    "englishMeaning": "to perish, to be lost, to disappear"
+  },
+  {
+    "originalTagForm": "लिप्",
+    "cleanLookupForm": "लिप्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "उपदेहे",
+    "englishMeaning": "to smear, to adhere, to cling"
+  },
+  {
+    "originalTagForm": "बुध्",
+    "cleanLookupForm": "बुध्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "अवगमने",
+    "englishMeaning": "to know, to awaken, to understand"
+  },
+  {
+    "originalTagForm": "युज्",
+    "cleanLookupForm": "युज्",
+    "conjugationClass": "CLASS_7_INTERNAL_NASAL",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "योगे",
+    "englishMeaning": "to yoke, to join, to discipline"
+  },
+  {
+    "originalTagForm": "रुध्",
+    "cleanLookupForm": "रुध्",
+    "conjugationClass": "CLASS_7_INTERNAL_NASAL",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "आवरणे",
+    "englishMeaning": "to obstruct, to restrain, to block"
+  },
+  {
+    "originalTagForm": "तुद्",
+    "cleanLookupForm": "तुद्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "व्यथने",
+    "englishMeaning": "to strike, to pierce, to hurt"
+  },
+  {
+    "originalTagForm": "भिद्",
+    "cleanLookupForm": "भिद्",
+    "conjugationClass": "CLASS_7_INTERNAL_NASAL",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "विदारणे",
+    "englishMeaning": "to split, to break, to divide"
+  },
+  {
+    "originalTagForm": "छिद्",
+    "cleanLookupForm": "छिद्",
+    "conjugationClass": "CLASS_7_INTERNAL_NASAL",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "द्वैधीकरणे",
+    "englishMeaning": "to cut, to sever, to divide"
+  },
+  {
+    "originalTagForm": "भुज्",
+    "cleanLookupForm": "भुज्",
+    "conjugationClass": "CLASS_7_INTERNAL_NASAL",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "पालनाभ्यवहारयोः",
+    "englishMeaning": "to enjoy, to eat, to protect"
+  },
+  {
+    "originalTagForm": "ग्रह्",
+    "cleanLookupForm": "ग्रह्",
+    "conjugationClass": "CLASS_9_NA_INFIX",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "उपादाने",
+    "englishMeaning": "to grasp, to seize, to receive"
+  },
+  {
+    "originalTagForm": "मृ",
+    "cleanLookupForm": "मृ",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्राणत्यागे",
+    "englishMeaning": "to die, to perish"
+  },
+  {
+    "originalTagForm": "जीव्",
+    "cleanLookupForm": "जीव्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "प्राणधारणे",
+    "englishMeaning": "to live, to be alive"
+  },
+  {
+    "originalTagForm": "जन्",
+    "cleanLookupForm": "जन्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रादुर्भावे",
+    "englishMeaning": "to be born, to arise, to generate"
+  },
+  {
+    "originalTagForm": "पच्",
+    "cleanLookupForm": "पच्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "पाके",
+    "englishMeaning": "to cook, to ripen, to mature"
+  },
+  {
+    "originalTagForm": "दह्",
+    "cleanLookupForm": "दह्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "भस्मीकरणे",
+    "englishMeaning": "to burn, to consume"
+  },
+  {
+    "originalTagForm": "तप्",
+    "cleanLookupForm": "तप्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "सन्तापे",
+    "englishMeaning": "to heat, to practice austerity"
+  },
+  {
+    "originalTagForm": "वृध्",
+    "cleanLookupForm": "वृध्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "वृद्धौ",
+    "englishMeaning": "to grow, to increase, to prosper"
+  },
+  {
+    "originalTagForm": "क्षि",
+    "cleanLookupForm": "क्षि",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "निवासगत्योः",
+    "englishMeaning": "to dwell, to abide, to decay"
+  },
+  {
+    "originalTagForm": "ली",
+    "cleanLookupForm": "ली",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "श्लेषणे",
+    "englishMeaning": "to dissolve, to cling, to merge"
+  },
+  {
+    "originalTagForm": "सृज्",
+    "cleanLookupForm": "सृज्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "विसर्गे",
+    "englishMeaning": "to emit, to create, to release"
+  },
+  {
+    "originalTagForm": "सृ",
+    "cleanLookupForm": "सृ",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ",
+    "englishMeaning": "to move, to flow, to go"
+  },
+  {
+    "originalTagForm": "कृप्",
+    "cleanLookupForm": "कृप्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "सामर्थ्ये",
+    "englishMeaning": "to be fit, to pity, to be gracious"
+  },
+  {
+    "originalTagForm": "क्लिश्",
+    "cleanLookupForm": "क्लिश्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "उपतापे",
+    "englishMeaning": "to torment, to afflict, to trouble"
+  },
+  {
+    "originalTagForm": "मद्",
+    "cleanLookupForm": "मद्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "हर्षे",
+    "englishMeaning": "to rejoice, to be intoxicated, to exult"
+  },
+  {
+    "originalTagForm": "नृत्",
+    "cleanLookupForm": "नृत्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "गात्रविक्षेपे",
+    "englishMeaning": "to dance, to move rhythmically"
+  },
+  {
+    "originalTagForm": "हृष्",
+    "cleanLookupForm": "हृष्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "तुष्टौ",
+    "englishMeaning": "to rejoice, to be thrilled"
+  },
+  {
+    "originalTagForm": "शुच्",
+    "cleanLookupForm": "शुच्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "शोके",
+    "englishMeaning": "to grieve, to sorrow"
+  },
+  {
+    "originalTagForm": "भी",
+    "cleanLookupForm": "भी",
+    "conjugationClass": "CLASS_3_DUPLICATED",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "भये",
+    "englishMeaning": "to fear, to be afraid"
+  },
+  {
+    "originalTagForm": "त्रस्",
+    "cleanLookupForm": "त्रस्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "उद्वेगे",
+    "englishMeaning": "to tremble, to be afraid"
+  },
+  {
+    "originalTagForm": "लज्ज्",
+    "cleanLookupForm": "लज्ज्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "अपत्रापे",
+    "englishMeaning": "to be ashamed, to be modest"
+  },
+  {
+    "originalTagForm": "हस्",
+    "cleanLookupForm": "हस्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "हसने",
+    "englishMeaning": "to laugh, to smile"
+  },
+  {
+    "originalTagForm": "क्रीड्",
+    "cleanLookupForm": "क्रीड्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "विहारे",
+    "englishMeaning": "to play, to sport"
+  },
+  {
+    "originalTagForm": "लिख्",
+    "cleanLookupForm": "लिख्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अक्षरविन्यासे",
+    "englishMeaning": "to write, to scratch, to mark"
+  },
+  {
+    "originalTagForm": "पठ्",
+    "cleanLookupForm": "पठ्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "व्यक्तायां वाचि",
+    "englishMeaning": "to recite, to read, to study"
+  },
+  {
+    "originalTagForm": "जप्",
+    "cleanLookupForm": "जप्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "मानसे शब्दे",
+    "englishMeaning": "to mutter, to recite softly"
+  },
+  {
+    "originalTagForm": "ध्यै",
+    "cleanLookupForm": "ध्यै",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "चिन्तायाम्",
+    "englishMeaning": "to meditate, to contemplate"
+  },
+  {
+    "originalTagForm": "चिन्त्",
+    "cleanLookupForm": "चिन्त्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "स्मृत्याम्",
+    "englishMeaning": "to think, to consider, to reflect"
+  },
+  {
+    "originalTagForm": "गण्",
+    "cleanLookupForm": "गण्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "सङ्ख्याने",
+    "englishMeaning": "to count, to enumerate, to reckon"
+  },
+  {
+    "originalTagForm": "पूज्",
+    "cleanLookupForm": "पूज्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पूजायाम्",
+    "englishMeaning": "to worship, to honor, to revere"
+  },
+  {
+    "originalTagForm": "भाष्",
+    "cleanLookupForm": "भाष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "व्यक्तायां वाचि",
+    "englishMeaning": "to speak, to utter, to explain"
+  },
+  {
+    "originalTagForm": "ब्रू",
+    "cleanLookupForm": "ब्रू",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "व्यक्तायां वाचि",
+    "englishMeaning": "to speak, to say, to declare"
+  },
+  {
+    "originalTagForm": "प्रच्छ्",
+    "cleanLookupForm": "प्रच्छ्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "ज्ञीप्सायाम्",
+    "englishMeaning": "to ask, to inquire, to question"
+  },
+  {
+    "originalTagForm": "कथ्",
+    "cleanLookupForm": "कथ्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "वाक्यप्रबन्धे",
+    "englishMeaning": "to tell, to narrate, to explain"
+  },
+  {
+    "originalTagForm": "शंस्",
+    "cleanLookupForm": "शंस्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "स्तुतौ",
+    "englishMeaning": "to praise, to proclaim, to tell"
+  },
+  {
+    "originalTagForm": "सूच्",
+    "cleanLookupForm": "सूच्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पैशुन्ये",
+    "englishMeaning": "to indicate, to point out, to inform"
+  },
+  {
+    "originalTagForm": "शास्",
+    "cleanLookupForm": "शास्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "अनुशिष्टौ",
+    "englishMeaning": "to instruct, to rule, to command"
+  },
+  {
+    "originalTagForm": "शिक्ष्",
+    "cleanLookupForm": "शिक्ष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "विद्योपादाने",
+    "englishMeaning": "to learn, to study, to train"
+  },
+  {
+    "originalTagForm": "रक्ष्",
+    "cleanLookupForm": "रक्ष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पालने",
+    "englishMeaning": "to protect, to guard, to preserve"
+  },
+  {
+    "originalTagForm": "पाल्",
+    "cleanLookupForm": "पाल्",
+    "conjugationClass": "CLASS_10_CAUSATIVE_AYA",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "रक्षणे",
+    "englishMeaning": "to protect, to maintain, to govern"
+  },
+  {
+    "originalTagForm": "त्रै",
+    "cleanLookupForm": "त्रा",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पालने",
+    "englishMeaning": "to protect, to rescue, to save"
+  },
+  {
+    "originalTagForm": "अव्",
+    "cleanLookupForm": "अव्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "रक्षणे",
+    "englishMeaning": "to protect, to favor"
+  },
+  {
+    "originalTagForm": "मृज्",
+    "cleanLookupForm": "मृज्",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "शौचालङ्कारयोः",
+    "englishMeaning": "to wipe, to cleanse, to purify"
+  },
+  {
+    "originalTagForm": "शुध्",
+    "cleanLookupForm": "शुध्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "शौचे",
+    "englishMeaning": "to become pure, to purify"
+  },
+  {
+    "originalTagForm": "स्ना",
+    "cleanLookupForm": "स्ना",
+    "conjugationClass": "CLASS_2_DIRECT_ATTACH",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "शौचे",
+    "englishMeaning": "to bathe, to wash"
+  },
+  {
+    "originalTagForm": "मील्",
+    "cleanLookupForm": "मील्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "निमेषणे",
+    "englishMeaning": "to close the eyes, to shut"
+  },
+  {
+    "originalTagForm": "तॄ",
+    "cleanLookupForm": "तॄ",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्लवनतरणयोः",
+    "englishMeaning": "to cross, to overcome, to pass beyond"
+  },
+  {
+    "originalTagForm": "प्लु",
+    "cleanLookupForm": "प्लु",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "गतौ",
+    "englishMeaning": "to float, to swim, to leap"
+  },
+  {
+    "originalTagForm": "क्रमु",
+    "cleanLookupForm": "क्रम्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "पादविक्षेपे",
+    "englishMeaning": "to step, to stride, to proceed"
+  },
+  {
+    "originalTagForm": "कम्प्",
+    "cleanLookupForm": "कम्प्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "चलने",
+    "englishMeaning": "to tremble, to shake"
+  },
+  {
+    "originalTagForm": "चल्",
+    "cleanLookupForm": "चल्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "कम्पने",
+    "englishMeaning": "to move, to shake"
+  },
+  {
+    "originalTagForm": "कृष्",
+    "cleanLookupForm": "कृष्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "विलेखने",
+    "englishMeaning": "to draw, to pull, to plough"
+  },
+  {
+    "originalTagForm": "क्षर्",
+    "cleanLookupForm": "क्षर्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "सञ्चलने",
+    "englishMeaning": "to flow, to drip, to perish"
+  },
+  {
+    "originalTagForm": "वह्",
+    "cleanLookupForm": "वह्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "प्रापणे",
+    "englishMeaning": "to carry, to bear, to convey"
+  },
+  {
+    "originalTagForm": "वस्",
+    "cleanLookupForm": "वस्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "निवासे",
+    "englishMeaning": "to dwell, to live, to wear"
+  },
+  {
+    "originalTagForm": "वप्",
+    "cleanLookupForm": "वप्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "बीजसन्ताने",
+    "englishMeaning": "to sow, to scatter"
+  },
+  {
+    "originalTagForm": "वृ",
+    "cleanLookupForm": "वृ",
+    "conjugationClass": "CLASS_5_NU_INFIX",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "वरणे",
+    "englishMeaning": "to choose, to cover, to surround"
+  },
+  {
+    "originalTagForm": "भास्",
+    "cleanLookupForm": "भास्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "दीप्तौ",
+    "englishMeaning": "to shine, to appear, to illuminate"
+  },
+  {
+    "originalTagForm": "दीप्",
+    "cleanLookupForm": "दीप्",
+    "conjugationClass": "CLASS_4_YA_INFIX",
+    "naturalVoiceType": "ACTIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "दीप्तौ",
+    "englishMeaning": "to shine, to blaze"
+  },
+  {
+    "originalTagForm": "द्युत्",
+    "cleanLookupForm": "द्युत्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "दीप्तौ",
+    "englishMeaning": "to shine, to glitter"
+  },
+  {
+    "originalTagForm": "राज्",
+    "cleanLookupForm": "राज्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "ALLOWS_LINKING_VOWEL",
+    "traditionalMeaning": "दीप्तौ",
+    "englishMeaning": "to shine, to rule, to appear"
+  },
+  {
+    "originalTagForm": "सह्",
+    "cleanLookupForm": "सह्",
+    "conjugationClass": "CLASS_1_BASE_A",
+    "naturalVoiceType": "REFLEXIVE_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "मर्षणे",
+    "englishMeaning": "to endure, to bear, to overcome"
+  },
+  {
+    "originalTagForm": "लुप्",
+    "cleanLookupForm": "लुप्",
+    "conjugationClass": "CLASS_6_ACCENTED_A",
+    "naturalVoiceType": "SHARED_VOICE_MARKERS",
+    "internalVowelRule": "BLOCKS_LINKING_VOWEL",
+    "traditionalMeaning": "छेदने",
+    "englishMeaning": "to cut off, to destroy, to plunder"
+  }
+]
