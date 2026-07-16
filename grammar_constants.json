@@ -1,5 +1,5 @@
 {
-  "verbalPrefixes": [
+  "prefixes": [
     { "text": "प्र", "englishMeaning": "forward, onward, forth" },
     { "text": "परा", "englishMeaning": "away, backward, in reverse" },
     { "text": "अप", "englishMeaning": "away, off, opposite" },

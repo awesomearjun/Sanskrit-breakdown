@@ -2,8 +2,10 @@
 
 #include "rapidjson/document.h"
 #include "wordTypes.hpp"
+#include <codecvt>
 #include <fstream>
 #include <iostream>
+#include <locale>
 #include <string>
 
 // ----- CONVERSION UTILITIES -----
@@ -29,26 +31,24 @@ auto ConjugationStringToType(const std::string &str)
 auto NominalGenderToType(const std::string &str)
 {
     static const std::unordered_map<std::string, NominalGender>
-        genderStringMap = {
-            {"MASCULINE", NominalGender::MASCULINE},
-            {"FEMININE", NominalGender::FEMININE},
-            {"NEUTER", NominalGender::NEUTER}};
+        genderStringMap = {{"MASCULINE", NominalGender::MASCULINE},
+                           {"FEMININE", NominalGender::FEMININE},
+                           {"NEUTER", NominalGender::NEUTER}};
 
     return genderStringMap.at(str);
 }
 
 auto NominalCaseToType(const std::string &str)
 {
-    static const std::unordered_map<std::string, NominalCase>
-        caseStringMap = {
-            {"SUBJECT", NominalCase::SUBJECT},
-            {"OBJECT", NominalCase::OBJECT},
-            {"INSTRUMENTAL", NominalCase::INSTRUMENTAL},
-            {"RECIPIENT", NominalCase::RECIPIENT},
-            {"ORIGIN", NominalCase::ORIGIN},
-            {"RELATION", NominalCase::RELATION},
-            {"CONTEXT", NominalCase::CONTEXT},
-            {"ADDRESS", NominalCase::ADDRESS}};
+    static const std::unordered_map<std::string, NominalCase> caseStringMap = {
+        {"SUBJECT", NominalCase::SUBJECT},
+        {"OBJECT", NominalCase::OBJECT},
+        {"INSTRUMENTAL", NominalCase::INSTRUMENTAL},
+        {"RECIPIENT", NominalCase::RECIPIENT},
+        {"ORIGIN", NominalCase::ORIGIN},
+        {"RELATION", NominalCase::RELATION},
+        {"CONTEXT", NominalCase::CONTEXT},
+        {"ADDRESS", NominalCase::ADDRESS}};
 
     return caseStringMap.at(str);
 }
@@ -75,20 +75,20 @@ auto SuffixPersonStringToType(const std::string &str)
 
 auto SuffixNumberStringToType(const std::string &str)
 {
-    static const std::unordered_map<std::string, VerbNumber> verbNumberStringMap = {
-        {"SINGULAR", VerbNumber::SINGULAR},
-        {"DUAL", VerbNumber::DUAL},
-        {"PLURAL", VerbNumber::PLURAL}};
+    static const std::unordered_map<std::string, VerbNumber>
+        verbNumberStringMap = {{"SINGULAR", VerbNumber::SINGULAR},
+                               {"DUAL", VerbNumber::DUAL},
+                               {"PLURAL", VerbNumber::PLURAL}};
 
     return verbNumberStringMap.at(str);
 }
 
 auto NominalNumberStringToType(const std::string &str)
 {
-    static const std::unordered_map<std::string, NominalNumber> nominalNumberStringMap = {
-        {"SINGULAR", NominalNumber::SINGULAR},
-        {"DUAL", NominalNumber::DUAL},
-        {"PLURAL", NominalNumber::PLURAL}};
+    static const std::unordered_map<std::string, NominalNumber>
+        nominalNumberStringMap = {{"SINGULAR", NominalNumber::SINGULAR},
+                                  {"DUAL", NominalNumber::DUAL},
+                                  {"PLURAL", NominalNumber::PLURAL}};
 
     return nominalNumberStringMap.at(str);
 }
@@ -150,6 +150,65 @@ bool Database::initialize(const std::string &rootsJsonPath,
     }
     return true;
 }
+
+// --- Public Query Functions ---
+
+/**
+ * Checks if a given substring exists in the prefix cache.
+ */
+bool Database::isPrefix(const std::string &text) const
+{
+    return prefixCache.find(text) != prefixCache.end();
+}
+
+/**
+ * Checks if a given word exists in the indeclinable cache.
+ */
+bool Database::isIndeclinable(const std::string &text) const
+{
+    return indeclinableCache.find(text) != indeclinableCache.end();
+}
+
+/**
+ * Tries to find a matching verbal suffix.
+ * If found, populates outMeta and returns true. Otherwise returns false.
+ */
+bool Database::tryMatchVerbalSuffix(const std::string &text,
+                                    VerbMetadata &outMeta) const
+{
+    auto it = verbSuffixCache.find(text);
+
+    if (it != verbSuffixCache.end())
+    {
+        outMeta = it->second; // Copy the metadata into outMeta
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Tries to find a matching nominal suffix.
+ * If found, populates outMeta and returns true. Otherwise returns false.
+ */
+bool Database::tryMatchNominalSuffix(const std::string &text,
+                                     NominalMetadata &outMeta) const
+{
+    auto it = nominalSuffixCache.find(text);
+
+    if (it != nominalSuffixCache.end())
+    {
+        outMeta = it->second; // Copy the metadata into outMeta
+        return true;
+    }
+    return false;
+}
+
+bool Database::rootExists(const std::string &cleanRoot) const
+{
+    return rootCache.find(cleanRoot) != rootCache.end();
+}
+
+// ----- LOADERS -----
 
 void Database::loadRoots(const rapidjson::Document &doc)
 {
@@ -277,8 +336,7 @@ void Database::loadConstants(const rapidjson::Document &doc)
         }
 
         // nominals
-        if (doc.HasMember("nominals") &&
-            doc["nominals"].IsObject())
+        if (doc.HasMember("nominals") && doc["nominals"].IsObject())
         {
             for (const auto &item : doc["nominals"].GetObject())
             {
@@ -287,10 +345,14 @@ void Database::loadConstants(const rapidjson::Document &doc)
                     NominalMetadata meta;
                     const auto &metaObj = item.value.GetObject();
                     meta.suffix = metaObj["suffix"].GetString();
-                    meta.gender = NominalGenderToType(metaObj["gender"].GetString());
-                    meta.nominalCase = NominalCaseToType(metaObj["case"].GetString());
-                    meta.number = NominalNumberStringToType(metaObj["number"].GetString());
-                    meta.gender = NominalGenderToType(metaObj["gender"].GetString());
+                    meta.gender =
+                        NominalGenderToType(metaObj["gender"].GetString());
+                    meta.nominalCase =
+                        NominalCaseToType(metaObj["case"].GetString());
+                    meta.number = NominalNumberStringToType(
+                        metaObj["number"].GetString());
+                    meta.gender =
+                        NominalGenderToType(metaObj["gender"].GetString());
                     nominalSuffixCache[item.name.GetString()] = std::move(meta);
                 }
             }
