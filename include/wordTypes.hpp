@@ -33,6 +33,8 @@ struct NominalMetadata {
     NominalCase nominalCase;
     NominalNumber number;
     NominalGender gender;
+    std::string suffix;           // The specific suffix string that was matched to this verb form
+    std::string prefix;           // The specific prefix string that was matched to this verb form
 };
 
 // ----- VERB TRACK -----
@@ -65,8 +67,7 @@ enum class VerbTenseOrMood {
 
 enum class VerbVoice {
     ACTIVE,     // Action is directed outwards toward another target
-    REFLEXIVE,  // Action loops back to benefit or affect the person doing it
-    COMMON      // Root can adapt and fit comfortably into either active or reflexive voice
+    REFLEXIVE  // Action loops back to benefit or affect the person doing it
 };
 
 struct VerbMetadata {
@@ -74,6 +75,8 @@ struct VerbMetadata {
     VerbPerson person;           // The grammatical perspective of the actor
     VerbNumber number;           // The count of actors executing the verb
     VerbVoice voice;             // The structural direction/beneficiary of the action's outcome
+    std::string suffix;           // The specific suffix string that was matched to this verb form
+    std::string prefix;           // The specific prefix string that was matched to this verb form
 };
 
 // ----- ROOT -----

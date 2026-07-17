@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
@@ -7,5 +9,5 @@ class Tokenizer
 public:
     Tokenizer() = default;
     ~Tokenizer() = default;
-    std::vector<std::wstring> tokenize(const std::wstring& shloka);
+    std::vector<std::string> tokenize(const std::string& shloka);
 };

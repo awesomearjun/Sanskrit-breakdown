@@ -1,25 +1,25 @@
 #include "tokenizer.hpp"
 
-std::vector<std::wstring> Tokenizer::tokenize(const std::wstring &shloka)
+std::vector<std::string> Tokenizer::tokenize(const std::string& shloka)
 {
     // vector to return
-    std::vector<std::wstring> tokens;
+    std::vector<std::string> tokens;
 
     // buffer to hold the current word
-    std::wstring wordBuffer;
+    std::string wordBuffer;
 
     // loop over all characters and add each word to the tokens vector
-    for (wchar_t c : shloka)
+    for (char c : shloka)
     {
         // prevent adding '|' to the tokens vector
-        if (wordBuffer == L"|")
+        if (wordBuffer == "|" || wordBuffer == "।")
         {
             wordBuffer.clear();
             continue;
         }
 
         // add word to wordBuffer & add push_back at space, pipe, or newline
-        if ((c == L' ' || c == L'|' || c == L'\n') && !wordBuffer.empty())
+        if ((c == ' ' || c == '|' || c == '\n') && !wordBuffer.empty())
         {
             tokens.push_back(wordBuffer);
             wordBuffer.clear();
@@ -29,7 +29,7 @@ std::vector<std::wstring> Tokenizer::tokenize(const std::wstring &shloka)
             wordBuffer += c;
         }
     }
-    if (!wordBuffer.empty())
+    if (!wordBuffer.empty() || wordBuffer == "॥")
         tokens.push_back(wordBuffer);
 
     return tokens;

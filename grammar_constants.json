@@ -19,7 +19,9 @@
     { "text": "अभि", "englishMeaning": "towards, facing, onto" },
     { "text": "प्रति", "englishMeaning": "against, back, in return, towards" },
     { "text": "परि", "englishMeaning": "around, about, fully" },
-    { "text": "उप", "englishMeaning": "towards, near, auxiliary" }
+    { "text": "उप", "englishMeaning": "towards, near, auxiliary" },
+    { "text": "अ", "englishMeaning": "not, non-, opposite of (before consonants)" },
+    { "text": "अन्", "englishMeaning": "not, non-, opposite of (before vowels)" }
   ],
   "indeclinables": [
     { "text": "च", "englishMeaning": "and" },

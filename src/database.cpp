@@ -2,10 +2,9 @@
 
 #include "rapidjson/document.h"
 #include "wordTypes.hpp"
-#include <codecvt>
+#include <cassert>
 #include <fstream>
 #include <iostream>
-#include <locale>
 #include <string>
 
 // ----- CONVERSION UTILITIES -----
@@ -14,16 +13,18 @@ auto ConjugationStringToType(const std::string &str)
 {
     static const std::unordered_map<std::string, ConjugationClass>
         conjugationStringMap = {
-            {"CLASS_1", ConjugationClass::CLASS_1_BASE_A},
-            {"CLASS_2", ConjugationClass::CLASS_2_DIRECT_ATTACH},
-            {"CLASS_3", ConjugationClass::CLASS_3_DUPLICATED},
-            {"CLASS_4", ConjugationClass::CLASS_4_YA_INFIX},
-            {"CLASS_5", ConjugationClass::CLASS_5_NU_INFIX},
-            {"CLASS_6", ConjugationClass::CLASS_6_ACCENTED_A},
-            {"CLASS_7", ConjugationClass::CLASS_7_INTERNAL_NASAL},
-            {"CLASS_8", ConjugationClass::CLASS_8_U_INFIX},
-            {"CLASS_9", ConjugationClass::CLASS_9_NA_INFIX},
-            {"CLASS_10", ConjugationClass::CLASS_10_CAUSATIVE_AYA}};
+            {"CLASS_1_BASE_A", ConjugationClass::CLASS_1_BASE_A},
+            {"CLASS_2_DIRECT_ATTACH", ConjugationClass::CLASS_2_DIRECT_ATTACH},
+            {"CLASS_3_DUPLICATED", ConjugationClass::CLASS_3_DUPLICATED},
+            {"CLASS_4_YA_INFIX", ConjugationClass::CLASS_4_YA_INFIX},
+            {"CLASS_5_NU_INFIX", ConjugationClass::CLASS_5_NU_INFIX},
+            {"CLASS_6_ACCENTED_A", ConjugationClass::CLASS_6_ACCENTED_A},
+            {"CLASS_7_INTERNAL_NASAL",
+             ConjugationClass::CLASS_7_INTERNAL_NASAL},
+            {"CLASS_8_U_INFIX", ConjugationClass::CLASS_8_U_INFIX},
+            {"CLASS_9_NA_INFIX", ConjugationClass::CLASS_9_NA_INFIX},
+            {"CLASS_10_CAUSATIVE_AYA",
+             ConjugationClass::CLASS_10_CAUSATIVE_AYA}};
 
     return conjugationStringMap.at(str);
 }
@@ -115,7 +116,11 @@ bool Database::initialize(const std::string &rootsJsonPath,
     // roots
     std::ifstream rootsFile(rootsJsonPath);
     if (!rootsFile.is_open())
+    {
+        std::cerr << "Failed to open roots JSON file: " << rootsJsonPath
+                  << std::endl;
         return false;
+    }
 
     std::string rootsJson((std::istreambuf_iterator<char>(rootsFile)),
                           std::istreambuf_iterator<char>());
@@ -135,19 +140,26 @@ bool Database::initialize(const std::string &rootsJsonPath,
     // constants
     std::ifstream constantsFile(constantsJsonPath);
     if (!constantsFile.is_open())
+    {
+        std::cerr << "Failed to open constants JSON file: " << constantsJsonPath
+                  << std::endl;
         return false;
+    }
 
     std::string constantsJson((std::istreambuf_iterator<char>(constantsFile)),
                               std::istreambuf_iterator<char>());
-    constantsFile.close();
 
     buffer.Parse(constantsJson.c_str());
+
     if (buffer.HasParseError() || !buffer.IsObject())
     {
         std::cerr << "Error parsing constants JSON file: " << constantsJsonPath
                   << std::endl;
         return false;
     }
+    constantsFile.close();
+    loadConstants(buffer);
+
     return true;
 }
 
@@ -286,75 +298,69 @@ void Database::loadConstants(const rapidjson::Document &doc)
         const auto &inflectionObj = doc["inflectionSuffixes"].GetObject();
 
         // present active
-        if (inflectionObj.HasMember("verbPresentActive") &&
-            inflectionObj["verbPresentActive"].IsObject())
+        if (inflectionObj.HasMember("verbalPresentActive") &&
+            inflectionObj["verbalPresentActive"].IsArray())
         {
-            for (const auto &item :
-                 inflectionObj["verbPresentActive"].GetObject())
+            const auto &verbalPresentActiveObj =
+                inflectionObj["verbalPresentActive"].GetArray();
+
+            for (const auto &i : verbalPresentActiveObj)
             {
-                if (item.name.IsString() && item.value.IsObject())
-                {
-                    VerbMetadata meta;
+                assert(i.IsObject());
+                assert(i.HasMember("suffix") && i["suffix"].IsString());
 
-                    const auto &metaObj = item.value.GetObject();
-                    meta.suffix = metaObj["suffix"].GetString();
-                    meta.person =
-                        SuffixPersonStringToType(metaObj["person"].GetString());
-                    meta.number =
-                        SuffixNumberStringToType(metaObj["number"].GetString());
-                    meta.tenseOrMood = VerbTenseOrMood::PRESENT;
-                    meta.voice = VerbVoice::ACTIVE;
+                VerbMetadata meta;
 
-                    verbSuffixCache[item.name.GetString()] = std::move(meta);
-                }
+                meta.suffix = i["suffix"].GetString();
+                meta.person = SuffixPersonStringToType(i["person"].GetString());
+                meta.number = SuffixNumberStringToType(i["number"].GetString());
+                meta.tenseOrMood = VerbTenseOrMood::PRESENT;
+                meta.voice = VerbVoice::ACTIVE;
+
+                verbSuffixCache[i["suffix"].GetString()] = std::move(meta);
             }
         }
 
         // present reflexive
-        if (inflectionObj.HasMember("verbPresentReflexive") &&
-            inflectionObj["verbPresentReflexive"].IsObject())
+        if (inflectionObj.HasMember("verbalPresentReflexive") &&
+            inflectionObj["verbalPresentReflexive"].IsArray())
         {
-            for (const auto &item :
-                 inflectionObj["verbPresentReflexive"].GetObject())
+            const auto &verbalPresentReflexiveObj =
+                inflectionObj["verbalPresentReflexive"].GetArray();
+
+            for (const auto &i : verbalPresentReflexiveObj)
             {
-                if (item.name.IsString() && item.value.IsObject())
-                {
-                    VerbMetadata meta;
+                assert(i.IsObject());
+                assert(i.HasMember("suffix") && i["suffix"].IsString());
+                VerbMetadata meta;
 
-                    const auto &metaObj = item.value.GetObject();
-                    meta.suffix = metaObj["suffix"].GetString();
-                    meta.person =
-                        SuffixPersonStringToType(metaObj["person"].GetString());
-                    meta.number =
-                        SuffixNumberStringToType(metaObj["number"].GetString());
-                    meta.tenseOrMood = VerbTenseOrMood::PRESENT;
-                    meta.voice = VerbVoice::ACTIVE;
+                meta.suffix = i["suffix"].GetString();
+                meta.person = SuffixPersonStringToType(i["person"].GetString());
+                meta.number = SuffixNumberStringToType(i["number"].GetString());
+                meta.tenseOrMood = VerbTenseOrMood::PRESENT;
+                meta.voice = VerbVoice::ACTIVE;
 
-                    verbSuffixCache[item.name.GetString()] = std::move(meta);
-                }
+                verbSuffixCache[i["suffix"].GetString()] = std::move(meta);
             }
         }
-
         // nominals
-        if (doc.HasMember("nominals") && doc["nominals"].IsObject())
+        if (inflectionObj.HasMember("nominals") &&
+            inflectionObj["nominals"].IsArray())
         {
-            for (const auto &item : doc["nominals"].GetObject())
+            const auto &nominalsObj = inflectionObj["nominals"].GetArray();
+
+            for (const auto &i : nominalsObj)
             {
-                if (item.name.IsString() && item.value.IsObject())
-                {
-                    NominalMetadata meta;
-                    const auto &metaObj = item.value.GetObject();
-                    meta.suffix = metaObj["suffix"].GetString();
-                    meta.gender =
-                        NominalGenderToType(metaObj["gender"].GetString());
-                    meta.nominalCase =
-                        NominalCaseToType(metaObj["case"].GetString());
-                    meta.number = NominalNumberStringToType(
-                        metaObj["number"].GetString());
-                    meta.gender =
-                        NominalGenderToType(metaObj["gender"].GetString());
-                    nominalSuffixCache[item.name.GetString()] = std::move(meta);
-                }
+                assert(i.IsObject());
+                assert(i.HasMember("suffix") && i["suffix"].IsString());
+                NominalMetadata meta;
+                meta.suffix = i["suffix"].GetString();
+                meta.gender = NominalGenderToType(i["gender"].GetString());
+                meta.nominalCase = NominalCaseToType(i["nominalCase"].GetString());
+                meta.number =
+                    NominalNumberStringToType(i["number"].GetString());
+                meta.gender = NominalGenderToType(i["gender"].GetString());
+                nominalSuffixCache[i["suffix"].GetString()] = std::move(meta);
             }
         }
     }

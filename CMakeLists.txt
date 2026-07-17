@@ -33,3 +33,6 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W4>
     $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -pedantic>
 )
+
+file(COPY ${CMAKE_SOURCE_DIR}/roots.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/grammar_constants.json DESTINATION ${CMAKE_BINARY_DIR})
