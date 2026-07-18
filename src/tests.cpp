@@ -76,8 +76,8 @@ void Tests::TestDatabaseFunctions()
     ExpectEqual(std::string("ति"), verbMeta.suffix,
                 "Verbal suffix 'ति' should have correct metadata");
     ExpectEqual(static_cast<int>(VerbTenseOrMood::PRESENT),
-            static_cast<int>(verbMeta.tenseOrMood),
-            "Verbal suffix 'ति' should have correct tense/mood", false);
+                static_cast<int>(verbMeta.tenseOrMood),
+                "Verbal suffix 'ति' should have correct tense/mood", false);
     ExpectEqual(false, db.tryMatchVerbalSuffix("xyz", verbMeta),
                 "Verbal suffix 'xyz' should not match");
 
@@ -94,17 +94,21 @@ void Tests::TestDatabaseFunctions()
 void Tests::TestTokenizer()
 {
     std::string shlokaInput =
-        "महोरस्को महेष्वासो गूढजत्रुररिन्दमः । आजानुबाहुः सुशिराः सुललातः सुविक्रमः ॥";
+        "न जायते  म्रियते  वा   कदाचिन्न्ायं   भूत्वाSभविता  वा  न  भूय:  । अजो  नित्य:  "
+        " शाश्वतोऽयं  पुराणो   न  हन्यते  हन्यमाने  शरीरे   ॥";
 
     std::vector<std::string> expectedTokens = {
-        "महोरस्को", "महेष्वासो", "गूढजत्रुररिन्दमः", "आजानुबाहुः",
-        "सुशिराः",  "सुललातः",  "सुविक्रमः",
-    };
+        "न",     "जायते", "म्रियते", "वा",     "कदाचिन्न्ायं", "भूत्वाऽभविता",
+        "वा",    "न",    "भूयः",   "अजो",    "नित्यः",     "शाश्वतोऽयं",
+        "पुराणो", "न",    "हन्यते",  "हन्यमाने", "शरीरे"};
 
     Tokenizer tok;
     std::vector<std::string> tokenizerOutput = tok.tokenize(shlokaInput);
 
-    for (size_t i = 0; i < expectedTokens.size(); i++) {
-        ExpectEqual(expectedTokens[i], tokenizerOutput[i], "Tokenizer word should equal expected word: " + expectedTokens[i]);
+    for (size_t i = 0; i < expectedTokens.size(); i++)
+    {
+        ExpectEqual(expectedTokens[i], tokenizerOutput[i],
+                    "Tokenizer word should equal expected word: " +
+                        expectedTokens[i]);
     }
 }
