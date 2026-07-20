@@ -21,6 +21,7 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
 add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
     ${PROJECT_HEADERS}
+    src/sandhi-splitter.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

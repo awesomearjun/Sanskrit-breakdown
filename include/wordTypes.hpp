@@ -137,6 +137,15 @@ enum class WordType {
     INDECLINABLE
 };
 
+// for the SandhiSplitter isValidWord function to get any information found before the root derivation
+struct WordAnalysis {
+    bool success = false;
+    std::vector<std::string> components; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
+    VerbMetadata verbInfo;
+    NominalMetadata nominalInfo;
+    std::string matchType = "none"; // "indeclinable", "prefix", "verb", or "nominal"
+};
+
 struct Word {
     std::string text;
     std::string cleanForm;
