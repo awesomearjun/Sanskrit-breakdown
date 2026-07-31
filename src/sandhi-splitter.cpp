@@ -1,8 +1,12 @@
 #include "sandhi-splitter.hpp"
 #include "wordTypes.hpp"
 #include <cstddef>
+#include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
+
+using namespace SandhiSplit;
 
 void SandhiSplitter::initializePossibilities()
 {
@@ -58,6 +62,11 @@ void SandhiSplitter::initializePossibilities()
 
         // === 3. VISARGA (Crucial for Nominal Endings) ===
         {"ोऽ",
+         {
+             {"ः", "अ"} // Avagraha: e.g., अधर्मोऽस्ति -> अधर्मः + अस्ति
+         }},
+
+        {"ो",
          {
              {"ः", "अ"} // Avagraha: e.g., अधर्मोऽस्ति -> अधर्मः + अस्ति
          }},
@@ -126,151 +135,174 @@ void SandhiSplitter::initializePossibilities()
          {
              {"ृ", "इ"} // e.g., भ्रातृ + इति -> भ्रात्रिति
          }},
+
+         // === 4. HAL (Consonant Sandhi) ===
+         {"च्चि",
+         {
+             {"त्", "चि"}, // Handles cases where vowel mark 'ि' follows
+             {"द्", "चि"}
+         }},
+        {"च्च",
+         {
+             {"त्", "च"},  // Ścutva: e.g., तत् + चिन्तयति -> तच्चिन्तयति
+             {"द्", "च"}   // Ścutva variant
+         }},
+        {"ज्ज",
+         {
+             {"त्", "ज"},  // Ścutva: e.g., सत_ + जनः -> सज्जनः
+             {"द्", "ज"}
+         }},
+        {"च्छा",
+         {
+             {"त्", "छा"}, // Chatva: e.g., तद् + शिवः -> तच्छिवः
+             {"त्", "शा"}
+         }},
+        {"द्ग",
+         {
+             {"त्", "ग"}   // JŚatva: e.g., जगत् + ईशः -> जगदीशः (voicing t -> d)
+         }},
+        {"द्ब",
+         {
+             {"त्", "ब"}   // JŚatva: e.g., तत् + बोधः -> तद्बोधः
+         }},
+        {"न्म",
+         {
+             {"त्", "म"}   // Anunāsika: e.g., जगत् + नाथः -> जगन्नाथः (or -m)
+         }},
+        {"न्न",
+         {
+             {"त्", "न"}   // Anunāsika: e.g., एतत् + न -> एतन्न
+         }},
+        {"ंका",
+         {
+             {"म्", "क"}   // Parasavarṇa / Anusvāra: e.g., सम् + कल्पः -> सङ्कल्पः / संकल्पः
+         }},
+        {"ंता",
+         {
+             {"म्", "त"}   // Parasavarṇa: e.g., सम् + तोषः -> सन्तोषः / संतोषः
+         }}
     };
 }
 
-std::vector<TokenAnalysis> SandhiSplitter::split(const Tokens &tokens)
+std::vector<std::vector<std::shared_ptr<SandhiSplit::WordNode>>>
+SandhiSplitter::splitTree(std::vector<std::string> &tokens)
 {
-    std::vector<TokenAnalysis> output;
+    std::vector<std::vector<std::shared_ptr<SandhiSplit::WordNode>>> output;
 
-    for (std::string token : tokens)
+    for (const std::string &token : tokens)
     {
-        if (std::vector<TokenAnalysis> possibilities = findSplits(token);
-            !possibilities.empty())
+        TreeCache memo;
+
+        if (std::vector<std::shared_ptr<SandhiSplit::WordNode>> tokenTrees =
+                findSplits(token, memo);
+            !tokenTrees.empty())
         {
-            for (TokenAnalysis possibility : possibilities)
-                output.push_back(possibility);
+            output.push_back(tokenTrees);
         }
     }
     return output;
 }
 
-std::vector<TokenAnalysis> SandhiSplitter::findSplits(const std::string &token)
+// tests for incomplete bit
+inline bool isUtf8ContinuationByte(char c)
 {
-    std::vector<TokenAnalysis> results;
+    return (static_cast<unsigned char>(c) & 0xC0) == 0x80;
+}
+
+// Returns true if the byte starting at str[i] is a combining mark/matra/virama
+// sees if there's a dependant mark on the next character
+bool isCombiningMark(const std::string &str, size_t i)
+{
+    if (i + 2 >= str.size())
+        return false;
+
+    unsigned char c1 = static_cast<unsigned char>(str[i]);
+    unsigned char c2 = static_cast<unsigned char>(str[i + 1]);
+    unsigned char c3 = static_cast<unsigned char>(str[i + 2]);
+
+    // Devanagari Matras, Virama, and Modifiers sit in 0xE0 0xA5 0x80 to 0xE0
+    // 0xA5 0xBF
+    if (c1 == 0xE0 && c2 == 0xA5 && (c3 >= 0x80 && c3 <= 0xBF))
+        return true;
+    // Dependent Vowels (e.g., Aa, I, Ii) sit in 0xE0 0xA4 0xBE to 0xE0 0xA4
+    // 0xC0
+    if (c1 == 0xE0 && c2 == 0xA4 && (c3 >= 0xBE))
+        return true;
+    return false;
+}
+
+std::vector<std::shared_ptr<WordNode>>
+SandhiSplitter::findSplits(const std::string &token, TreeCache &memo)
+{
+    std::vector<std::shared_ptr<WordNode>> results;
     std::string targetString = token;
 
-    // loop until we break (when we hit the token's end)
-    while (true)
+    // Base Case: Empty string returns empty vector
+    if (token.empty())
+        return {};
+
+    // Memo Check: Have we already built the trees for this exact string?
+    if (auto it = memo.find(token); it != memo.end())
+        return it->second;
+
+    for (size_t pos = 0; pos < targetString.length(); ++pos)
     {
-    restart:
-        if (targetString.length() == 0)
-            break;
-
-        // loop over every character
-        for (size_t pos = 0; pos < targetString.length(); ++pos)
+        // doesn't let incomplete bits get through
+        if (isUtf8ContinuationByte(targetString[pos]))
+            continue;
+        for (size_t len = 1; len <= 12 && (pos + len) <= targetString.length();
+             ++len)
         {
-
-            // Scan up to 9 bytes to capture multi-byte modifiers and conjuncts
-            for (size_t len = 1;
-                 len <= 12 && (pos + len) <= targetString.length(); ++len)
+            // still doesn't let them through
+            if (pos + len < targetString.length() &&
+                isUtf8ContinuationByte(targetString[pos + len]))
             {
-                std::string potentialJunction = targetString.substr(pos, len);
-
-                // Look up the exact byte slice in our rules matrix
-                auto it = rules.find(potentialJunction);
-                if (it != rules.end())
-                {
-
-                    // Isolate the text completely before and after this
-                    // junction
-                    std::string leftChunk = targetString.substr(0, pos);
-                    std::string rightChunk = targetString.substr(pos + len);
-
-                    // Iterate through all potential left/right replacement
-                    // pairs for this junction
-                    const auto &transformations = it->second;
-                    for (const auto &[leftRep, rightRep] : transformations)
-                    {
-
-                        std::string candidateLeft = leftChunk + leftRep;
-                        std::string candidateRight = rightRep + rightChunk;
-
-                        // Hit the validation database layer
-                        WordAnalysis leftAnalysis = isValidWord(candidateLeft);
-                        WordAnalysis rightAnalysis =
-                            isValidWord(candidateRight);
-                        if (leftAnalysis.success && rightAnalysis.success)
-                        {
-                            results.push_back(
-                                TokenAnalysis(candidateLeft, leftAnalysis));
-                            targetString = candidateRight;
-
-                            // restart all the way until the while loop
-                            goto restart;
-                        }
-                    }
-                }
+                continue;
             }
 
-            // if it didn't restart, then just stop cuz we don't have a split
-            break;
+            // skip if next character is a dependant one
+            if (size_t endPos = pos + len;
+                endPos < targetString.length() &&
+                isCombiningMark(targetString, endPos))
+            {
+                continue; // Skip! Don't let rightChunk inherit a stranded
+                          // matra like 'ु'
+            }
+
+            std::string potentialJunction = targetString.substr(pos, len);
+
+            auto it = rules.find(potentialJunction);
+            if (it == rules.end())
+                continue;
+
+            std::string leftChunk = targetString.substr(0, pos);
+            std::string rightChunk = targetString.substr(pos + len);
+
+            const auto &transformations = it->second;
+            for (const auto &[leftRep, rightRep] : transformations)
+            {
+                std::string candidateLeft = leftChunk + leftRep;
+                std::string candidateRight = rightRep + rightChunk;
+
+                WordAnalysis leftAnalysis;
+                leftAnalysis.original = candidateLeft;
+
+                auto node = std::make_shared<WordNode>(leftAnalysis);
+                node->children = findSplits(candidateRight, memo);
+
+                results.push_back(node);
+            }
         }
     }
 
-    // if this entire thing didn't yield any matches, just test the word itself
+    // Cleanup / Fallback: If no splits were found at all, add the whole token
+    // as node
     if (results.empty())
     {
-        WordAnalysis finalAnalysis = isValidWord(token);
-        results.push_back(TokenAnalysis(token, finalAnalysis));
-    }
-    return results;
-}
-
-WordAnalysis SandhiSplitter::isValidWord(const std::string &word)
-{
-    // 1. Is it a standalone indeclinable word (like च, अपि, इति)?
-    if (db.isIndeclinable(word))
-    {
-        return WordAnalysis(true, {word}, VerbMetadata(), NominalMetadata(),
-                            "indeclinable");
+        WordAnalysis buf;
+        buf.original = token;
+        results.push_back(std::make_shared<WordNode>(WordNode(buf)));
     }
 
-    // the rest of the word (used in the next steps)
-    std::string rest;
-
-    // loops through at least 4 aksharas
-    for (size_t len = 1; len <= 12; len++)
-    {
-        if (len > word.size())
-        {
-            return WordAnalysis(false, {}, VerbMetadata(), NominalMetadata(),
-                                "none");
-        }
-
-        // 2. Is it a recognized prefix (upasarga like सु, अनु, प्रति)?
-        if (std::string prefix = word.substr(0, len); db.isPrefix(prefix))
-        {
-            rest = word.substr(len);
-            return WordAnalysis(true, {prefix, rest}, VerbMetadata(),
-                                NominalMetadata(), "none");
-        }
-        // 3. Is it a valid verbal suffix?
-        else if (std::string vsuffix = word.substr(word.length() - len, len);
-                 db.tryMatchVerbalSuffix(vsuffix, collectedVerbInfo))
-        {
-            rest = word.substr(0, word.length() - len);
-            return WordAnalysis(true, {rest, vsuffix}, collectedVerbInfo,
-                                NominalMetadata(), "verb");
-        }
-        // 4. Is it a valid inflected nominal form (noun/adjective case ending)?
-        else if (std::string nsuffix = word.substr(word.length() - len, len);
-                 db.tryMatchNominalSuffix(nsuffix, collectedNominalInfo))
-        {
-            rest = word.substr(0, word.length() - len);
-            return WordAnalysis(true, {rest, nsuffix}, VerbMetadata(),
-                                collectedNominalInfo, "nominal");
-        }
-    }
-
-    // If it fails all 5 of your specific morphological checks, it's a ghost
-    // word.
-    return WordAnalysis(false, {}, VerbMetadata(), NominalMetadata(), "none");
-}
-
-VerbMetadata SandhiSplitter::getVerbInfo() { return collectedVerbInfo; }
-
-NominalMetadata SandhiSplitter::getNominalInfo()
-{
-    return collectedNominalInfo;
+    return memo[token] = results;
 }

@@ -5,12 +5,21 @@
 #include <vector>
 
 #include "database.hpp"
+#include "sandhi-splitter.hpp"
 #include "tokenizer.hpp"
+
+#define DEBUG_INFO true
 
 void Tests::TestAll()
 {
     TestDatabaseFunctions();
     TestTokenizer();
+    TestSplitter();
+}
+
+Tests::Tests()
+{
+    db.initialize("./roots.json", "./grammar_constants.json", "./stems.json");
 }
 
 template <typename T>
@@ -41,9 +50,6 @@ void Tests::ExpectEqual(const T &expected, const T &actual,
 
 void Tests::TestDatabaseFunctions()
 {
-    Database db;
-    db.initialize("./roots.json", "./grammar_constants.json");
-
     // Test rootExists
     ExpectEqual(true, db.rootExists("वद्"), "Root 'वद्' should exist");
     ExpectEqual(false, db.rootExists("fd"), "Root 'fd' should not exist");
@@ -111,4 +117,95 @@ void Tests::TestTokenizer()
                     "Tokenizer word should equal expected word: " +
                         expectedTokens[i]);
     }
+}
+
+void Tests::TestSplitter()
+{
+    std::cout << "[RUNNING] TestComplexVerbalSandhi..." << std::endl;
+
+    SandhiSplitter splitter(db);
+    splitter.initializePossibilities();
+
+    // Target: "तच्चिन्तयति" (tat + cintayati = "He/She thinks about that")
+    std::vector<std::string> inputTokens = { "तच्चिन्तयति" };
+
+    auto output = splitter.splitTree(inputTokens);
+
+    if (DEBUG_INFO) {
+        // ------------------------------------------------------------------
+        // VISUALIZE TREES IN TERMINAL
+        // ------------------------------------------------------------------
+        std::cout << "\n\n\n";
+        std::cout
+            << "=======================================================\n";
+        std::cout
+            << "               SANDHI SPLIT TREE VISUALIZER            \n";
+        std::cout
+            << "=======================================================\n\n";
+
+        // Lambda helper for recursive ASCII tree printing
+        auto printNode = [](auto &self,
+                            const std::shared_ptr<SandhiSplit::WordNode> &node,
+                            const std::string &prefix, bool isLast) -> void
+        {
+            if (!node)
+                return;
+
+            std::cout << prefix << (isLast ? "└── " : "├── ")
+                      << node->analysis.original << "\n";
+
+            std::string childPrefix = prefix + (isLast ? "    " : "│   ");
+            for (size_t i = 0; i < node->children.size(); ++i)
+            {
+                bool lastChild = (i == node->children.size() - 1);
+                self(self, node->children[i], childPrefix, lastChild);
+            }
+        };
+
+        // Print trees for every token in output
+        for (size_t tokenIdx = 0; tokenIdx < output.size(); ++tokenIdx)
+        {
+            std::cout << "--- [ TOKEN " << (tokenIdx + 1) << " TREES ] ---\n";
+            for (size_t treeIdx = 0; treeIdx < output[tokenIdx].size();
+                 ++treeIdx)
+            {
+                std::cout << "Option " << (treeIdx + 1) << ":\n";
+                printNode(printNode, output[tokenIdx][treeIdx], "", true);
+                std::cout << "\n";
+            }
+        }
+
+        std::cout
+            << "=======================================================\n";
+        std::cout << "\n\n\n" << std::endl;
+        // ------------------------------------------------------------------
+    }
+
+    assert(output.size() == 1 && "Test Failed: Expected output size 1 for batch input");
+    const auto& treesForToken = output[0];
+    assert(!treesForToken.empty() && "Test Failed: No tree options generated for तच्चिन्तयति");
+
+    // Search for the golden path: "तत्" -> "चिन्तयति"
+    bool foundVerbalSandhiPath = false;
+
+    for (const auto& root : treesForToken)
+    {
+        // Level 1: "तत्" (Pronoun stem before Schutva Sandhi)
+        if (root && root->analysis.original == "तत्")
+        {
+            for (const auto& child : root->children)
+            {
+                // Level 2: "चिन्तयति" (Verbal form: Present tense 3rd person)
+                if (child && child->analysis.original == "चिन्तयति")
+                {
+                    foundVerbalSandhiPath = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    assert(foundVerbalSandhiPath && "Test Failed: Path 'तत्' -> 'चिन्तयति' not found for तच्चिन्तयति!");
+
+    std::cout << "[SUCCESS] TestComplexVerbalSandhi passed for Schutva Sandhi + Verbal form!" << std::endl;
 }

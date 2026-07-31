@@ -7,6 +7,7 @@
 
 int main()
 {
-    Tests::TestAll();
+    Tests tests;
+    tests.TestAll();
     return 0;
 }

@@ -109,7 +109,8 @@ auto VowelRuleStringToRule(const std::string &str)
 // ----- DATABASE IMPLEMENTATION -----
 
 bool Database::initialize(const std::string &rootsJsonPath,
-                          const std::string &constantsJsonPath)
+                          const std::string &constantsJsonPath,
+                          const std::string &stemsJsonPath)
 {
     rapidjson::Document buffer;
 
@@ -159,6 +160,30 @@ bool Database::initialize(const std::string &rootsJsonPath,
     }
     constantsFile.close();
     loadConstants(buffer);
+    buffer.SetObject();
+
+    // stems
+    std::ifstream stemsFile(stemsJsonPath);
+    if (!stemsFile.is_open())
+    {
+        std::cerr << "Failed to open constants JSON file: " << stemsJsonPath
+                  << std::endl;
+        return false;
+    }
+
+    std::string stemsJson((std::istreambuf_iterator<char>(stemsFile)),
+                              std::istreambuf_iterator<char>());
+
+    buffer.Parse(stemsJson.c_str());
+
+    if (buffer.HasParseError() || !buffer.IsObject())
+    {
+        std::cerr << "Error parsing constants JSON file: " << stemsJsonPath
+                  << std::endl;
+        return false;
+    }
+    stemsFile.close();
+    loadStems(buffer);
 
     return true;
 }
@@ -218,6 +243,11 @@ bool Database::tryMatchNominalSuffix(const std::string &text,
 bool Database::rootExists(const std::string &cleanRoot) const
 {
     return rootCache.find(cleanRoot) != rootCache.end();
+}
+
+bool Database::stemExists(const std::string &cleanStem) const
+{
+    return stemsCache.find(cleanStem) != stemsCache.end();
 }
 
 // ----- LOADERS -----
@@ -356,12 +386,43 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 NominalMetadata meta;
                 meta.suffix = i["suffix"].GetString();
                 meta.gender = NominalGenderToType(i["gender"].GetString());
-                meta.nominalCase = NominalCaseToType(i["nominalCase"].GetString());
+                meta.nominalCase =
+                    NominalCaseToType(i["nominalCase"].GetString());
                 meta.number =
                     NominalNumberStringToType(i["number"].GetString());
                 meta.gender = NominalGenderToType(i["gender"].GetString());
                 nominalSuffixCache[i["suffix"].GetString()] = std::move(meta);
             }
+        }
+    }
+}
+
+void Database::loadStems(const rapidjson::Document &doc)
+{
+    // 1. Verify the root is an object and contains the "stems" key
+    if (!doc.IsObject() || !doc.HasMember("stems"))
+    {
+        return;
+    }
+
+    const rapidjson::Value &stemsArray = doc["stems"];
+
+    // 2. Ensure "stems" is actually an array
+    if (!stemsArray.IsArray())
+    {
+        return;
+    }
+
+    // 3. Reserve space in the hash set to prevent re-hashing overhead (for 15k stems)
+    stemsCache.reserve(stemsArray.Size());
+
+    // 4. Iterate through string elements and insert into unordered_set
+    for (const auto &element : stemsArray.GetArray())
+    {
+        if (element.IsString())
+        {
+            // GetString() returns const char*, string_view/string handles UTF-8 bytes cleanly
+            stemsCache.emplace(element.GetString(), element.GetStringLength());
         }
     }
 }
