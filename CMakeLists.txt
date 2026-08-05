@@ -22,6 +22,7 @@ add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
     ${PROJECT_HEADERS}
     src/sandhi-splitter.cpp
+    include/root-deriver.hpp
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -37,4 +38,3 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 file(COPY ${CMAKE_SOURCE_DIR}/roots.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/grammar_constants.json DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY ${CMAKE_SOURCE_DIR}/stems.json DESTINATION ${CMAKE_BINARY_DIR})
