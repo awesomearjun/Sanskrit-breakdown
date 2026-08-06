@@ -1,4 +1,5 @@
 #include "database.hpp"
+#include "root-deriver.hpp"
 #include <string>
 
 class Tests {
@@ -10,8 +11,10 @@ public:
     void TestDatabaseFunctions();
     void TestTokenizer();
     void TestSplitter();
+    void TestValidWord();
     void TestAll();
 
 private:
     Database db;
+    RootDeriver rootDeriver{db};
 };

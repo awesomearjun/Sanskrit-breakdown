@@ -184,16 +184,16 @@ void SandhiSplitter::initializePossibilities()
     };
 }
 
-std::vector<std::vector<std::shared_ptr<SandhiSplit::WordNode>>>
+std::vector<std::vector<std::shared_ptr<WordAnalysisNode>>>
 SandhiSplitter::splitTree(std::vector<std::string> &tokens)
 {
-    std::vector<std::vector<std::shared_ptr<SandhiSplit::WordNode>>> output;
+    std::vector<std::vector<std::shared_ptr<WordAnalysisNode>>> output;
 
     for (const std::string &token : tokens)
     {
-        TreeCache memo;
+        AnalysisTreeCache memo;
 
-        if (std::vector<std::shared_ptr<SandhiSplit::WordNode>> tokenTrees =
+        if (std::vector<std::shared_ptr<WordAnalysisNode>> tokenTrees =
                 findSplits(token, memo);
             !tokenTrees.empty())
         {
@@ -231,10 +231,10 @@ bool isCombiningMark(const std::string &str, size_t i)
     return false;
 }
 
-std::vector<std::shared_ptr<WordNode>>
-SandhiSplitter::findSplits(const std::string &token, TreeCache &memo)
+std::vector<std::shared_ptr<WordAnalysisNode>>
+SandhiSplitter::findSplits(const std::string &token, AnalysisTreeCache &memo)
 {
-    std::vector<std::shared_ptr<WordNode>> results;
+    std::vector<std::shared_ptr<WordAnalysisNode>> results;
     std::string targetString = token;
 
     // Base Case: Empty string returns empty vector
@@ -287,7 +287,7 @@ SandhiSplitter::findSplits(const std::string &token, TreeCache &memo)
                 WordAnalysis leftAnalysis;
                 leftAnalysis.original = candidateLeft;
 
-                auto node = std::make_shared<WordNode>(leftAnalysis);
+                auto node = std::make_shared<WordAnalysisNode>(leftAnalysis);
                 node->children = findSplits(candidateRight, memo);
 
                 results.push_back(node);
@@ -301,7 +301,7 @@ SandhiSplitter::findSplits(const std::string &token, TreeCache &memo)
     {
         WordAnalysis buf;
         buf.original = token;
-        results.push_back(std::make_shared<WordNode>(WordNode(buf)));
+        results.push_back(std::make_shared<WordAnalysisNode>(WordAnalysisNode(buf)));
     }
 
     return memo[token] = results;

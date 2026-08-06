@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 #include <variant>
@@ -141,8 +143,8 @@ struct WordAnalysis {
     bool success = false;
     std::string original = "";
     std::vector<std::string> components = {}; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
-    VerbMetadata verbInfo = VerbMetadata();
-    NominalMetadata nominalInfo = NominalMetadata();
+    std::optional<VerbMetadata> verbInfo;
+    std::optional<NominalMetadata> nominalInfo;
     std::string matchType = "none"; // "indeclinable", "prefix", "verb", "stem", or "nominal"
 };
 
@@ -151,6 +153,22 @@ struct Word {
     std::string cleanForm;
     std::vector<SanskritRoot> roots; // Holds full structural definition objects for compound tracking
 
+    std::vector<WordAnalysis> analysises;
+
     WordType type;
     WordMetadata metadata = UnknownMetadata{};
+};
+
+struct WordAnalysisNode
+{
+    WordAnalysis analysis;
+
+    std::vector<std::shared_ptr<WordAnalysisNode>> children;
+};
+
+struct WordNode
+{
+    Word word;
+
+    std::vector<std::shared_ptr<WordNode>> children;
 };

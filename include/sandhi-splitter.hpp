@@ -13,15 +13,9 @@
 namespace SandhiSplit
 {
 using Tokens = std::vector<std::string>;
-struct WordNode
-{
-    WordAnalysis analysis;
 
-    std::vector<std::shared_ptr<WordNode>> children;
-};
-
-using TreeCache =
-    std::unordered_map<std::string, std::vector<std::shared_ptr<WordNode>>>;
+using AnalysisTreeCache =
+    std::unordered_map<std::string, std::vector<std::shared_ptr<WordAnalysisNode>>>;
 } // namespace SandhiSplit
 
 /// Takes tokens given from the tokenizer and splits them into their constituent
@@ -36,7 +30,7 @@ public:
 
     /// takes vector of tokens and returns sandhi trees for each of them;
     /// combines all trees from findSplits
-    std::vector<std::vector<std::shared_ptr<SandhiSplit::WordNode>>>
+    std::vector<std::vector<std::shared_ptr<WordAnalysisNode>>>
     splitTree(std::vector<std::string> &tokens);
 
     NominalMetadata getNominalInfo();
@@ -44,8 +38,8 @@ public:
 
 private:
     /// find splits for one token; returns all trees for that
-    std::vector<std::shared_ptr<SandhiSplit::WordNode>>
-    findSplits(const std::string &token, SandhiSplit::TreeCache &memo);
+    std::vector<std::shared_ptr<WordAnalysisNode>>
+    findSplits(const std::string &token, SandhiSplit::AnalysisTreeCache &memo);
 
     // <junction>: { {<left>, <right>}, {<left2, right2>} }
     std::unordered_map<std::string,
