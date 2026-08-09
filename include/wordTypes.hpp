@@ -93,31 +93,34 @@ enum class ConjugationClass {
     CLASS_7_INTERNAL_NASAL,       // Splices a nasal consonant straight inside the root itself (e.g., rudh -> ruṇaddhi)
     CLASS_8_U_INFIX,              // Inserts a '-u-' sound before the suffix (e.g., tan -> tanoti)
     CLASS_9_NA_INFIX,             // Inserts a '-nā-' sound before the suffix (e.g., krī -> krīṇāti)
-    CLASS_10_CAUSATIVE_AYA        // Inserts a causative or structural '-aya-' sound (e.g., cur -> corayati)
+    CLASS_10_CAUSATIVE_AYA,       // Inserts a causative or structural '-aya-' sound (e.g., cur -> corayati)
+    UNKNOWN                       // The root's conjugation class is not yet determined or is ambiguous
 };
 
 enum class RootVoiceType {
     ACTIVE_VOICE_MARKERS,         // The root naturally uses Parasmaipada terminal suffixes
     REFLEXIVE_VOICE_MARKERS,      // The root naturally uses Ātmanepada terminal suffixes
-    SHARED_VOICE_MARKERS          // The root naturally accepts either structural terminal set
+    SHARED_VOICE_MARKERS,         // The root naturally accepts either structural terminal set
+    UNKNOWN                       // The root's natural voice type is not yet determined or is ambiguous
 };
 
 enum class InternalVowelRule {
     ALLOWS_LINKING_VOWEL,         // Root allows internal structural 'i' insertions (Sa-iṭ)
     BLOCKS_LINKING_VOWEL,         // Root strictly forbids internal structural 'i' insertions (An-iṭ)
-    VARIABLE_LINKING_VOWEL        // Vowel insertion behavior is completely conditional (Veti)
+    VARIABLE_LINKING_VOWEL,       // Vowel insertion behavior is completely conditional (Veti)
+    UNKNOWN                       // The root's internal vowel behavior is not yet determined or is ambiguous
 };
 
 struct SanskritRoot {
-    std::string originalTagForm;    // The raw dictionary entry containing historical marker tags (e.g., L"डुकृञ्")
-    std::string cleanLookupForm;    // The clean, stripped form used for algorithmic string matching (e.g., L"कृ")
+    std::string originalTagForm = "";    // The raw dictionary entry containing historical marker tags (e.g., L"डुकृञ्")
+    std::string cleanLookupForm = "";    // The clean, stripped form used for algorithmic string matching (e.g., L"कृ")
 
-    ConjugationClass conjugationClass;  // The internal morphological structural pattern it follows
-    RootVoiceType naturalVoiceType;     // The default inflection suffix set it is pre-wired to use
-    InternalVowelRule internalVowelRule;// Internal structural chemistry behavior for vowel insertions
+    ConjugationClass conjugationClass = ConjugationClass::UNKNOWN;  // The internal morphological structural pattern it follows
+    RootVoiceType naturalVoiceType = RootVoiceType::UNKNOWN;     // The default inflection suffix set it is pre-wired to use
+    InternalVowelRule internalVowelRule = InternalVowelRule::UNKNOWN;// Internal structural chemistry behavior for vowel insertions
 
-    std::string traditionalMeaning;    // The semantic definition text from the ancient root lists (e.g., L"सत्तायाम्")
-    std::string englishMeaning;        // The literal concept translation (e.g., L"to be / to exist")
+    std::string traditionalMeaning = "";    // The semantic definition text from the ancient root lists (e.g., L"सत्तायाम्")
+    std::string englishMeaning = "";        // The literal concept translation (e.g., L"to be / to exist")
 };
 
 // ---- ETC -----
@@ -153,7 +156,7 @@ struct Word {
     std::string cleanForm;
     std::vector<SanskritRoot> roots; // Holds full structural definition objects for compound tracking
 
-    std::vector<WordAnalysis> analysises;
+    std::vector<WordAnalysis> analyses;
 
     WordType type;
     WordMetadata metadata = UnknownMetadata{};
@@ -166,9 +169,16 @@ struct WordAnalysisNode
     std::vector<std::shared_ptr<WordAnalysisNode>> children;
 };
 
-struct WordNode
+struct WordTreeNode
 {
     Word word;
 
-    std::vector<std::shared_ptr<WordNode>> children;
+    std::vector<std::shared_ptr<WordTreeNode>> children;
+};
+
+struct WordListNode
+{
+    Word word;
+
+    std::shared_ptr<WordListNode> next;
 };

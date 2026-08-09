@@ -23,7 +23,7 @@ public:
                               VerbMetadata &outMeta) const;
     bool tryMatchNominalSuffix(const std::string &text,
                                NominalMetadata &outMeta) const;
-    bool rootExists(const std::string &cleanRoot) const;
+    SanskritRoot rootExists(const std::string &cleanRoot) const;
     bool stemExists(const std::string &cleanStem) const;
 
 private:

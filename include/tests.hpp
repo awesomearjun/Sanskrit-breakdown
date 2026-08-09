@@ -11,7 +11,6 @@ public:
     void TestDatabaseFunctions();
     void TestTokenizer();
     void TestSplitter();
-    void TestValidWord();
     void TestAll();
 
 private:

@@ -240,9 +240,9 @@ bool Database::tryMatchNominalSuffix(const std::string &text,
     return false;
 }
 
-bool Database::rootExists(const std::string &cleanRoot) const
+SanskritRoot Database::rootExists(const std::string &cleanRoot) const
 {
-    return rootCache.find(cleanRoot) != rootCache.end();
+    return rootCache.find(cleanRoot) != rootCache.end() ? rootCache.at(cleanRoot) : SanskritRoot{};
 }
 
 bool Database::stemExists(const std::string &cleanStem) const

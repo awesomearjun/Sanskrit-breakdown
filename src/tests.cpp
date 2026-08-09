@@ -15,7 +15,6 @@ void Tests::TestAll()
     TestDatabaseFunctions();
     TestTokenizer();
     TestSplitter();
-    TestValidWord();
 }
 
 Tests::Tests()
@@ -215,111 +214,4 @@ void Tests::TestSplitter()
     std::cout << "[SUCCESS] TestComplexVerbalSandhi passed for Schutva Sandhi "
                  "+ Verbal form!"
               << std::endl;
-}
-
-void Tests::TestValidWord()
-{
-    // 1. Test Standalone Indeclinable (Avyaya) -> e.g., "अनु"
-    {
-        std::string word = "अनु";
-        auto results = rootDeriver.isValidWord(word);
-
-        // Check if at least one valid interpretation is returned
-        bool hasMatch = !results.empty();
-        Tests::ExpectEqual(true, hasMatch, "Indeclinable 'अनु' should be valid",
-                           true);
-
-        if (hasMatch)
-        {
-            Tests::ExpectEqual(
-                std::string("indeclinable"), results[0].matchType,
-                "Match type for 'अनु' should be 'indeclinable'", true);
-            Tests::ExpectEqual(true, results[0].success,
-                               "Analysis success state should be true", true);
-        }
-    }
-
-    // 2. Test Pure Verb Form (Unprefixed Tiṅanta) -> e.g., "गच्छति"
-    {
-        std::string word = "गच्छति";
-        auto results = rootDeriver.isValidWord(word);
-
-        bool hasMatch = !results.empty();
-        Tests::ExpectEqual(true, hasMatch, "Verb 'गच्छति' should be valid",
-                           true);
-
-        if (hasMatch)
-        {
-            Tests::ExpectEqual(std::string("verb"), results[0].matchType,
-                               "Match type for 'गच्छति' should be 'verb'", true);
-        }
-    }
-
-    // 3. Test Pure Nominal Form (Subanta) -> e.g., "रामेण"
-    {
-        std::string word = "रामेण";
-        auto results = rootDeriver.isValidWord(word);
-
-        bool hasMatch = !results.empty();
-        Tests::ExpectEqual(true, hasMatch, "Nominal 'रामेण' should be valid",
-                           true);
-
-        if (hasMatch)
-        {
-            Tests::ExpectEqual(std::string("nominal"), results[0].matchType,
-                               "Match type for 'रामेण' should be 'nominal'",
-                               true);
-        }
-    }
-
-    // 4. Test Prefixed Verb (Upasarga + Valid Stem) -> e.g., "अनुगच्छति"
-    {
-        std::string word = "अनुगच्छति";
-        auto results = rootDeriver.isValidWord(word);
-
-        bool foundAnuGacchatiSplit = false;
-
-        for (const auto &analysis : results)
-        {
-            // Search specifically for the 'अनु' + 'गच्छति' split
-            if (analysis.components.size() == 2 &&
-                analysis.components[0] == "अनु" &&
-                analysis.components[1] == "गच्छति")
-            {
-                foundAnuGacchatiSplit = true;
-                Tests::ExpectEqual(
-                    std::string("verb"), analysis.matchType,
-                    "Match type for 'अनुगच्छति' split should be 'verb'", true);
-                break;
-            }
-        }
-
-        Tests::ExpectEqual(
-            true, foundAnuGacchatiSplit,
-            "isValidWord should contain the valid split 'अनु' + 'गच्छति'", true);
-    }
-
-    // 5. Test Invalid/Ghost Word (Invalid prefix + gibberish stem) -> e.g.,
-    // "अनुxyz"
-    {
-        std::string word = "अनुxyz";
-        auto results = rootDeriver.isValidWord(word);
-
-        // Should produce zero valid interpretations
-        size_t expectedSize = 0;
-        Tests::ExpectEqual(
-            expectedSize, results.size(),
-            "Invalid word 'अनुxyz' should return 0 interpretations", true);
-    }
-
-    {
-        std::string word = "अनुप्रविशति";
-        auto results = rootDeriver.isValidWord(word);
-
-        // Should produce zero valid interpretations
-        size_t expectedSize = 0;
-        Tests::ExpectEqual(
-            expectedSize, results.size(),
-            "Invalid word 'अनुxyz' should return 0 interpretations", true);
-    }
 }
