@@ -109,8 +109,7 @@ auto VowelRuleStringToRule(const std::string &str)
 // ----- DATABASE IMPLEMENTATION -----
 
 bool Database::initialize(const std::string &rootsJsonPath,
-                          const std::string &constantsJsonPath,
-                          const std::string &stemsJsonPath)
+                          const std::string &constantsJsonPath)
 {
     rapidjson::Document buffer;
 
@@ -162,29 +161,6 @@ bool Database::initialize(const std::string &rootsJsonPath,
     loadConstants(buffer);
     buffer.SetObject();
 
-    // stems
-    std::ifstream stemsFile(stemsJsonPath);
-    if (!stemsFile.is_open())
-    {
-        std::cerr << "Failed to open constants JSON file: " << stemsJsonPath
-                  << std::endl;
-        return false;
-    }
-
-    std::string stemsJson((std::istreambuf_iterator<char>(stemsFile)),
-                              std::istreambuf_iterator<char>());
-
-    buffer.Parse(stemsJson.c_str());
-
-    if (buffer.HasParseError() || !buffer.IsObject())
-    {
-        std::cerr << "Error parsing constants JSON file: " << stemsJsonPath
-                  << std::endl;
-        return false;
-    }
-    stemsFile.close();
-    loadStems(buffer);
-
     return true;
 }
 
@@ -210,44 +186,36 @@ bool Database::isIndeclinable(const std::string &text) const
  * Tries to find a matching verbal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-bool Database::tryMatchVerbalSuffix(const std::string &text,
-                                    VerbMetadata &outMeta) const
+const std::vector<VerbMetadata>* Database::tryMatchVerbalSuffix(const std::string &text) const
 {
     auto it = verbSuffixCache.find(text);
 
     if (it != verbSuffixCache.end())
     {
-        outMeta = it->second; // Copy the metadata into outMeta
-        return true;
+        return &(it->second); // Return the vector of metadata
     }
-    return false;
+    return nullptr;
 }
 
 /**
  * Tries to find a matching nominal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-bool Database::tryMatchNominalSuffix(const std::string &text,
-                                     NominalMetadata &outMeta) const
+const std::vector<NominalMetadata>* Database::tryMatchNominalSuffix(const std::string &text) const
 {
     auto it = nominalSuffixCache.find(text);
 
     if (it != nominalSuffixCache.end())
     {
-        outMeta = it->second; // Copy the metadata into outMeta
-        return true;
+        return &(it->second); // Return the vector of metadata
     }
-    return false;
+    return nullptr;
 }
 
-SanskritRoot Database::rootExists(const std::string &cleanRoot) const
+SanskritRoot* Database::rootExists(const std::string &cleanRoot)
 {
-    return rootCache.find(cleanRoot) != rootCache.end() ? rootCache.at(cleanRoot) : SanskritRoot{};
-}
-
-bool Database::stemExists(const std::string &cleanStem) const
-{
-    return stemsCache.find(cleanStem) != stemsCache.end();
+    auto it = rootCache.find(cleanRoot);
+    return it != rootCache.end() ? &(it->second) : nullptr;
 }
 
 // ----- LOADERS -----
@@ -347,7 +315,7 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()] = std::move(meta);
+                verbSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
             }
         }
 
@@ -370,7 +338,7 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()] = std::move(meta);
+                verbSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
             }
         }
         // nominals
@@ -391,38 +359,8 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.number =
                     NominalNumberStringToType(i["number"].GetString());
                 meta.gender = NominalGenderToType(i["gender"].GetString());
-                nominalSuffixCache[i["suffix"].GetString()] = std::move(meta);
+                nominalSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
             }
-        }
-    }
-}
-
-void Database::loadStems(const rapidjson::Document &doc)
-{
-    // 1. Verify the root is an object and contains the "stems" key
-    if (!doc.IsObject() || !doc.HasMember("stems"))
-    {
-        return;
-    }
-
-    const rapidjson::Value &stemsArray = doc["stems"];
-
-    // 2. Ensure "stems" is actually an array
-    if (!stemsArray.IsArray())
-    {
-        return;
-    }
-
-    // 3. Reserve space in the hash set to prevent re-hashing overhead (for 15k stems)
-    stemsCache.reserve(stemsArray.Size());
-
-    // 4. Iterate through string elements and insert into unordered_set
-    for (const auto &element : stemsArray.GetArray())
-    {
-        if (element.IsString())
-        {
-            // GetString() returns const char*, string_view/string handles UTF-8 bytes cleanly
-            stemsCache.emplace(element.GetString(), element.GetStringLength());
         }
     }
 }
