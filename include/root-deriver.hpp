@@ -9,7 +9,7 @@
 namespace RootDerivation
 {
 using RootMemo =
-    std::unordered_map<const WordAnalysisNode *, std::vector<std::shared_ptr<WordListNode>>>;
+    std::unordered_map<const WordTreeNode *, ValidDerives>;
 };
 
 class RootDeriver
@@ -20,19 +20,15 @@ public:
     /// takes in a vector of trees of WordModes and derives the root of each
     /// word in the list returns a tree of all valid paths of complete WordListNode
     /// types
-    std::vector<std::shared_ptr<WordListNode>>
-    deriveRoots(const std::vector<WordAnalysisNode> &nodes);
+    std::vector<ValidDerives>
+    deriveRoots(const std::vector<SandhiCandidate> &nodes);
 
 private:
-    /// takes in a string word and decides if we should bother checking it
-    /// returns ALL metadata about the word on the way
-    std::vector<WordAnalysis> isValidWord(const std::string &word);
-
-    /// takes in a tree of WordAnalysisNodes and recursively derives the root of
+    /// takes in a tree of WordTreeNodes and recursively derives the root of
     /// each word in the list returns all linked-lists of the valid paths of Word
     /// types
-    std::vector<std::shared_ptr<WordListNode>>
-    recursiveDeriveRoots(const WordAnalysisNode &tree,
+    ValidDerives
+    recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
                          RootDerivation::RootMemo &memo);
 
     /// actually derives the root of the word and returns it

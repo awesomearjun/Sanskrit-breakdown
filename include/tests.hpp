@@ -11,6 +11,7 @@ public:
     void TestDatabaseFunctions();
     void TestTokenizer();
     void TestSplitter();
+    void TestRootDeriver();
     void TestAll();
 
 private:

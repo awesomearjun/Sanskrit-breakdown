@@ -1,6 +1,7 @@
 #pragma once
 
 #include "rapidjson/document.h"
+#include <optional>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -20,9 +21,9 @@ public:
     bool isPrefix(const std::string &text) const;
     bool isIndeclinable(const std::string &text) const;
 
-    const std::vector<VerbMetadata>* tryMatchVerbalSuffix(const std::string &text) const;
-    const std::vector<NominalMetadata>* tryMatchNominalSuffix(const std::string &text) const;
-    SanskritRoot* rootExists(const std::string &cleanRoot);
+    std::optional<std::vector<VerbMetadata>> tryMatchVerbalSuffix(const std::string &text) const;
+    std::optional<std::vector<NominalMetadata>> tryMatchNominalSuffix(const std::string &text) const;
+    std::optional<SanskritRoot> rootExists(const std::string &cleanRoot);
     bool stemExists(const std::string &cleanStem) const;
 
 private:

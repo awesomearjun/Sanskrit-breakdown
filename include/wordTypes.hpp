@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <variant>
+#include <ostream>
 
 // ----- NOMINAL TRACK (Nouns, Adjectives, Pronouns) -----
 
@@ -121,6 +122,10 @@ struct SanskritRoot {
 
     std::string traditionalMeaning = "";    // The semantic definition text from the ancient root lists (e.g., L"सत्तायाम्")
     std::string englishMeaning = "";        // The literal concept translation (e.g., L"to be / to exist")
+
+    bool isEmpty() const {
+        return originalTagForm.empty() && cleanLookupForm.empty();
+    }
 };
 
 // ---- ETC -----
@@ -135,38 +140,46 @@ using WordMetadata = std::variant<UnknownMetadata, NominalMetadata, VerbMetadata
 
 // ----- WORD -----
 
-enum class WordType {
-    UNKNOWN,
-    VERB,
-    NOMINAL,
-    INDECLINABLE
+enum class WordMatchType {
+    NONE,           // No match found
+    INDECLINABLE,   // Indeclinable word (unchanging)
+    PREFIX,         // Prefix word (precedes a root)
+    SUFFIX,         // Suffix form (attached to a root)
+    VERB,           // Verb form
+    NOMINAL,        // Nominal stem (noun/adjective/pronoun)
+    VERB_STEM,      // Verb stem (root form without suffix)
+    NOMINAL_STEM,   // Nominal stem (root form without suffix)
+    ROOT            // Root form (base dictionary entry)
 };
+inline std::ostream& operator<<(std::ostream& os, WordMatchType t) {
+    switch (t) {
+        case WordMatchType::NONE:          return os << "NONE";
+        case WordMatchType::INDECLINABLE:  return os << "INDECLINABLE";
+        case WordMatchType::PREFIX:        return os << "PREFIX";
+        case WordMatchType::SUFFIX:        return os << "SUFFIX";
+        case WordMatchType::VERB:          return os << "VERB";
+        case WordMatchType::NOMINAL:       return os << "NOMINAL";
+        case WordMatchType::VERB_STEM:     return os << "VERB_STEM";
+        case WordMatchType::NOMINAL_STEM:  return os << "NOMINAL_STEM";
+        case WordMatchType::ROOT:          return os << "ROOT";
+    }
+    return os; // unreachable
+}
 
 struct WordAnalysis {
     bool success = false;
     std::string original = "";
-    std::vector<std::string> components = {}; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
-    std::optional<VerbMetadata> verbInfo;
-    std::optional<NominalMetadata> nominalInfo;
-    std::string matchType = "none"; // "indeclinable", "prefix", "verb", "stem", or "nominal"
+    std::vector<WordAnalysis> components = {}; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
+    std::optional<std::vector<VerbMetadata>> verbInfo;
+    std::optional<std::vector<NominalMetadata>> nominalInfo;
+    std::optional<SanskritRoot> rootInfo;
+    WordMatchType matchType = WordMatchType::NONE;
 };
 
 struct Word {
     std::string text;
     std::string cleanForm;
-    std::vector<SanskritRoot> roots; // Holds full structural definition objects for compound tracking
-
     std::vector<WordAnalysis> analyses;
-
-    WordType type;
-    WordMetadata metadata = UnknownMetadata{};
-};
-
-struct WordAnalysisNode
-{
-    WordAnalysis analysis;
-
-    std::vector<std::shared_ptr<WordAnalysisNode>> children;
 };
 
 struct WordTreeNode
@@ -182,3 +195,6 @@ struct WordListNode
 
     std::shared_ptr<WordListNode> next;
 };
+
+using SandhiCandidate = std::vector<std::shared_ptr<WordTreeNode>>;
+using ValidDerives = std::vector<std::shared_ptr<WordListNode>>;

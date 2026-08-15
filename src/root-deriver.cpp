@@ -1,72 +1,86 @@
 #include "root-deriver.hpp"
 #include "wordTypes.hpp"
 #include <memory>
+#include <optional>
 #include <vector>
 
 using namespace RootDerivation;
 
-std::vector<std::shared_ptr<WordListNode>>
-RootDeriver::deriveRoots(const std::vector<WordAnalysisNode> &nodes)
+std::vector<ValidDerives>
+RootDeriver::deriveRoots(const std::vector<SandhiCandidate> &nodes)
 {
-    std::vector<std::shared_ptr<WordListNode>> results;
+    std::vector<ValidDerives> results;
 
-    for (const auto &head: nodes)
+    for (const auto &word : nodes)
     {
-        RootDerivation::RootMemo memo;
-        std::vector<std::shared_ptr<WordListNode>> derivedRoots =
-            recursiveDeriveRoots(head, memo);
+        for (const auto &head : word)
+        {
+            if (!head)
+                continue;
 
-        if (derivedRoots.empty())
-            continue;
+            RootDerivation::RootMemo memo;
+            ValidDerives derivedRoots = recursiveDeriveRoots(head, memo);
 
-        results.insert(results.end(), derivedRoots.begin(), derivedRoots.end());
+            if (derivedRoots.empty())
+                continue;
+
+            results.push_back(derivedRoots);
+        }
     }
 
     return results;
 }
 
-std::vector<std::shared_ptr<WordListNode>>
-RootDeriver::recursiveDeriveRoots(const WordAnalysisNode &tree,
+ValidDerives
+RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
                                   RootDerivation::RootMemo &memo)
 {
     // 1. Memoization Hit
-    auto it = memo.find(&tree);
+    auto it = memo.find(tree.get());
     if (it != memo.end())
-    {
         return it->second;
-    }
 
-    std::vector<std::shared_ptr<WordListNode>> results;
+    ValidDerives results;
 
     // 2. Validate Current Surface Word
     auto currentNode = std::make_shared<WordListNode>();
-    for (auto &analysis : isValidWord(tree.analysis.original))
+    currentNode->word = std::move(tree->word);
+    for (auto &analysis : currentNode->word.analyses)
     {
-        if (analysis.success)
+        if (!analysis.success)
+            continue;
+        for (WordAnalysis &component : analysis.components)
         {
-            currentNode->word.roots = generateRootCandidates(analysis.components.back());
-            currentNode->word.analyses.push_back(analysis);
+            if (!component.success)
+                continue;
+            for (const SanskritRoot &root : generateRootCandidates(component.original))
+            {
+                WordAnalysis componentAnalysis;
+                componentAnalysis.success = root.isEmpty();
+                componentAnalysis.original = root.cleanLookupForm;
+                componentAnalysis.components = {component};
+                componentAnalysis.rootInfo = root;
+                componentAnalysis.matchType = WordMatchType::ROOT;
+                component.components.push_back(std::move(componentAnalysis));
+            }
         }
     }
 
     // Dead end: stop if this word has no valid root derivations
     if (currentNode->word.analyses.empty())
-    {
-        return memo[&tree] = results;
-    }
+        return memo[tree.get()] = results;
 
     // 3. BASE CASE: Leaf Node (No children)
-    if (tree.children.empty())
+    if (tree->children.empty())
     {
         results.push_back(currentNode);
-        return memo[&tree] = results;
+        return memo[tree.get()] = results;
     }
 
     // 4. RECURSIVE STEP: Combine with valid child branches
-    for (const auto &child : tree.children)
+    for (const auto &child : tree->children)
     {
-        std::vector<std::shared_ptr<WordListNode>> childResults =
-            recursiveDeriveRoots(*child, memo);
+        ValidDerives childResults = recursiveDeriveRoots(child, memo);
 
         for (const auto &childNode : childResults)
         {
@@ -78,90 +92,10 @@ RootDeriver::recursiveDeriveRoots(const WordAnalysisNode &tree,
     }
 
     // 5. Store result in memo cache
-    return memo[&tree] = results;
+    return memo[tree.get()] = results;
 }
 
 //  ======= HELPERS =======
-
-std::vector<WordAnalysis> RootDeriver::isValidWord(const std::string &word)
-{
-    std::vector<WordAnalysis> validInterpretations;
-
-    // 1. Standalone Indeclinable Check (e.g., if "अनु" appears by itself as an
-    // Avyaya)
-    if (db.isIndeclinable(word))
-    {
-        WordAnalysis avyayaAnalysis;
-        avyayaAnalysis.success = true;
-        avyayaAnalysis.components = {word};
-        avyayaAnalysis.matchType = "indeclinable";
-        validInterpretations.push_back(avyayaAnalysis);
-    }
-
-    // Stack-allocated metadata containers (Thread-Safe)
-    VerbMetadata verbInfo;
-    NominalMetadata nominalInfo;
-
-    for (size_t len = 3; len <= 18 && len <= word.size(); len += 3)
-    {
-        // 2. Full Word Verbal Suffix Match (No prefix case: e.g., "गच्छति")
-        std::string vsuffix = word.substr(word.length() - len, len);
-        if (db.tryMatchVerbalSuffix(vsuffix, verbInfo))
-        {
-            WordAnalysis verbAnalysis;
-            verbAnalysis.success = true;
-            verbAnalysis.components = {word};
-            verbAnalysis.verbInfo = verbInfo;
-            verbAnalysis.matchType = "verb";
-            validInterpretations.push_back(verbAnalysis);
-        }
-
-        // 3. Full Word Nominal Suffix Match (No prefix case: e.g., "रामेण")
-        std::string nsuffix = word.substr(word.length() - len, len);
-        if (db.tryMatchNominalSuffix(nsuffix, nominalInfo))
-        {
-            WordAnalysis nominalAnalysis;
-            nominalAnalysis.success = true;
-            nominalAnalysis.components = {word};
-            nominalAnalysis.nominalInfo = nominalInfo;
-            nominalAnalysis.matchType = "nominal";
-            validInterpretations.push_back(nominalAnalysis);
-        }
-
-        // Skip prefix checks after 4 characters (12 bytes)
-        if (len <= 12)
-        {
-
-            // 4. Upasarga (Prefix) + Stem Compound Check (e.g., "अनुगच्छति")
-            // Here we slice prefix prefixes AND check if the remaining stem is
-            // ALSO valid!
-            std::string candidatePrefix = word.substr(0, len);
-            if (db.isPrefix(candidatePrefix))
-            {
-                std::string remainingStem = word.substr(len);
-
-                std::vector<WordAnalysis> stemResults =
-                    isValidWord(remainingStem);
-
-                for (auto &stemAnalysis : stemResults)
-                {
-                    // Create a combined analysis
-                    WordAnalysis combined = stemAnalysis;
-
-                    // Prepend the current candidate prefix to the component
-                    // list
-                    combined.components.insert(combined.components.begin(),
-                                               candidatePrefix);
-
-                    validInterpretations.push_back(combined);
-                }
-            }
-        }
-    }
-
-    return validInterpretations; // Returns all valid interpretations found
-                                 // (empty if ghost word)
-}
 
 // Orchestrator function
 std::vector<SanskritRoot>
@@ -192,12 +126,14 @@ RootDeriver::generateRootCandidates(const std::string &stem)
         seenForms.insert(form);
 
         // Lookup in Dhātupāṭha database
-        SanskritRoot fullRoot = db.rootExists(form);
+        std::optional<SanskritRoot> root = db.rootExists(form);
+
+        if (!root.has_value() || root->isEmpty())
+            continue;
 
         // If the root exists in DB, keep the enriched metadata and discard bad
         // candidates
-        if (!fullRoot.cleanLookupForm.empty())
-            finalCandidates.push_back(fullRoot);
+        finalCandidates.push_back(std::move(root.value()));
     }
 
     return finalCandidates;
@@ -372,7 +308,8 @@ RootDeriver::reverseConsonantShifts(const std::vector<std::string> &candidates)
 
     for (const std::string &form : candidates)
     {
-        // Pass-through: always preserve the current form as a baseline candidate
+        // Pass-through: always preserve the current form as a baseline
+        // candidate
         addCandidate(form);
 
         // -------------------------------------------------------------
@@ -405,7 +342,9 @@ RootDeriver::reverseConsonantShifts(const std::vector<std::string> &candidates)
             if (endsWithUTF8(unnasalized, "त्"))
             {
                 std::string voiced =
-                    unnasalized.substr(0, unnasalized.size() - std::string("त्").size()) + "द्";
+                    unnasalized.substr(0, unnasalized.size() -
+                                              std::string("त्").size()) +
+                    "द्";
                 addCandidate(voiced);
             }
         }
@@ -476,7 +415,8 @@ RootDeriver::reverseGuna(const std::vector<std::string> &candidates)
             addCandidate(stem + "ु"); // Short u (e.g., भु)
         }
 
-        // Path 1B: Trailing -य् (ay) -> -ी / -ि  (e.g., "जय्" -> "जी" / "जि", "नय्" -> "नी")
+        // Path 1B: Trailing -य् (ay) -> -ी / -ि  (e.g., "जय्" -> "जी" / "जि",
+        // "नय्" -> "नी")
         if (endsWithUTF8(form, "य्"))
         {
             std::string stem =
@@ -485,7 +425,8 @@ RootDeriver::reverseGuna(const std::vector<std::string> &candidates)
             addCandidate(stem + "ि"); // Short i (e.g., जि)
         }
 
-        // Path 1C: Trailing -र् (ar) -> -ृ / -ॄ  (e.g., "स्मर्" -> "स्मृ", "तर्" -> "तॄ")
+        // Path 1C: Trailing -र् (ar) -> -ृ / -ॄ  (e.g., "स्मर्" -> "स्मृ", "तर्" ->
+        // "तॄ")
         if (endsWithUTF8(form, "र्"))
         {
             std::string stem =

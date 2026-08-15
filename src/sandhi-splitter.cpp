@@ -2,6 +2,7 @@
 #include "wordTypes.hpp"
 #include <cstddef>
 #include <memory>
+#include <optional>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -136,64 +137,58 @@ void SandhiSplitter::initializePossibilities()
              {"ृ", "इ"} // e.g., भ्रातृ + इति -> भ्रात्रिति
          }},
 
-         // === 4. HAL (Consonant Sandhi) ===
-         {"च्चि",
-         {
-             {"त्", "चि"}, // Handles cases where vowel mark 'ि' follows
-             {"द्", "चि"}
-         }},
+        // === 4. HAL (Consonant Sandhi) ===
+        {"च्चि",
+         {{"त्", "चि"}, // Handles cases where vowel mark 'ि' follows
+          {"द्", "चि"}}},
         {"च्च",
          {
-             {"त्", "च"},  // Ścutva: e.g., तत् + चिन्तयति -> तच्चिन्तयति
-             {"द्", "च"}   // Ścutva variant
+             {"त्", "च"}, // Ścutva: e.g., तत् + चिन्तयति -> तच्चिन्तयति
+             {"द्", "च"}  // Ścutva variant
          }},
         {"ज्ज",
-         {
-             {"त्", "ज"},  // Ścutva: e.g., सत_ + जनः -> सज्जनः
-             {"द्", "ज"}
-         }},
+         {{"त्", "ज"}, // Ścutva: e.g., सत_ + जनः -> सज्जनः
+          {"द्", "ज"}}},
         {"च्छा",
-         {
-             {"त्", "छा"}, // Chatva: e.g., तद् + शिवः -> तच्छिवः
-             {"त्", "शा"}
-         }},
+         {{"त्", "छा"}, // Chatva: e.g., तद् + शिवः -> तच्छिवः
+          {"त्", "शा"}}},
         {"द्ग",
          {
-             {"त्", "ग"}   // JŚatva: e.g., जगत् + ईशः -> जगदीशः (voicing t -> d)
+             {"त्", "ग"} // JŚatva: e.g., जगत् + ईशः -> जगदीशः (voicing t -> d)
          }},
         {"द्ब",
          {
-             {"त्", "ब"}   // JŚatva: e.g., तत् + बोधः -> तद्बोधः
+             {"त्", "ब"} // JŚatva: e.g., तत् + बोधः -> तद्बोधः
          }},
         {"न्म",
          {
-             {"त्", "म"}   // Anunāsika: e.g., जगत् + नाथः -> जगन्नाथः (or -m)
+             {"त्", "म"} // Anunāsika: e.g., जगत् + नाथः -> जगन्नाथः (or -m)
          }},
         {"न्न",
          {
-             {"त्", "न"}   // Anunāsika: e.g., एतत् + न -> एतन्न
+             {"त्", "न"} // Anunāsika: e.g., एतत् + न -> एतन्न
          }},
         {"ंका",
          {
-             {"म्", "क"}   // Parasavarṇa / Anusvāra: e.g., सम् + कल्पः -> सङ्कल्पः / संकल्पः
+             {"म्", "क"}
+             // Parasavarṇa / Anusvāra: e.g., सम् + कल्पः -> सङ्कल्पः / संकल्पः
          }},
         {"ंता",
          {
-             {"म्", "त"}   // Parasavarṇa: e.g., सम् + तोषः -> सन्तोषः / संतोषः
-         }}
-    };
+             {"म्", "त"} // Parasavarṇa: e.g., सम् + तोषः -> सन्तोषः / संतोषः
+         }}};
 }
 
-std::vector<std::vector<std::shared_ptr<WordAnalysisNode>>>
+std::vector<SandhiCandidate>
 SandhiSplitter::splitTree(std::vector<std::string> &tokens)
 {
-    std::vector<std::vector<std::shared_ptr<WordAnalysisNode>>> output;
+    std::vector<SandhiCandidate> output;
 
     for (const std::string &token : tokens)
     {
-        AnalysisTreeCache memo;
+        WordTreeCache memo;
 
-        if (std::vector<std::shared_ptr<WordAnalysisNode>> tokenTrees =
+        if (SandhiCandidate tokenTrees =
                 findSplits(token, memo);
             !tokenTrees.empty())
         {
@@ -231,10 +226,10 @@ bool isCombiningMark(const std::string &str, size_t i)
     return false;
 }
 
-std::vector<std::shared_ptr<WordAnalysisNode>>
-SandhiSplitter::findSplits(const std::string &token, AnalysisTreeCache &memo)
+SandhiCandidate
+SandhiSplitter::findSplits(const std::string &token, WordTreeCache &memo)
 {
-    std::vector<std::shared_ptr<WordAnalysisNode>> results;
+    SandhiCandidate results;
     std::string targetString = token;
 
     // Base Case: Empty string returns empty vector
@@ -284,12 +279,28 @@ SandhiSplitter::findSplits(const std::string &token, AnalysisTreeCache &memo)
                 std::string candidateLeft = leftChunk + leftRep;
                 std::string candidateRight = rightRep + rightChunk;
 
-                WordAnalysis leftAnalysis;
-                leftAnalysis.original = candidateLeft;
+                // 1. Validate LEFT side
+                std::vector<WordAnalysis> leftAnalyses =
+                    isValidWord(candidateLeft);
+                if (leftAnalyses.empty())
+                    continue; // Left word is invalid, drop this split path
 
-                auto node = std::make_shared<WordAnalysisNode>(leftAnalysis);
-                node->children = findSplits(candidateRight, memo);
+                // 2. Validate RIGHT side (recursively)
+                auto rightChildren = findSplits(candidateRight, memo);
+                if (rightChildren.empty())
+                {
+                    continue; // Right remainder cannot be validly parsed, drop
+                              // this split path
+                }
 
+                // 3. BOTH are valid — bind them together into a tree node
+                auto node = std::make_shared<WordTreeNode>();
+                node->word.cleanForm = candidateLeft;
+
+                node->word.analyses = std::move(leftAnalyses); // Attach the valid left analyses
+
+                node->children =
+                    rightChildren; // Attach the validated right branches
                 results.push_back(node);
             }
         }
@@ -299,10 +310,137 @@ SandhiSplitter::findSplits(const std::string &token, AnalysisTreeCache &memo)
     // as node
     if (results.empty())
     {
-        WordAnalysis buf;
-        buf.original = token;
-        results.push_back(std::make_shared<WordAnalysisNode>(WordAnalysisNode(buf)));
+        std::shared_ptr<WordTreeNode> node = std::make_shared<WordTreeNode>();
+        node->word.cleanForm = token;
+        node->word.analyses = isValidWord(token);
+
+        results.push_back(node);
     }
 
     return memo[token] = results;
+}
+
+std::vector<WordAnalysis>
+SandhiSplitter::isValidWord(const std::string &word)
+{
+    // each head analysis will be one interpretation; the components are
+    // addition WordAnalysis objects that mean the sub-parts
+    std::vector<WordAnalysis> validInterpretations;
+
+    if (word.empty())
+        return validInterpretations;
+
+    // 1. Standalone Indeclinable Check (e.g., "अनु" or "अत्र" by itself)
+    if (db.isIndeclinable(word))
+    {
+        WordAnalysis avyayaComponent;
+        avyayaComponent.success = true;
+        avyayaComponent.original = word;
+        avyayaComponent.matchType = WordMatchType::INDECLINABLE;
+
+        WordAnalysis avyayaAnalysis;
+        avyayaAnalysis.success = true;
+        avyayaAnalysis.original = word;
+        avyayaAnalysis.matchType = WordMatchType::INDECLINABLE;
+        avyayaAnalysis.components = {avyayaComponent};
+
+        validInterpretations.push_back(
+            std::move(avyayaAnalysis));
+    }
+
+    // Suffix / Prefix loop (UTF-8 byte step size of 3 for Devanagari)
+    for (size_t len = 3; len <= 18 && len <= word.size(); len += 3)
+    {
+        // 2. Verbal Suffix Match (e.g., "गच्छति" -> stem: "गच्छ", suffix: "ति")
+        std::string vsuffix = word.substr(word.length() - len, len);
+        auto verbInfo = db.tryMatchVerbalSuffix(vsuffix);
+        if (verbInfo.has_value())
+        {
+            std::string stem = word.substr(0, word.length() - len);
+
+            WordAnalysis stemComp;
+            stemComp.success = true;
+            stemComp.original = stem;
+            stemComp.matchType = WordMatchType::VERB_STEM;
+
+            WordAnalysis suffixComp;
+            suffixComp.success = true;
+            suffixComp.original = vsuffix;
+            suffixComp.matchType = WordMatchType::SUFFIX;
+
+            WordAnalysis verbAnalysis;
+            verbAnalysis.success = true;
+            verbAnalysis.original = word;
+            verbAnalysis.verbInfo = verbInfo;
+            verbAnalysis.matchType = WordMatchType::VERB;
+            verbAnalysis.components = {stemComp, suffixComp};
+
+            validInterpretations.push_back(
+               std::move(verbAnalysis));
+        }
+
+        // 3. Nominal Suffix Match (e.g., "रामेण" -> stem: "राम", suffix: "ेण")
+        std::string nsuffix = word.substr(word.length() - len, len);
+        auto nominalInfo = db.tryMatchNominalSuffix(nsuffix);
+        if (nominalInfo.has_value())
+        {
+            std::string stem = word.substr(0, word.length() - len);
+
+            WordAnalysis stemComp;
+            stemComp.success = true;
+            stemComp.original = stem;
+            stemComp.matchType = WordMatchType::NOMINAL_STEM;
+
+            WordAnalysis suffixComp;
+            suffixComp.success = true;
+            suffixComp.original = nsuffix;
+            suffixComp.matchType = WordMatchType::SUFFIX;
+
+            WordAnalysis nominalAnalysis;
+            nominalAnalysis.success = true;
+            nominalAnalysis.original = word;
+            nominalAnalysis.nominalInfo = nominalInfo;
+            nominalAnalysis.matchType = WordMatchType::NOMINAL;
+            nominalAnalysis.components = {stemComp, suffixComp};
+
+            validInterpretations.push_back(
+                std::move(nominalAnalysis));
+        }
+
+        // 4. Upasarga (Prefix) + Stem Compound Check (e.g., "अनुगच्छति" or
+        // "सम्प्रजायते")
+        if (len <= 12 && len < word.size())
+        {
+            std::string candidatePrefix = word.substr(0, len);
+            if (db.isPrefix(candidatePrefix))
+            {
+                std::string remainingStem = word.substr(len);
+
+                // Recursively parse the remainder to catch stems or secondary
+                // prefixes
+                std::vector<WordAnalysis> stemResults =
+                    isValidWord(remainingStem);
+
+                for (const auto &stemAnalysis : stemResults)
+                {
+                    WordAnalysis combined = stemAnalysis;
+                    combined.original = word; // Set total surface word
+
+                    WordAnalysis prefixComp;
+                    prefixComp.success = true;
+                    prefixComp.original = candidatePrefix;
+                    prefixComp.matchType = WordMatchType::PREFIX;
+
+                    // Prepend current prefix to the component tree
+                    combined.components.insert(combined.components.begin(),
+                                               std::move(prefixComp));
+
+                    validInterpretations.push_back(
+                        std::move(combined));
+                }
+            }
+        }
+    }
+
+    return validInterpretations;
 }

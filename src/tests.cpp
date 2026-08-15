@@ -2,24 +2,25 @@
 
 #include <cstddef>
 #include <iostream>
+#include <memory>
 #include <vector>
 
 #include "database.hpp"
 #include "sandhi-splitter.hpp"
 #include "tokenizer.hpp"
-
-#define DEBUG_INFO false
+#include "wordTypes.hpp"
 
 void Tests::TestAll()
 {
     TestDatabaseFunctions();
     TestTokenizer();
     TestSplitter();
+    TestRootDeriver();
 }
 
 Tests::Tests()
 {
-    db.initialize("./roots.json", "./grammar_constants.json", "./stems.json");
+    db.initialize("./roots.json", "./grammar_constants.json");
 }
 
 template <typename T>
@@ -51,12 +52,15 @@ void Tests::ExpectEqual(const T &expected, const T &actual,
 void Tests::TestDatabaseFunctions()
 {
     // Test rootExists
-    ExpectEqual(true, db.rootExists("वद्"), "Root 'वद्' should exist");
-    ExpectEqual(false, db.rootExists("fd"), "Root 'fd' should not exist");
-    ExpectEqual(true, db.rootExists("सद्"), "Root 'सद्' should exist");
-    ExpectEqual(false, db.rootExists("अस्ति"), "Root 'अस्ति' should not exist");
-    ExpectEqual(true, db.rootExists("यज्"), "Root 'यज्' should exist");
-    ExpectEqual(false, db.rootExists("वृतु"), "Root 'वृतु' should not exist");
+    ExpectEqual(true, db.rootExists("वद्").has_value(), "Root 'वद्' should exist");
+    ExpectEqual(false, db.rootExists("fd").has_value(),
+                "Root 'fd' should not exist");
+    ExpectEqual(true, db.rootExists("सद्").has_value(), "Root 'सद्' should exist");
+    ExpectEqual(false, db.rootExists("अस्ति").has_value(),
+                "Root 'अस्ति' should not exist");
+    ExpectEqual(true, db.rootExists("यज्").has_value(), "Root 'यज्' should exist");
+    ExpectEqual(false, db.rootExists("वृतु").has_value(),
+                "Root 'वृतु' should not exist");
 
     // Test isPrefix
     ExpectEqual(true, db.isPrefix("अ"), "Prefix 'अ' should exist");
@@ -76,24 +80,38 @@ void Tests::TestDatabaseFunctions()
                 "Indeclinable 'हि' should exist");
 
     // Test tryMatchVerbalSuffix
-    VerbMetadata verbMeta;
-    ExpectEqual(true, db.tryMatchVerbalSuffix("ति", verbMeta),
+    auto verbMatchesOpt = db.tryMatchVerbalSuffix("ति");
+    ExpectEqual(true, verbMatchesOpt.has_value(),
                 "Verbal suffix 'ति' should match");
-    ExpectEqual(std::string("ति"), verbMeta.suffix,
-                "Verbal suffix 'ति' should have correct metadata");
-    ExpectEqual(static_cast<int>(VerbTenseOrMood::PRESENT),
-                static_cast<int>(verbMeta.tenseOrMood),
-                "Verbal suffix 'ति' should have correct tense/mood", false);
-    ExpectEqual(false, db.tryMatchVerbalSuffix("xyz", verbMeta),
+
+    if (verbMatchesOpt && !verbMatchesOpt->empty())
+    {
+        const auto& verbMeta = verbMatchesOpt->front();
+        ExpectEqual(std::string("ति"), verbMeta.suffix,
+                    "Verbal suffix 'ति' should have correct metadata");
+        ExpectEqual(static_cast<int>(VerbTenseOrMood::PRESENT),
+                    static_cast<int>(verbMeta.tenseOrMood),
+                    "Verbal suffix 'ति' should have correct tense/mood", false);
+    }
+
+    auto invalidVerbMatchesOpt = db.tryMatchVerbalSuffix("xyz");
+    ExpectEqual(false, invalidVerbMatchesOpt.has_value(),
                 "Verbal suffix 'xyz' should not match");
 
     // Test tryMatchNominalSuffix
-    NominalMetadata nominalMeta;
-    ExpectEqual(true, db.tryMatchNominalSuffix("स्य", nominalMeta),
+    auto nominalMatchesOpt = db.tryMatchNominalSuffix("स्य");
+    ExpectEqual(true, nominalMatchesOpt.has_value(),
                 "Nominal suffix 'स्य' should match");
-    ExpectEqual(std::string("स्य"), nominalMeta.suffix,
-                "Nominal suffix 'स्य' should have correct metadata");
-    ExpectEqual(false, db.tryMatchNominalSuffix("xyz", nominalMeta),
+
+    if (nominalMatchesOpt && !nominalMatchesOpt->empty())
+    {
+        const auto& nominalMeta = nominalMatchesOpt->front();
+        ExpectEqual(std::string("स्य"), nominalMeta.suffix,
+                    "Nominal suffix 'स्य' should have correct metadata");
+    }
+
+    auto invalidNominalMatchesOpt = db.tryMatchNominalSuffix("xyz");
+    ExpectEqual(false, invalidNominalMatchesOpt.has_value(),
                 "Nominal suffix 'xyz' should not match");
 }
 
@@ -126,92 +144,86 @@ void Tests::TestSplitter()
     SandhiSplitter splitter(db);
     splitter.initializePossibilities();
 
-    // Target: "तच्चिन्तयति" (tat + cintayati = "He/She thinks about that")
+    // Target: "तच्चिन्तयति" (tat + cintayati)
     std::vector<std::string> inputTokens = {"तच्चिन्तयति"};
 
     auto output = splitter.splitTree(inputTokens);
 
-    if (DEBUG_INFO)
+    ExpectEqual(false, output.empty(),
+                "Expected at least one valid split tree.", true);
+
+    for (const auto &head: output)
     {
-        // ------------------------------------------------------------------
-        // VISUALIZE TREES IN TERMINAL
-        // ------------------------------------------------------------------
-        std::cout << "\n\n\n";
-        std::cout
-            << "=======================================================\n";
-        std::cout
-            << "               SANDHI SPLIT TREE VISUALIZER            \n";
-        std::cout
-            << "=======================================================\n\n";
+        ExpectEqual(false, head.empty(),
+                    "Expected at least one valid split tree head.", true);
+        ExpectEqual(std::string("तत्"), head[0]->word.cleanForm,
+                    "Expected head node to match input token \"तत्\".", true);
 
-        // Lambda helper for recursive ASCII tree printing
-        auto printNode = [](auto &self,
-                            const std::shared_ptr<WordAnalysisNode> &node,
-                            const std::string &prefix, bool isLast) -> void
+        // should be guarrenteed one analysis (so we don't need to test)
+        for (const auto &analysis : head[0]->word.analyses)
         {
-            if (!node)
-                return;
-
-            std::cout << prefix << (isLast ? "└── " : "├── ")
-                      << node->analysis.original << "\n";
-
-            std::string childPrefix = prefix + (isLast ? "    " : "│   ");
-            for (size_t i = 0; i < node->children.size(); ++i)
-            {
-                bool lastChild = (i == node->children.size() - 1);
-                self(self, node->children[i], childPrefix, lastChild);
-            }
-        };
-
-        // Print trees for every token in output
-        for (size_t tokenIdx = 0; tokenIdx < output.size(); ++tokenIdx)
-        {
-            std::cout << "--- [ TOKEN " << (tokenIdx + 1) << " TREES ] ---\n";
-            for (size_t treeIdx = 0; treeIdx < output[tokenIdx].size();
-                 ++treeIdx)
-            {
-                std::cout << "Option " << (treeIdx + 1) << ":\n";
-                printNode(printNode, output[tokenIdx][treeIdx], "", true);
-                std::cout << "\n";
-            }
+            ExpectEqual(std::string("तत्"), analysis.original,
+                        "Expected head node analysis to match input token \"तत्\".",
+                        true);
+            ExpectEqual(WordMatchType::INDECLINABLE, analysis.matchType,
+                        "Expected head node analysis matchType to be \"indeclinable\".",
+                        false);
         }
 
-        std::cout
-            << "=======================================================\n";
-        std::cout << "\n\n\n" << std::endl;
-        // ------------------------------------------------------------------
-    }
+        ExpectEqual(false, head[0]->children.empty(),
+                    "Expected head node to have at least one child.", true);
 
-    assert(output.size() == 1 &&
-           "Test Failed: Expected output size 1 for batch input");
-    const auto &treesForToken = output[0];
-    assert(!treesForToken.empty() &&
-           "Test Failed: No tree options generated for तच्चिन्तयति");
-
-    // Search for the golden path: "तत्" -> "चिन्तयति"
-    bool foundVerbalSandhiPath = false;
-
-    for (const auto &root : treesForToken)
-    {
-        // Level 1: "तत्" (Pronoun stem before Schutva Sandhi)
-        if (root && root->analysis.original == "तत्")
+        for (const auto &child : head[0]->children)
         {
-            for (const auto &child : root->children)
+            ExpectEqual(std::string("चिन्तयति"), child->word.cleanForm,
+                        "Expected child node to match input token \"चिन्तयति\".",
+                        true);
+
+            for (const auto &analysis : child->word.analyses)
             {
-                // Level 2: "चिन्तयति" (Verbal form: Present tense 3rd person)
-                if (child && child->analysis.original == "चिन्तयति")
+                ExpectEqual(std::string("चिन्तयति"), analysis.original,
+                            "Expected child node analysis to match input token \"चिन्तयति\".",
+                            true);
+                ExpectEqual(WordMatchType::VERB, analysis.matchType,
+                            "Expected child node analysis matchType to be \"verb\".",
+                            false);
+
+                // morphological analysis should yield a stem and suffix
+                for (const auto &component : analysis.components)
                 {
-                    foundVerbalSandhiPath = true;
-                    break;
+                    ExpectEqual(true, component.success,
+                                "Expected child node analysis component to be successful.",
+                                true);
+                    ExpectEqual(false, component.original.empty(),
+                                "Expected child node analysis component to have non-empty original text.",
+                                true);
                 }
             }
         }
     }
+}
 
-    assert(foundVerbalSandhiPath &&
-           "Test Failed: Path 'तत्' -> 'चिन्तयति' not found for तच्चिन्तयति!");
+void Tests::TestRootDeriver()
+{
+    std::cout << "[RUN] Tests::TestRootDeriver..." << std::endl;
 
-    std::cout << "[SUCCESS] TestComplexVerbalSandhi passed for Schutva Sandhi "
-                 "+ Verbal form!"
-              << std::endl;
+    RootDeriver deriver(db);
+    SandhiSplitter splitter(db);
+
+    // 1. Pass fully inflected tokens (or sandhi-combined shloka words)
+    // "गच्छति" (present tense 3rd sg) + "पुस्तकम्" (neuter nom/acc sg)
+    std::vector<std::string> tokens = {"गच्छति", "पुस्तकम्"};
+
+    // 2. Parse into candidate paths (SplitCandidates / ParseForest)
+    std::vector<SandhiCandidate> candidates = splitter.splitTree(tokens);
+
+    ExpectEqual(false, candidates.empty(),
+                "Expected at least one candidate parse path from SandhiSplitter.", true);
+
+    // 3. Execute root derivation across candidate paths
+    std::vector<ValidDerives> derivedChains =
+        deriver.deriveRoots(candidates);
+
+    ExpectEqual(false, derivedChains.empty(),
+                "Expected at least one valid root derivation chain from RootDeriver.", true);
 }

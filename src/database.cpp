@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 // ----- CONVERSION UTILITIES -----
 
@@ -186,36 +187,40 @@ bool Database::isIndeclinable(const std::string &text) const
  * Tries to find a matching verbal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-const std::vector<VerbMetadata>* Database::tryMatchVerbalSuffix(const std::string &text) const
+std::optional<std::vector<VerbMetadata>> Database::tryMatchVerbalSuffix(const std::string &text) const
 {
     auto it = verbSuffixCache.find(text);
 
     if (it != verbSuffixCache.end())
     {
-        return &(it->second); // Return the vector of metadata
+        return it->second;
     }
-    return nullptr;
+    return std::nullopt;
 }
 
 /**
  * Tries to find a matching nominal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-const std::vector<NominalMetadata>* Database::tryMatchNominalSuffix(const std::string &text) const
+std::optional<std::vector<NominalMetadata>> Database::tryMatchNominalSuffix(const std::string &text) const
 {
     auto it = nominalSuffixCache.find(text);
 
     if (it != nominalSuffixCache.end())
     {
-        return &(it->second); // Return the vector of metadata
+        return it->second;
     }
-    return nullptr;
+    return std::nullopt;
 }
 
-SanskritRoot* Database::rootExists(const std::string &cleanRoot)
+std::optional<SanskritRoot> Database::rootExists(const std::string &cleanRoot)
 {
     auto it = rootCache.find(cleanRoot);
-    return it != rootCache.end() ? &(it->second) : nullptr;
+    if (it != rootCache.end())
+    {
+        return it->second; // Returns the root object
+    }
+    return std::nullopt;
 }
 
 // ----- LOADERS -----
