@@ -1,33 +1,51 @@
-#include <ios>
 #include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+#include "toJson.hpp" // Your header containing to_json functions
+#include "wordTypes.hpp" // Your header containing WordAnalysis and related types
+#include "root-deriver.hpp" // Your header containing RootDeriver and related types
+#include "sandhi-splitter.hpp" // Your header containing SandhiSplitter and related types
+#include "database.hpp" // Your header containing Database and related types
+#include "tokenizer.hpp" // Your header containing
 
-#include "sandhi-splitter.hpp"
-#include "tokenizer.hpp"
-#include "database.hpp"
-#include "tests.hpp"
+using json = nlohmann::ordered_json;
 
-// int main()
-// {
-//     Tests tests;
-//     tests.TestAll();
-//     return 0;
-// }
+int main(int argc, char* argv[]) {
+    // 1. Setup Engine & Parse
+    Database db;
+    db.initialize("./roots.json", "./grammar_constants.json");
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <memory>
-#include <cassert>
 
-// Include your project headers here
-// #include "database.h"
-// #include "tokenizer.h"
-// #include "sandhi_splitter.h"
+    SandhiSplitter splitter(db);
+    RootDeriver deriver(db);
 
-int main()
-{
-    Tests tests;
-    tests.TestAll();
+    std::string shlokaInput =
+        "विद्या ददाति विनयं विनयाद्याति पात्रताम्";
 
+    Tokenizer tok;
+    std::vector<std::string> tokenizerOutput = tok.tokenize(shlokaInput);
+
+    std::vector<SandhiCandidate> candidates = splitter.splitTree(tokenizerOutput);
+    
+    // 2. Derive roots across paths
+    std::vector<ValidDerives> derivedChains = deriver.deriveRoots(candidates);
+
+    // 3. Serialize output to JSON
+    json response;
+    response["status"] = "success";
+    response["inputTokens"] = tokenizerOutput;
+    response["chains"] = json::array();
+
+    for (const auto& chainHead : derivedChains) {
+        response["chains"].push_back(wordListToJsonArray(chainHead));
+    }
+
+    // 4. Dump formatted JSON to stdout
+    std::cout << response.dump(4) << std::endl;
+
+    // Optional: Write to file for visualizers/web frontend
+    std::ofstream file("analysis_output.json");
+    file << response.dump(4);
+    
     return 0;
 }
