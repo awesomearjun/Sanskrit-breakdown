@@ -1,3 +1,4 @@
+#include <cstddef>
 #include <nlohmann/json.hpp>
 #include <optional>
 #include <memory>
@@ -32,7 +33,8 @@ inline void to_json(json& j, const NominalMetadata& n) {
 }
 
 // --- 3. Root Metadata ---
-inline void to_json(json& j, const SanskritRoot& r) {
+inline void to_json(json& j, const SanskritRoot &r) {
+    if (r.isEmpty()) return;
     j = json{
         {"originalTagForm", r.originalTagForm},
         {"cleanLookupForm", r.cleanLookupForm},
@@ -57,7 +59,14 @@ inline void to_json(json& j, const WordAnalysis& wa) {
 
     // Sub-components explicitly attached LAST
     if (!wa.components.empty()) {
-        j["components"] = wa.components;
+        std::vector<WordAnalysis> valueVector;
+        valueVector.reserve(wa.components.size());
+
+        for (const auto &ptr : wa.components)
+        {
+            if (ptr) valueVector.push_back(*ptr);
+        }
+        j["components"] = valueVector;
     }
 }
 

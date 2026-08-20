@@ -17,6 +17,8 @@ int main(int argc, char* argv[]) {
 
 
     SandhiSplitter splitter(db);
+    splitter.initializePossibilities();
+
     RootDeriver deriver(db);
 
     std::string shlokaInput =
@@ -26,7 +28,7 @@ int main(int argc, char* argv[]) {
     std::vector<std::string> tokenizerOutput = tok.tokenize(shlokaInput);
 
     std::vector<SandhiCandidate> candidates = splitter.splitTree(tokenizerOutput);
-    
+
     // 2. Derive roots across paths
     std::vector<ValidDerives> derivedChains = deriver.deriveRoots(candidates);
 

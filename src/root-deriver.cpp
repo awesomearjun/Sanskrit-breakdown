@@ -49,49 +49,23 @@ RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
     {
         if (!analysis.success)
             continue;
-        for (WordAnalysis &component : analysis.components)
+        for (auto &component : analysis.components)
         {
-            if (!component.success)
+            if (!component || !component->success)
                 continue;
-            for (const SanskritRoot &root : generateRootCandidates(component.original))
+            for (const SanskritRoot &root : generateRootCandidates(component->original))
             {
-                WordAnalysis componentAnalysis;
-                componentAnalysis.success = root.isEmpty();
-                componentAnalysis.original = root.cleanLookupForm;
-                componentAnalysis.components = {component};
-                componentAnalysis.rootInfo = root;
-                componentAnalysis.matchType = WordMatchType::ROOT;
-                component.components.push_back(std::move(componentAnalysis));
+                std::shared_ptr<WordAnalysis> componentAnalysis = std::make_shared<WordAnalysis>();
+                componentAnalysis->success = root.isEmpty();
+                componentAnalysis->original = root.cleanLookupForm;
+                componentAnalysis->rootInfo = root;
+                componentAnalysis->matchType = WordMatchType::ROOT;
+                component->components.push_back(std::move(componentAnalysis));
             }
         }
     }
 
-    // Dead end: stop if this word has no valid root derivations
-    if (currentNode->word.analyses.empty())
-        return memo[tree.get()] = results;
-
-    // 3. BASE CASE: Leaf Node (No children)
-    if (tree->children.empty())
-    {
-        results.push_back(currentNode);
-        return memo[tree.get()] = results;
-    }
-
-    // 4. RECURSIVE STEP: Combine with valid child branches
-    for (const auto &child : tree->children)
-    {
-        ValidDerives childResults = recursiveDeriveRoots(child, memo);
-
-        for (const auto &childNode : childResults)
-        {
-            auto newNode = std::make_shared<WordListNode>();
-            newNode->word = currentNode->word;
-            newNode->next = childNode;
-            results.push_back(newNode);
-        }
-    }
-
-    // 5. Store result in memo cache
+    results.push_back(currentNode);
     return memo[tree.get()] = results;
 }
 

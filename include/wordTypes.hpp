@@ -169,7 +169,7 @@ inline std::ostream& operator<<(std::ostream& os, WordMatchType t) {
 struct WordAnalysis {
     bool success = false;
     std::string original = "";
-    std::vector<WordAnalysis> components = {}; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
+    std::vector<std::shared_ptr<WordAnalysis>> components = {}; // e.g., ["उप", "जाय", "ते"] or ["नर", "ः"]
     std::optional<std::vector<VerbMetadata>> verbInfo;
     std::optional<std::vector<NominalMetadata>> nominalInfo;
     std::optional<SanskritRoot> rootInfo;
