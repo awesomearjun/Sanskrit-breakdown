@@ -12,8 +12,8 @@ namespace SandhiSplit
 {
 using Tokens = std::vector<std::string>;
 
-using WordTreeCache =
-    std::unordered_map<std::string, SandhiCandidate>;
+using SplitPath = std::vector<WordMetadata>;
+using MultiPathMemo = std::unordered_map<std::string, std::vector<SplitPath>>;
 } // namespace SandhiSplit
 
 /// Takes tokens given from the tokenizer and splits them into their constituent
@@ -26,22 +26,17 @@ public:
 
     void initializePossibilities();
 
-    /// takes vector of tokens and returns sandhi trees for each of them;
-    /// combines all trees from findSplits
-    std::vector<SandhiCandidate>
-    splitTree(std::vector<std::string> &tokens);
-
-    NominalMetadata getNominalInfo();
-    VerbMetadata getVerbInfo();
+    /// takes a WordList and fills it with possibilities
+    WordList splitTree(const WordList &tokens);
 
 private:
     /// find splits for one token; returns all trees for that
-    SandhiCandidate
-    findSplits(const std::string &token, SandhiSplit::WordTreeCache &memo);
+    std::vector<SandhiSplit::SplitPath>
+    findSplits(const std::string &token, SandhiSplit::MultiPathMemo &memo);
 
-    // get some intel about the word; returns all valid interpretations (empty if ghost word)
-    std::vector<WordAnalysis>
-    isValidWord(const std::string &word);
+    // get some intel about the word; returns all valid interpretations (empty
+    // if ghost word)
+    std::vector<WordMetadata> isValidWord(const std::string &word);
 
     // <junction>: { {<left>, <right>}, {<left2, right2>} }
     std::unordered_map<std::string,

@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_BUILD_TYPE Debug)
 
 file(GLOB_RECURSE PROJECT_HEADERS CONFIGURE_DEPENDS
      "${CMAKE_SOURCE_DIR}/include/*.h"
@@ -21,8 +22,6 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
 add_executable(${PROJECT_NAME}
     ${PROJECT_SOURCES}
     ${PROJECT_HEADERS}
-    src/sandhi-splitter.cpp
-    include/root-deriver.hpp
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -38,6 +37,7 @@ target_compile_options(${PROJECT_NAME} PRIVATE
 
 file(COPY ${CMAKE_SOURCE_DIR}/roots.json DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY ${CMAKE_SOURCE_DIR}/grammar_constants.json DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY ${CMAKE_SOURCE_DIR}/stems.json DESTINATION ${CMAKE_BINARY_DIR})
 
 include(FetchContent)
 

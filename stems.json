@@ -1,0 +1,4502 @@
+[
+  {
+    "stem": "कर्मन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "action, work, duty, deed",
+      "traditional": "क्रिया, कार्यं, कर्तव्यं च"
+    }
+  },
+  {
+    "stem": "आत्मन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "self, soul, inner self",
+      "traditional": "स्वरूपं चेतनतत्त्वं च"
+    }
+  },
+  {
+    "stem": "भूत",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "being, creature, past, become",
+      "traditional": "भवितं वस्तु तथा प्राणी"
+    }
+  },
+  {
+    "stem": "योग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "union, discipline, spiritual practice",
+      "traditional": "संयोगः साधनमार्गश्च"
+    }
+  },
+  {
+    "stem": "विधि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "rule, method, ordinance, destiny",
+      "traditional": "नियमो विधानं दैवं च"
+    }
+  },
+  {
+    "stem": "मति",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "thought, intention, understanding",
+      "traditional": "बुद्धिरभिप्रायश्च"
+    }
+  },
+  {
+    "stem": "मनस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mind, understanding, will",
+      "traditional": "अन्तःकरणस्य मनोवृत्तिः"
+    }
+  },
+  {
+    "stem": "ज्ञान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "knowledge, understanding, wisdom",
+      "traditional": "तत्त्वावबोधः"
+    }
+  },
+  {
+    "stem": "महत्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "great, vast, important",
+      "traditional": "विशालं श्रेष्ठं च"
+    }
+  },
+  {
+    "stem": "बुद्धि",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "intelligence, reason, discernment",
+      "traditional": "विवेकशक्तिर्धीश्च"
+    }
+  },
+  {
+    "stem": "देह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "body, person",
+      "traditional": "शरीरं शरीरधारणं च"
+    }
+  },
+  {
+    "stem": "अर्जुन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Arjuna; bright, clear",
+      "traditional": "अर्थः — अर्जुनः"
+    }
+  },
+  {
+    "stem": "पुत्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "son, child",
+      "traditional": "तनयः सुतश्च"
+    }
+  },
+  {
+    "stem": "ब्राह्मण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Brahmin, priest; brahmanical",
+      "traditional": "अर्थः — ब्राह्मणः तथा याजकः तथा पुरुषः"
+    }
+  },
+  {
+    "stem": "लोक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "world, realm, people",
+      "traditional": "जगत् जनसमूहश्च"
+    }
+  },
+  {
+    "stem": "यज्ञ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sacrifice, worship, sacred offering",
+      "traditional": "देवपूजासङ्गतिकरणं दानं च"
+    }
+  },
+  {
+    "stem": "इन्द्रिय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sense organ, faculty, power",
+      "traditional": "विषयग्राहकं करणम्"
+    }
+  },
+  {
+    "stem": "पार्थ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Arjuna, son of Prtha",
+      "traditional": "अर्थः — अर्जुनः तथा पुत्रः"
+    }
+  },
+  {
+    "stem": "भारत",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "descendant of Bharata; India",
+      "traditional": "अर्थः — भरतः"
+    }
+  },
+  {
+    "stem": "सत्त्व",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "being, essence, purity",
+      "traditional": "अस्तित्वं शुद्धता च"
+    }
+  },
+  {
+    "stem": "काम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "desire, love, pleasure",
+      "traditional": "इच्छा अभिलाषश्च"
+    }
+  },
+  {
+    "stem": "सुख",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "happiness, ease, pleasure",
+      "traditional": "आनन्दः सन्तोषश्च"
+    }
+  },
+  {
+    "stem": "गुण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "quality, attribute, strand",
+      "traditional": "स्वभावधर्मः सत्त्वादित्रयम्"
+    }
+  },
+  {
+    "stem": "युक्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "joined, disciplined, appropriate",
+      "traditional": "अर्थः — संयमः"
+    }
+  },
+  {
+    "stem": "पुरुष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "person, man, human being, spirit",
+      "traditional": "मनुष्यश्चेतनात्मा च"
+    }
+  },
+  {
+    "stem": "देव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "god, deity, divine being",
+      "traditional": "दिव्यः सुरश्च"
+    }
+  },
+  {
+    "stem": "तपस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "heat, austerity, religious discipline",
+      "traditional": "तपः कायक्लेशपूर्वकं साधनम्"
+    }
+  },
+  {
+    "stem": "श्री",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "splendour, prosperity, beauty, fortune",
+      "traditional": "सम्पद् कान्तिः सौभाग्यं च"
+    }
+  },
+  {
+    "stem": "अर्थ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "meaning, purpose, wealth, object",
+      "traditional": "प्रयोजनं धनं तत्त्वं च"
+    }
+  },
+  {
+    "stem": "फल",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "fruit, result, consequence",
+      "traditional": "कार्यपरिणामो वृक्षजन्यं फलं च"
+    }
+  },
+  {
+    "stem": "भाव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "state, being, feeling, disposition",
+      "traditional": "अवस्था चित्तवृत्तिश्च"
+    }
+  },
+  {
+    "stem": "दुःख",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sorrow, suffering, pain",
+      "traditional": "पीडा क्लेशश्च"
+    }
+  },
+  {
+    "stem": "भगवत्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "blessed, venerable, divine",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "धर्म",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "duty, law, righteousness, nature",
+      "traditional": "धारणाद्धर्मः कर्तव्यं च"
+    }
+  },
+  {
+    "stem": "प्रकृति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "nature, primordial matter, constitution",
+      "traditional": "मूलप्रकृतिः स्वभावश्च"
+    }
+  },
+  {
+    "stem": "अन्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "end, boundary, interior",
+      "traditional": "पर्यवसानं सीमा च"
+    }
+  },
+  {
+    "stem": "परम",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "supreme, highest, ultimate",
+      "traditional": "अर्थः — परमत्वम्"
+    }
+  },
+  {
+    "stem": "योगिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "yogi, practitioner of yoga",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भवत्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "being, existence; your honour",
+      "traditional": "अर्थः — सत्त्वम् तथा भावः"
+    }
+  },
+  {
+    "stem": "सम",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "equal, even, same",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "कौन्तेय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Arjuna, son of Kunti",
+      "traditional": "अर्थः — अर्जुनः तथा पुत्रः"
+    }
+  },
+  {
+    "stem": "रूप",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "form, appearance, beauty",
+      "traditional": "आकारः स्वरूपं च"
+    }
+  },
+  {
+    "stem": "नित्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "eternal, constant, daily",
+      "traditional": "शाश्वतं प्रतिदिनं च"
+    }
+  },
+  {
+    "stem": "अव्यय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "imperishable, unchanging",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "युद्ध",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "battle, war, conflict",
+      "traditional": "सङ्ग्रामः रणं च"
+    }
+  },
+  {
+    "stem": "तमस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "darkness, ignorance, inertia",
+      "traditional": "अन्धकारो जडता च"
+    }
+  },
+  {
+    "stem": "प्रिय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "dear, beloved, pleasant",
+      "traditional": "इष्टं मनोहरं च"
+    }
+  },
+  {
+    "stem": "वेद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Veda, sacred knowledge",
+      "traditional": "श्रुतिः पवित्रज्ञानं च"
+    }
+  },
+  {
+    "stem": "सङ्ग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "saM-ga and saNga. See below and √ saYj",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "बाहु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "arm, forearm",
+      "traditional": "अर्थः — बाहुः"
+    }
+  },
+  {
+    "stem": "पाण्डव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "descendant of Pandu",
+      "traditional": "अर्थः — पाण्डववंशजः"
+    }
+  },
+  {
+    "stem": "आदि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "beginning, first, origin",
+      "traditional": "अर्थः — उद्भवः"
+    }
+  },
+  {
+    "stem": "जन्मन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "birth, origin, coming into being",
+      "traditional": "उत्पत्तिर्जननं च"
+    }
+  },
+  {
+    "stem": "क्षेत्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "field, domain, body",
+      "traditional": "भूमिः कार्याधारश्च"
+    }
+  },
+  {
+    "stem": "ईश्वर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "lord, master, God",
+      "traditional": "परमेश्वरः स्वामी च"
+    }
+  },
+  {
+    "stem": "जन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "person, people, creature",
+      "traditional": "अर्थः — पुत्रः तथा जनः तथा जनाः"
+    }
+  },
+  {
+    "stem": "दान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "gift, donation, generosity",
+      "traditional": "देयवस्तुप्रदानं त्यागश्च"
+    }
+  },
+  {
+    "stem": "श्रद्धा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "faith, trust, devotion",
+      "traditional": "गुरुवेदवाक्येषु विश्वासः"
+    }
+  },
+  {
+    "stem": "काल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "time, death, season",
+      "traditional": "समयः मृत्युः ऋतुः च"
+    }
+  },
+  {
+    "stem": "पाप",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sin, evil, wrongdoing",
+      "traditional": "अधर्मजनितं दुष्कृतम्"
+    }
+  },
+  {
+    "stem": "गति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "movement, course, destination, refuge",
+      "traditional": "गमनं मार्गः प्राप्तिश्च"
+    }
+  },
+  {
+    "stem": "सत्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "being, truth, good, existent",
+      "traditional": "अर्थः — सत्यम् तथा सत्त्वम् तथा शुभम्"
+    }
+  },
+  {
+    "stem": "चेतस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mind, consciousness, understanding",
+      "traditional": "अर्थः — मनः तथा अवबोधः"
+    }
+  },
+  {
+    "stem": "दिव्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "divine, heavenly, wondrous",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "उत्तम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "highest, best, excellent",
+      "traditional": "अर्थः — परमत्वम्"
+    }
+  },
+  {
+    "stem": "बहु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "much, many, abundant",
+      "traditional": "अर्थः — पुरुषः तथा बहवः"
+    }
+  },
+  {
+    "stem": "राजस",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "passionate, active, pertaining to rajas",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भक्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "devotee, worshipper, devoted",
+      "traditional": "अर्थः — पूजा"
+    }
+  },
+  {
+    "stem": "कुरु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Kuru; do, act",
+      "traditional": "अर्थः — कुरुवंशी"
+    }
+  },
+  {
+    "stem": "सिद्धि",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "accomplishment, success, perfection",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भक्ति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "devotion, loving participation",
+      "traditional": "अर्थः — भक्तिः"
+    }
+  },
+  {
+    "stem": "मोह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "delusion, bewilderment, attachment",
+      "traditional": "अर्थः — रागः तथा मोहः"
+    }
+  },
+  {
+    "stem": "अव्यक्त",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "unmanifest, invisible",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "तामस",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "dark, inert, pertaining to tamas",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "सात्त्विक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "pure, lucid, pertaining to sattva",
+      "traditional": "अर्थः — शुचिः"
+    }
+  },
+  {
+    "stem": "अग्नि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fire, sacrificial fire",
+      "traditional": "पावकः हव्यवाहनश्च"
+    }
+  },
+  {
+    "stem": "नर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "man, person, human being",
+      "traditional": "मनुष्यः पुरुषश्च"
+    }
+  },
+  {
+    "stem": "धन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wealth, prize, contest",
+      "traditional": "सम्पद् पुरस्कारश्च"
+    }
+  },
+  {
+    "stem": "कृष्ण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Krishna; dark, black",
+      "traditional": "अर्थः — कृष्णः"
+    }
+  },
+  {
+    "stem": "जय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "victory, conquest",
+      "traditional": "विजयोऽभ्युदयश्च"
+    }
+  },
+  {
+    "stem": "अक्षर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "imperishable, syllable, letter",
+      "traditional": "अर्थः — अक्षरम्"
+    }
+  },
+  {
+    "stem": "प्राण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "breath, life force, vital energy",
+      "traditional": "जीवनवायुः श्वासश्च"
+    }
+  },
+  {
+    "stem": "तत्त्व",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "principle, truth, reality",
+      "traditional": "यथार्थस्वरूपं सिद्धान्तश्च"
+    }
+  },
+  {
+    "stem": "धृति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "firmness, resolve, fortitude",
+      "traditional": "धारणशक्तिर्निश्चयश्च"
+    }
+  },
+  {
+    "stem": "रजस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "passion, energy, atmosphere",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "ऋषि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "seer, sage, inspired poet",
+      "traditional": "मन्त्रद्रष्टा मुनिश्च"
+    }
+  },
+  {
+    "stem": "श्रेयस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "better, welfare, highest good",
+      "traditional": "अर्थः — परमत्वम् तथा शुभम् तथा दूरम्"
+    }
+  },
+  {
+    "stem": "बल",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "strength, power, force",
+      "traditional": "शक्तिः सामर्थ्यं च"
+    }
+  },
+  {
+    "stem": "भूयस्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "becoming",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "कर्तृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "doer, maker, agent",
+      "traditional": "कर्ता कारकं च"
+    }
+  },
+  {
+    "stem": "चित्त",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mind, consciousness, thought",
+      "traditional": "मनः अन्तःकरणं च"
+    }
+  },
+  {
+    "stem": "शरीर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "body, physical frame",
+      "traditional": "देहः पञ्चभौतिकसमुदायश्च"
+    }
+  },
+  {
+    "stem": "तेजस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "splendour, brilliance, energy, fire",
+      "traditional": "दीप्तिः प्रभावः पावकश्च"
+    }
+  },
+  {
+    "stem": "कुल",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "family, lineage, group",
+      "traditional": "वंशः परिवारः समूहश्च"
+    }
+  },
+  {
+    "stem": "त्याग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "abandonment, renunciation, relinquishment",
+      "traditional": "परित्यागः संन्यासश्च"
+    }
+  },
+  {
+    "stem": "विधा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "kind, manner, way",
+      "traditional": "अर्थः — पुरुषः तथा मार्गः"
+    }
+  },
+  {
+    "stem": "कृत्स्न",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "whole, entire, complete",
+      "traditional": "अर्थः — कृत्स्नम् तथा समग्रता"
+    }
+  },
+  {
+    "stem": "अज्ञान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "ignorance, lack of knowledge",
+      "traditional": "अविद्या तत्त्वाज्ञानं च"
+    }
+  },
+  {
+    "stem": "ब्रह्मन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "prayer, sacred utterance, Brahman, ultimate reality",
+      "traditional": "वेदमन्त्रः परब्रह्म च"
+    }
+  },
+  {
+    "stem": "भव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "being, becoming, existence",
+      "traditional": "उत्पत्तिरस्तित्वं च"
+    }
+  },
+  {
+    "stem": "भरत",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Bharata; one who sustains",
+      "traditional": "अर्थः — भरतः"
+    }
+  },
+  {
+    "stem": "मध्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "middle, centre, intermediate",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "fear, danger",
+      "traditional": "भीतिः त्रासश्च"
+    }
+  },
+  {
+    "stem": "मत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "opinion, doctrine, thought",
+      "traditional": "अर्थः — चिन्तनम्"
+    }
+  },
+  {
+    "stem": "अनन्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "endless, infinite, eternal",
+      "traditional": "अर्थः — शाश्वतम्"
+    }
+  },
+  {
+    "stem": "क्रोध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "anger, wrath",
+      "traditional": "कोपः रोषश्च"
+    }
+  },
+  {
+    "stem": "शान्ति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "peace, tranquillity",
+      "traditional": "उपशमः प्रशान्तता च"
+    }
+  },
+  {
+    "stem": "देहिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "embodied being",
+      "traditional": "अर्थः — सत्त्वम्"
+    }
+  },
+  {
+    "stem": "अमृत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "immortal, nectar, ambrosia",
+      "traditional": "अजरामरं द्रव्यं देवपानं च"
+    }
+  },
+  {
+    "stem": "योनि",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "womb, source, origin",
+      "traditional": "गर्भस्थानमुत्पत्तिकारणं च"
+    }
+  },
+  {
+    "stem": "गुह्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "secret, hidden, mysterious",
+      "traditional": "अर्थः — गुह्यम्"
+    }
+  },
+  {
+    "stem": "भोग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "enjoyment, experience, possession",
+      "traditional": "इन्द्रियसुखमनुभवश्च"
+    }
+  },
+  {
+    "stem": "आसुर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "demonic, pertaining to the Asuras",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "नाग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "serpent, elephant, Naga",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "कार्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "duty, task, what ought to be done",
+      "traditional": "अर्थः — कर्तव्यम्"
+    }
+  },
+  {
+    "stem": "स्वभाव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "nature, inherent disposition",
+      "traditional": "नैसर्गिकः स्वधर्मश्च"
+    }
+  },
+  {
+    "stem": "विश्व",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "all, universal, world",
+      "traditional": "अर्थः — लोकः"
+    }
+  },
+  {
+    "stem": "राजन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "king, ruler",
+      "traditional": "अर्थः — राजा तथा नृपः तथा विधिः"
+    }
+  },
+  {
+    "stem": "असत्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "non-being, unreal, bad",
+      "traditional": "अर्थः — सत्त्वम्"
+    }
+  },
+  {
+    "stem": "ईश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "lord, ruler, master",
+      "traditional": "अर्थः — नृपः तथा स्वामी तथा विधिः"
+    }
+  },
+  {
+    "stem": "पुण्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "merit, virtue, auspiciousness",
+      "traditional": "अर्थः — पुण्यम्"
+    }
+  },
+  {
+    "stem": "दोष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fault, defect, evil",
+      "traditional": "अर्थः — अधर्मः"
+    }
+  },
+  {
+    "stem": "दैव",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "divine, fate, providence",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "प्रसाद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "grace, favour, clarity, serenity",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "विषय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "object, subject, sphere, sense object",
+      "traditional": "इन्द्रियगोचरः प्रयोजनक्षेत्रं च"
+    }
+  },
+  {
+    "stem": "शाश्वत",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "eternal, perpetual",
+      "traditional": "अर्थः — शाश्वतम्"
+    }
+  },
+  {
+    "stem": "राग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "passion, attachment, colour",
+      "traditional": "आसक्तिः अनुरागश्च"
+    }
+  },
+  {
+    "stem": "रथ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "chariot, vehicle",
+      "traditional": "यानं युद्धरथश्च"
+    }
+  },
+  {
+    "stem": "द्विज",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "twice-born, Brahmin, bird",
+      "traditional": "अर्थः — ब्राह्मणः"
+    }
+  },
+  {
+    "stem": "कृत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "done, made, deed",
+      "traditional": "अर्थः — कर्म"
+    }
+  },
+  {
+    "stem": "मय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "N. of an Asura",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "मृत्यु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "death, dying",
+      "traditional": "जीवितान्तः प्राणवियोगश्च"
+    }
+  },
+  {
+    "stem": "अकर्मन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "inaction, non-action",
+      "traditional": "अर्थः — क्रिया"
+    }
+  },
+  {
+    "stem": "मुनि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sage, ascetic, silent one",
+      "traditional": "अर्थः — मुनिः"
+    }
+  },
+  {
+    "stem": "प्रभु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "lord, master, powerful one",
+      "traditional": "अर्थः — स्वामी तथा शक्तिः"
+    }
+  },
+  {
+    "stem": "विद्या",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "knowledge, learning, science",
+      "traditional": "ज्ञानं शास्त्राध्ययनं च"
+    }
+  },
+  {
+    "stem": "ऋषभ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "bull, excellent one, best",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हेतु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "cause, reason, motive",
+      "traditional": "अर्थः — पुत्रः तथा युक्तिः तथा हेतुः"
+    }
+  },
+  {
+    "stem": "असक्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "unattached, not clinging",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "क्रिया",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "action, activity, performance",
+      "traditional": "करणं कर्म च"
+    }
+  },
+  {
+    "stem": "प्रज्ञा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "wisdom, discernment, insight",
+      "traditional": "विवेकयुक्तं ज्ञानम्"
+    }
+  },
+  {
+    "stem": "अनेक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "many, numerous",
+      "traditional": "अर्थः — पुरुषः तथा बहवः"
+    }
+  },
+  {
+    "stem": "अध्यात्म",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "the self, supreme spirit, spirituality",
+      "traditional": "अर्थः — आत्मा"
+    }
+  },
+  {
+    "stem": "अशेष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "without remainder, entire, complete",
+      "traditional": "अर्थः — समग्रता"
+    }
+  },
+  {
+    "stem": "व्रत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "vow, observance, rule",
+      "traditional": "नियमः सङ्कल्पपूर्वकाचरणं च"
+    }
+  },
+  {
+    "stem": "नमस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "bow, salutation, homage",
+      "traditional": "प्रणामः पूजाभावश्च"
+    }
+  },
+  {
+    "stem": "लक्ष्मण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "marked, Lakshmana",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "क्षय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "decay, destruction, abode",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "स्थिर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "firm, steady, stable",
+      "traditional": "अर्थः — स्थिरम्"
+    }
+  },
+  {
+    "stem": "मान",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "measure, honour, pride, opinion",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "राज्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "kingdom, sovereignty, rule",
+      "traditional": "राज्ञः शासनभूमिः"
+    }
+  },
+  {
+    "stem": "मनुष्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "human, man, person",
+      "traditional": "अर्थः — पुत्रः तथा पुरुषः तथा जनः"
+    }
+  },
+  {
+    "stem": "भीष्म",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "terrible; Bhishma",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "धार्तराष्ट्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "son of Dhritarashtra",
+      "traditional": "अर्थः — पुत्रः"
+    }
+  },
+  {
+    "stem": "केशव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Krishna; one with fine hair",
+      "traditional": "अर्थः — कृष्णः"
+    }
+  },
+  {
+    "stem": "अन्वित",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "joined with, endowed with, accompanied",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "सनातन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "eternal, ancient, perpetual",
+      "traditional": "अर्थः — शाश्वतम्"
+    }
+  },
+  {
+    "stem": "अचल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "immovable, steady",
+      "traditional": "अर्थः — अचरम्"
+    }
+  },
+  {
+    "stem": "वक्त्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mouth, face",
+      "traditional": "अर्थः — मुखम्"
+    }
+  },
+  {
+    "stem": "प्रवृत्ति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "activity, tendency, engagement",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अभ्यास",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "practice, repetition, discipline",
+      "traditional": "अर्थः — अभ्यासः तथा संयमः"
+    }
+  },
+  {
+    "stem": "अनन्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "only, sole, incomparable",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "विभूति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "manifestation, glory, power",
+      "traditional": "अर्थः — पुरुषः तथा शक्तिः"
+    }
+  },
+  {
+    "stem": "ज्ञेय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "to be known, knowable",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "सहस्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "thousand",
+      "traditional": "अर्थः — सहस्रम्"
+    }
+  },
+  {
+    "stem": "सखि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "friend, companion",
+      "traditional": "अर्थः — मित्रम् तथा सखा"
+    }
+  },
+  {
+    "stem": "पितृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "father, ancestor",
+      "traditional": "अर्थः — पिता"
+    }
+  },
+  {
+    "stem": "पद",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "step, foot, position, word",
+      "traditional": "अर्थः — पादः तथा वचनम्"
+    }
+  },
+  {
+    "stem": "ज्योतिस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "light, brightness, heavenly body",
+      "traditional": "अर्थः — शरीरम् तथा ज्योतिः"
+    }
+  },
+  {
+    "stem": "वायु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "wind, air, vital breath",
+      "traditional": "अर्थः — प्राणः"
+    }
+  },
+  {
+    "stem": "शतक्रतु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "having h-fold insight or power or a h counsels",
+      "traditional": "अर्थः — शक्तिः"
+    }
+  },
+  {
+    "stem": "आदित्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sun, Aditya",
+      "traditional": "अर्थः — सूर्यः"
+    }
+  },
+  {
+    "stem": "अग्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "front, foremost part, tip",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "माया",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "illusion, creative power",
+      "traditional": "अर्थः — शक्तिः"
+    }
+  },
+  {
+    "stem": "गत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "gone, past, attained",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अहर्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "day, daytime",
+      "traditional": "अर्थः — कालः तथा अहः"
+    }
+  },
+  {
+    "stem": "दम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "self-restraint, control",
+      "traditional": "अर्थः — आत्मा"
+    }
+  },
+  {
+    "stem": "चक्षुस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "eye, sight",
+      "traditional": "अर्थः — नेत्रम्"
+    }
+  },
+  {
+    "stem": "अज",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "unborn, goat, Aja",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "उक्त",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "said, spoken, statement",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "द्वार",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "door, gate, means",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "चर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "moving, wandering, creature",
+      "traditional": "अर्थः — चरम्"
+    }
+  },
+  {
+    "stem": "शक्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "possible, capable",
+      "traditional": "अर्थः — शक्यम्"
+    }
+  },
+  {
+    "stem": "शब्द",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sound, word, speech",
+      "traditional": "अर्थः — वचनम् तथा वाक् तथा शब्दः"
+    }
+  },
+  {
+    "stem": "शस्त्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "weapon, scripture",
+      "traditional": "अर्थः — आयुधम् तथा शास्त्रम्"
+    }
+  },
+  {
+    "stem": "कारण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "cause, reason, instrument",
+      "traditional": "अर्थः — पुत्रः तथा युक्तिः तथा हेतुः"
+    }
+  },
+  {
+    "stem": "नराधिप",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "king, lord of men",
+      "traditional": "अर्थः — राजा तथा स्वामी"
+    }
+  },
+  {
+    "stem": "दृढ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "firm, strong, steadfast",
+      "traditional": "अर्थः — स्थिरम्"
+    }
+  },
+  {
+    "stem": "मानस",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mental, mind-born, lake Manasa",
+      "traditional": "अर्थः — पुरुषः तथा मनः"
+    }
+  },
+  {
+    "stem": "सिद्ध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "accomplished, perfected, adept",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "परायण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "devoted to, refuge, final resort",
+      "traditional": "अर्थः — शरणम्"
+    }
+  },
+  {
+    "stem": "अशुभ",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "inauspicious, evil",
+      "traditional": "अर्थः — अधर्मः"
+    }
+  },
+  {
+    "stem": "आत्मक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "having the nature of, consisting of",
+      "traditional": "अर्थः — प्रकृतिः"
+    }
+  },
+  {
+    "stem": "प्रमाद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "negligence, heedlessness, intoxication",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "प्रलय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "dissolution, destruction",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "दम्भ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hypocrisy, pretence, pride",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "गो",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "cow, earth, ray, speech",
+      "traditional": "अर्थः — पृथिवी तथा वाक्"
+    }
+  },
+  {
+    "stem": "पति",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "lord, husband, master",
+      "traditional": "अर्थः — स्वामी"
+    }
+  },
+  {
+    "stem": "पृथिवी",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "earth",
+      "traditional": "अर्थः — पृथिवी"
+    }
+  },
+  {
+    "stem": "पुर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "city, fortress, body",
+      "traditional": "अर्थः — शरीरम्"
+    }
+  },
+  {
+    "stem": "कवि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "poet, sage, seer",
+      "traditional": "अर्थः — मुनिः तथा कविः"
+    }
+  },
+  {
+    "stem": "हित",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "benefit, welfare, kind, placed",
+      "traditional": "अर्थः — स्थानम् तथा दूरम्"
+    }
+  },
+  {
+    "stem": "सत्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "truth, reality, true",
+      "traditional": "अर्थः — सत्यम् तथा तत्त्वम्"
+    }
+  },
+  {
+    "stem": "उग्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fierce, powerful, terrible",
+      "traditional": "अर्थः — शक्तिः"
+    }
+  },
+  {
+    "stem": "वाच्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "speech, voice, word",
+      "traditional": "अर्थः — वचनम् तथा वाक्"
+    }
+  },
+  {
+    "stem": "शत्रु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "enemy",
+      "traditional": "अर्थः — अरिः"
+    }
+  },
+  {
+    "stem": "रस",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "taste, essence, juice, sentiment",
+      "traditional": "अर्थः — कालः"
+    }
+  },
+  {
+    "stem": "शिरस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "head, top",
+      "traditional": "अर्थः — शिरः"
+    }
+  },
+  {
+    "stem": "वर्ण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "colour, class, letter",
+      "traditional": "अर्थः — अक्षरम् तथा वर्णः"
+    }
+  },
+  {
+    "stem": "सर्ग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "creation, emission, chapter",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "तात",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "father, dear one",
+      "traditional": "अर्थः — पिता"
+    }
+  },
+  {
+    "stem": "अद्भुत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wonderful, marvellous",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "द्वेष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hatred, aversion",
+      "traditional": "अर्थः — द्वेषः"
+    }
+  },
+  {
+    "stem": "अन्तर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "interval, difference, inside",
+      "traditional": "अर्थः — भेदः"
+    }
+  },
+  {
+    "stem": "स्थित",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "standing, existing, situated",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "ग्राम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "village, group",
+      "traditional": "अर्थः — गणः"
+    }
+  },
+  {
+    "stem": "शोक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "grief, sorrow",
+      "traditional": "अर्थः — शोकः"
+    }
+  },
+  {
+    "stem": "स्थान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "place, position, abode",
+      "traditional": "अर्थः — स्थानम्"
+    }
+  },
+  {
+    "stem": "गुरु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "heavy, teacher, venerable",
+      "traditional": "अर्थः — गुरुः"
+    }
+  },
+  {
+    "stem": "शास्त्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "teaching, scripture, authoritative treatise",
+      "traditional": "शासनं प्रमाणग्रन्थश्च"
+    }
+  },
+  {
+    "stem": "अचर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "immovable, stationary thing",
+      "traditional": "अर्थः — अचरम्"
+    }
+  },
+  {
+    "stem": "विज्ञान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "discriminative knowledge, science",
+      "traditional": "अर्थः — ज्ञानम् तथा विद्या"
+    }
+  },
+  {
+    "stem": "अधर्म",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "unrighteousness, wrong",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "तुल्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "equal, similar",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "काय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "body, mass",
+      "traditional": "अर्थः — शरीरम्"
+    }
+  },
+  {
+    "stem": "शङ्ख",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "conch shell",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "निश्चय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "certainty, resolve",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "जनार्दन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Krishna; protector or chastiser of people",
+      "traditional": "अर्थः — कृष्णः तथा जनाः"
+    }
+  },
+  {
+    "stem": "संघ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "assembly, community, union",
+      "traditional": "अर्थः — योगः"
+    }
+  },
+  {
+    "stem": "आचार्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "teacher, preceptor",
+      "traditional": "उपदेष्टा गुरुः"
+    }
+  },
+  {
+    "stem": "मोक्ष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "liberation, release",
+      "traditional": "बन्धनविमोक्षणं कैवल्यं च"
+    }
+  },
+  {
+    "stem": "लोभ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "greed, avarice",
+      "traditional": "अतृप्तधनाभिलाषः"
+    }
+  },
+  {
+    "stem": "अधिक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "more, excessive, superior",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "आहार",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "food, intake, nourishment",
+      "traditional": "भोजनं ग्रहणं च"
+    }
+  },
+  {
+    "stem": "आगम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "tradition, scripture, arrival",
+      "traditional": "अर्थः — शास्त्रम्"
+    }
+  },
+  {
+    "stem": "सम्भव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "origin, birth, possibility",
+      "traditional": "अर्थः — जन्म तथा उद्भवः"
+    }
+  },
+  {
+    "stem": "शौच",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "purity, cleanliness",
+      "traditional": "शुद्धिः बाह्याभ्यन्तरपवित्रता च"
+    }
+  },
+  {
+    "stem": "नाश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "destruction, loss",
+      "traditional": "विनाशः क्षयश्च"
+    }
+  },
+  {
+    "stem": "आश्चर्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wonder, marvel",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हृषीकेश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Krishna; lord of the senses",
+      "traditional": "अर्थः — कृष्णः तथा स्वामी"
+    }
+  },
+  {
+    "stem": "स्मृति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "memory, tradition, sacred recollection",
+      "traditional": "स्मरणं परम्परागतशास्त्रं च"
+    }
+  },
+  {
+    "stem": "उद्भव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "origin, arising, birth",
+      "traditional": "अर्थः — जन्म तथा उद्भवः तथा पापम्"
+    }
+  },
+  {
+    "stem": "अवश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "helpless, subject to",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अपान",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "downward breath, vital air",
+      "traditional": "अर्थः — प्राणः तथा सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "निर्वाण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "extinction, liberation, peace",
+      "traditional": "तृष्णाक्षयो मोक्षश्च"
+    }
+  },
+  {
+    "stem": "समुद्भव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "origin, arising",
+      "traditional": "अर्थः — उद्भवः तथा पापम्"
+    }
+  },
+  {
+    "stem": "कर्ण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "ear; Karna",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अप्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "water",
+      "traditional": "अर्थः — जलम्"
+    }
+  },
+  {
+    "stem": "सूर्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sun",
+      "traditional": "अर्थः — सूर्यः"
+    }
+  },
+  {
+    "stem": "मित्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "friend; Mitra",
+      "traditional": "सुहृद् सख्यं च"
+    }
+  },
+  {
+    "stem": "मही",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "earth, great",
+      "traditional": "अर्थः — पृथिवी तथा महत्त्वम्"
+    }
+  },
+  {
+    "stem": "धी",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "thought, intelligence, understanding",
+      "traditional": "अर्थः — चिन्तनम् तथा बुद्धिः तथा अवबोधः"
+    }
+  },
+  {
+    "stem": "वीर्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "strength, valour, potency",
+      "traditional": "शक्तिः पराक्रमश्च"
+    }
+  },
+  {
+    "stem": "वचस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "speech, word, utterance",
+      "traditional": "अर्थः — वचनम् तथा वाक्"
+    }
+  },
+  {
+    "stem": "पवित्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "pure, purifier, sacred",
+      "traditional": "अर्थः — शुचिः"
+    }
+  },
+  {
+    "stem": "धामन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "abode, seat, radiance",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अन्न",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "food, grain, nourishment",
+      "traditional": "भोज्यद्रव्यं धान्यं च"
+    }
+  },
+  {
+    "stem": "शुभ",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "auspicious, good, beautiful",
+      "traditional": "अर्थः — शुभम्"
+    }
+  },
+  {
+    "stem": "ध्रुव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fixed, constant, pole star",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "युग",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "age, yoke, pair",
+      "traditional": "अर्थः — द्वन्द्वम्"
+    }
+  },
+  {
+    "stem": "प्रजा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "offspring, subjects, creatures",
+      "traditional": "सन्ततिः जनसमूहश्च"
+    }
+  },
+  {
+    "stem": "दिश्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "direction, quarter",
+      "traditional": "दिक् प्रदेशश्च"
+    }
+  },
+  {
+    "stem": "सामन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "melody, chant, song",
+      "traditional": "गेयं वैदिकसाम च"
+    }
+  },
+  {
+    "stem": "रण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "battle, conflict",
+      "traditional": "अर्थः — युद्धम्"
+    }
+  },
+  {
+    "stem": "बन्धु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "kinsman, relative, friend",
+      "traditional": "ज्ञातिः स्वजनश्च"
+    }
+  },
+  {
+    "stem": "हृद्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "heart",
+      "traditional": "हृदयम् अन्तःकरणं च"
+    }
+  },
+  {
+    "stem": "साधु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "good, virtuous, holy person",
+      "traditional": "अर्थः — पुत्रः तथा जनः तथा शुभम्"
+    }
+  },
+  {
+    "stem": "वश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "control, power, will",
+      "traditional": "अर्थः — शक्तिः"
+    }
+  },
+  {
+    "stem": "ऊर्ध्व",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "upper, high, upward",
+      "traditional": "अर्थः — सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "कर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hand, ray, maker, tax",
+      "traditional": "अर्थः — हस्तः"
+    }
+  },
+  {
+    "stem": "स्पृहा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "desire, longing",
+      "traditional": "अर्थः — कामः"
+    }
+  },
+  {
+    "stem": "सेना",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "army",
+      "traditional": "चतुरङ्गबलसमूहः"
+    }
+  },
+  {
+    "stem": "शरण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "refuge, shelter",
+      "traditional": "आश्रयः रक्षणस्थानं च"
+    }
+  },
+  {
+    "stem": "द्रोण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Drona; trough, measure",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "ज्ञ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "1. jYa for 1. jYu. See UrDva-",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "रात्रि",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "night",
+      "traditional": "नक्तं तमोयुक्तः कालः"
+    }
+  },
+  {
+    "stem": "हृत्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "heart",
+      "traditional": "अर्थः — हृदयम्"
+    }
+  },
+  {
+    "stem": "स्त्री",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "woman, female",
+      "traditional": "योषित् नारी च"
+    }
+  },
+  {
+    "stem": "कलह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "quarrel, strife",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "कार",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "maker, doer, action",
+      "traditional": "अर्थः — क्रिया"
+    }
+  },
+  {
+    "stem": "इष्ट",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "desired, sacrifice, beloved",
+      "traditional": "अर्थः — यज्ञः तथा कामः तथा प्रीतिः"
+    }
+  },
+  {
+    "stem": "अयुक्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "unjoined, undisciplined, unsuitable",
+      "traditional": "अर्थः — संयमः"
+    }
+  },
+  {
+    "stem": "श्रुति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "hearing, revelation, sacred scripture",
+      "traditional": "अर्थः — शास्त्रम्"
+    }
+  },
+  {
+    "stem": "मुख",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "mouth, face, front",
+      "traditional": "वदनं पुरोभागश्च"
+    }
+  },
+  {
+    "stem": "जरा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "old age, decay",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "इच्छा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "desire, wish",
+      "traditional": "कामना अभिलाषश्च"
+    }
+  },
+  {
+    "stem": "किल्बिष",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sin, guilt, fault",
+      "traditional": "अर्थः — पापम्"
+    }
+  },
+  {
+    "stem": "मोघ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "vain, fruitless",
+      "traditional": "अर्थः — फलम्"
+    }
+  },
+  {
+    "stem": "बीज",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "seed, cause",
+      "traditional": "कारणं गर्भस्थं बीजं च"
+    }
+  },
+  {
+    "stem": "अजानत्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "not knowing, unaware",
+      "traditional": "अर्थः — सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "क्षर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "perishable, flowing",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "बन्ध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "bond, binding, bondage",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "सुर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "god, divine being",
+      "traditional": "अर्थः — देवः तथा सत्त्वम्"
+    }
+  },
+  {
+    "stem": "शम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "tranquillity, quietude",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "दर्शन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "seeing, vision, philosophy",
+      "traditional": "अवलोकनं मतशास्त्रं च"
+    }
+  },
+  {
+    "stem": "उष्ण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "hot, heat",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "वाद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "speech, argument, doctrine",
+      "traditional": "अर्थः — वाक्"
+    }
+  },
+  {
+    "stem": "सूदन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "destroyer, slayer",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "पितामह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "grandfather, grandsire",
+      "traditional": "अर्थः — पिता"
+    }
+  },
+  {
+    "stem": "देश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "place, region, country",
+      "traditional": "प्रदेशो राष्ट्रभूमिश्च"
+    }
+  },
+  {
+    "stem": "स्वर्ग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "heaven",
+      "traditional": "देवलोकः पुण्यफलभूमिश्च"
+    }
+  },
+  {
+    "stem": "वासुदेव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Vasudeva; Krishna",
+      "traditional": "अर्थः — कृष्णः"
+    }
+  },
+  {
+    "stem": "अल्प",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "small, little, insignificant",
+      "traditional": "अर्थः — अल्पम्"
+    }
+  },
+  {
+    "stem": "हर्ष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "joy, delight",
+      "traditional": "अर्थः — ज्योतिः"
+    }
+  },
+  {
+    "stem": "आसन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "seat, posture",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "नेत्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "eye, leader",
+      "traditional": "अर्थः — नेत्रम्"
+    }
+  },
+  {
+    "stem": "पण्डित",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "learned person, scholar",
+      "traditional": "अर्थः — पुत्रः तथा जनः"
+    }
+  },
+  {
+    "stem": "नरक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hell",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अनल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fire",
+      "traditional": "अर्थः — अग्निः"
+    }
+  },
+  {
+    "stem": "सुखिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "happy, fortunate",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "ध्यान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "meditation, contemplation",
+      "traditional": "एकाग्रचित्तेन चिन्तनम्"
+    }
+  },
+  {
+    "stem": "आर्जव",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "straightforwardness, sincerity",
+      "traditional": "अर्थः — पापम् तथा सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "सम्पद्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "prosperity, excellence, spiritual quality",
+      "traditional": "समृद्धिः गुणसम्पत्तिश्च"
+    }
+  },
+  {
+    "stem": "धर्म्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "righteous, lawful",
+      "traditional": "अर्थः — धर्मः"
+    }
+  },
+  {
+    "stem": "द्वंद्व",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "pair, duality, conflict",
+      "traditional": "अर्थः — द्वन्द्वम्"
+    }
+  },
+  {
+    "stem": "निवास",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "dwelling, abode",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "आद्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "first, original",
+      "traditional": "अर्थः — उद्भवः"
+    }
+  },
+  {
+    "stem": "निष्ठा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "devotion, steadfastness, state",
+      "traditional": "स्थिरभक्तिः आश्रयश्च"
+    }
+  },
+  {
+    "stem": "समाधि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "concentration, absorption, samadhi",
+      "traditional": "चित्तैकाग्र्यं योगावस्था च"
+    }
+  },
+  {
+    "stem": "व्यवसाय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "determination, undertaking, occupation",
+      "traditional": "अर्थः — राजा"
+    }
+  },
+  {
+    "stem": "समग्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "complete, entire",
+      "traditional": "अर्थः — समग्रता"
+    }
+  },
+  {
+    "stem": "स्थिति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "standing, state, existence",
+      "traditional": "अर्थः — भावः"
+    }
+  },
+  {
+    "stem": "आरम्भ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "beginning, undertaking",
+      "traditional": "अर्थः — राजा"
+    }
+  },
+  {
+    "stem": "कल्मष",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "stain, sin, impurity",
+      "traditional": "अर्थः — पापम् तथा शौचम्"
+    }
+  },
+  {
+    "stem": "सम्मोह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "delusion, bewilderment",
+      "traditional": "अर्थः — मोहः"
+    }
+  },
+  {
+    "stem": "अनादि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "without beginning",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "निर्मम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "without possessiveness",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "गुडाकेश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Arjuna; lord of sleep",
+      "traditional": "अर्थः — अर्जुनः तथा स्वामी"
+    }
+  },
+  {
+    "stem": "भोक्तृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "enjoyer, experiencer",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "समास",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "compound, union, summary",
+      "traditional": "अर्थः — योगः"
+    }
+  },
+  {
+    "stem": "ऐश्वर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "lordly, divine, sovereign",
+      "traditional": "अर्थः — स्वामी"
+    }
+  },
+  {
+    "stem": "आवृत्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "1. A-√ vft P. Ā. -vartate to turn or draw round or back or near, .; ŚāṅkhŚr.; to turn or go towards; to turn round or back, return, revolve, .; .; .; .; ChUp.; .; Kathās.; R. : Caus. P. -vartayati Ā. -vartayate to cause ",
+      "traditional": "अर्थः — सङ्ग्रामः तथा हेतुः"
+    }
+  },
+  {
+    "stem": "स्मृत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "remembered, traditional",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "इन्द्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Indra",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "दिव्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "heaven, sky, light",
+      "traditional": "अर्थः — आकाशः तथा ज्योतिः"
+    }
+  },
+  {
+    "stem": "वसु",
+    "ending": "U_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wealth, good, deity",
+      "traditional": "अर्थः — देवता तथा धनम् तथा शुभम्"
+    }
+  },
+  {
+    "stem": "मरुत्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Marut, storm deity",
+      "traditional": "अर्थः — देवता"
+    }
+  },
+  {
+    "stem": "मधु",
+    "ending": "U_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "honey, sweetness, spring",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "exhilaration, pride, intoxication",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "शुचि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "pure, bright",
+      "traditional": "अर्थः — शुचिः"
+    }
+  },
+  {
+    "stem": "रुद्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Rudra",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मनु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Manu, human being",
+      "traditional": "अर्थः — पुरुषः तथा मानवः तथा सत्त्वम्"
+    }
+  },
+  {
+    "stem": "विष्णु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Vishnu",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "पावक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "fire, purifier",
+      "traditional": "अर्थः — अग्निः"
+    }
+  },
+  {
+    "stem": "गण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "group, host, number",
+      "traditional": "अर्थः — गणः"
+    }
+  },
+  {
+    "stem": "यति",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "ascetic, striver",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "यक्ष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Yaksha",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भास्",
+    "ending": "CONSONANT",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "light, splendour",
+      "traditional": "अर्थः — ज्योतिः"
+    }
+  },
+  {
+    "stem": "मनीषिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "wise person, thinker",
+      "traditional": "अर्थः — पुत्रः तथा जनः"
+    }
+  },
+  {
+    "stem": "श्रेष्ठ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "best, excellent, superior",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "जीव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "living being, soul",
+      "traditional": "अर्थः — जीवात्मा तथा सत्त्वम्"
+    }
+  },
+  {
+    "stem": "भीम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "terrible; Bhima",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "धातृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "creator, supporter",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हुत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "offered, oblation",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "वीत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "gone, free from",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मरण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "death, dying",
+      "traditional": "अर्थः — मृत्युः"
+    }
+  },
+  {
+    "stem": "अरि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "enemy",
+      "traditional": "अर्थः — अरिः"
+    }
+  },
+  {
+    "stem": "इषु",
+    "ending": "U_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "arrow",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "क्षेम",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "welfare, security, peace",
+      "traditional": "अर्थः — शान्तिः तथा दूरम्"
+    }
+  },
+  {
+    "stem": "अच्युत",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "unfailing; Krishna",
+      "traditional": "अर्थः — कृष्णः"
+    }
+  },
+  {
+    "stem": "धूम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "smoke",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मास",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "month",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अभय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "fearlessness, safety",
+      "traditional": "अर्थः — भयम्"
+    }
+  },
+  {
+    "stem": "देवता",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "deity, divine power",
+      "traditional": "अर्थः — देवता तथा शक्तिः"
+    }
+  },
+  {
+    "stem": "पुराण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "ancient, primeval; Purana",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "बुध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "wise, awakened; Mercury",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अकृत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "undone, unmade",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अयन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "going, path, solstice",
+      "traditional": "अर्थः — मार्गः"
+    }
+  },
+  {
+    "stem": "वचन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "word, speech, statement",
+      "traditional": "उक्तिः भाषितं च"
+    }
+  },
+  {
+    "stem": "उदर",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "belly, interior",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "क्षत्रिय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "warrior, member of the ruling class",
+      "traditional": "अर्थः — सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "अधम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "lowest, inferior, vile",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भर्तृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "supporter, husband, lord",
+      "traditional": "अर्थः — स्वामी"
+    }
+  },
+  {
+    "stem": "योध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "warrior, fighter",
+      "traditional": "अर्थः — सङ्ग्रामः"
+    }
+  },
+  {
+    "stem": "स्वप्न",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "dream, sleep",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मानव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "human, man",
+      "traditional": "अर्थः — पुरुषः तथा मानवः"
+    }
+  },
+  {
+    "stem": "उपम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "comparison, likeness",
+      "traditional": "अर्थः — पुत्रः"
+    }
+  },
+  {
+    "stem": "किरीटिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "wearing a diadem; Arjuna",
+      "traditional": "अर्थः — अर्जुनः"
+    }
+  },
+  {
+    "stem": "नष्ट",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "lost, destroyed",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "शाखा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "branch, school, section",
+      "traditional": "अर्थः — शाखा"
+    }
+  },
+  {
+    "stem": "भेद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "difference, division, distinction",
+      "traditional": "अर्थः — भेदः"
+    }
+  },
+  {
+    "stem": "रोमन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "hair, body hair",
+      "traditional": "अर्थः — शरीरम्"
+    }
+  },
+  {
+    "stem": "अचेतस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "unconscious, thoughtless",
+      "traditional": "अर्थः — चिन्तनम्"
+    }
+  },
+  {
+    "stem": "मामक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "my, mine",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मूल",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "root, source, basis",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "गन्ध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "smell, scent",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "वादिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "speaker, advocate",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "पत्त्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "leaf, letter, wing",
+      "traditional": "अर्थः — अक्षरम्"
+    }
+  },
+  {
+    "stem": "दर्शिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "seeing, observing person",
+      "traditional": "अर्थः — पुत्रः तथा जनः"
+    }
+  },
+  {
+    "stem": "अफल",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "fruitless, without result",
+      "traditional": "अर्थः — फलम्"
+    }
+  },
+  {
+    "stem": "शूद्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Shudra, servant class",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "शीत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "cold, coolness",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "वर्त्मन्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "path, way",
+      "traditional": "अर्थः — मार्गः"
+    }
+  },
+  {
+    "stem": "कूट",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "peak, summit, deceit",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "विविध",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "various, manifold",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "प्रीति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "love, pleasure, affection",
+      "traditional": "अर्थः — आनन्दः तथा प्रीतिः"
+    }
+  },
+  {
+    "stem": "नन्दन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "delighting, son; Nandana",
+      "traditional": "अर्थः — पुत्रः तथा ज्योतिः"
+    }
+  },
+  {
+    "stem": "अनघ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sinless, faultless",
+      "traditional": "अर्थः — पापम्"
+    }
+  },
+  {
+    "stem": "विजय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "victory; Arjuna",
+      "traditional": "अर्थः — अर्जुनः तथा जयः"
+    }
+  },
+  {
+    "stem": "द्रुपद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Drupada",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "व्यास",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Vyasa; arranger, compiler",
+      "traditional": "अर्थः — क्रोधः"
+    }
+  },
+  {
+    "stem": "विनाश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "destruction, ruin",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "स्पर्श",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "touch, contact",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "आचार",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "conduct, custom, practice",
+      "traditional": "अर्थः — अभ्यासः"
+    }
+  },
+  {
+    "stem": "विस्तर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "expansion, detail",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "प्रकाश",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "light, manifestation, exposition",
+      "traditional": "अर्थः — पुरुषः तथा ज्योतिः"
+    }
+  },
+  {
+    "stem": "प्रभव",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "origin, source, power",
+      "traditional": "अर्थः — उद्भवः तथा शक्तिः"
+    }
+  },
+  {
+    "stem": "दर्प",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "pride, arrogance",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "लाभ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "gain, profit",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "स्वाध्याय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "recitation or study of sacred texts",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अप्रमेय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "immeasurable, incalculable",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "शशिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "moon",
+      "traditional": "अर्थः — चन्द्रः"
+    }
+  },
+  {
+    "stem": "अचिन्त्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "inconceivable",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अखिल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "whole, entire",
+      "traditional": "अर्थः — कृत्स्नम् तथा समग्रता"
+    }
+  },
+  {
+    "stem": "प्रद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "giving, bestowing",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अकार्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wrong action, what should not be done",
+      "traditional": "अर्थः — क्रिया"
+    }
+  },
+  {
+    "stem": "गरीयस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "greater, more venerable",
+      "traditional": "अर्थः — महत्त्वम्"
+    }
+  },
+  {
+    "stem": "विपरीत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "opposite, contrary",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "पूर्वक",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "preceded by, accompanied by",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अशुचि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "impure, unclean",
+      "traditional": "अर्थः — शुचिः"
+    }
+  },
+  {
+    "stem": "भावन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "bringing into being, cultivation",
+      "traditional": "अर्थः — सत्त्वम्"
+    }
+  },
+  {
+    "stem": "प्रयाण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "departure, journey",
+      "traditional": "अर्थः — प्रयाणम्"
+    }
+  },
+  {
+    "stem": "अधिभूत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "pertaining to beings or matter",
+      "traditional": "अर्थः — सत्त्वम्"
+    }
+  },
+  {
+    "stem": "कराल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "terrible, gaping, formidable",
+      "traditional": "अर्थः — रूपम्"
+    }
+  },
+  {
+    "stem": "त्यागिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "renouncer",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अकीर्ति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "ill fame, dishonour",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "व्यक्ति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "manifestation, person, individual",
+      "traditional": "अर्थः — पुत्रः तथा पुरुषः तथा जनः"
+    }
+  },
+  {
+    "stem": "याजिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sacrificer, performer of sacrifice",
+      "traditional": "अर्थः — यज्ञः तथा रूपम्"
+    }
+  },
+  {
+    "stem": "उदासीन",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "indifferent, impartial, aloof",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "पृथक्त्व",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "separateness, individuality",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "निधान",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "deposit, treasure, resting place",
+      "traditional": "अर्थः — स्थानम्"
+    }
+  },
+  {
+    "stem": "वैराग्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "dispassion, renunciation",
+      "traditional": "विषयेष्वनासक्तिः"
+    }
+  },
+  {
+    "stem": "निष्परिग्रह",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "free from possessions",
+      "traditional": "परिग्रहत्यागः"
+    }
+  },
+  {
+    "stem": "मूढ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "deluded, foolish",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "ज्ञानिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "knower, wise person",
+      "traditional": "ज्ञानी तत्त्वविद् च"
+    }
+  },
+  {
+    "stem": "निश्चित",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "certain, resolved, determined",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अधियज्ञ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "pertaining to sacrifice, the presiding sacrifice",
+      "traditional": "अर्थः — यज्ञः"
+    }
+  },
+  {
+    "stem": "परित्यागिन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "abandoner, renouncer",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "व्यवस्थिति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "steadfastness, fixed state",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "त्याज्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "to be abandoned",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "बोद्धव्य",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "to be understood, knowable",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "सोम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Soma, moon, sacred drink",
+      "traditional": "अर्थः — चन्द्रः"
+    }
+  },
+  {
+    "stem": "ऋत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "truth, cosmic order",
+      "traditional": "अर्थः — सत्यम्"
+    }
+  },
+  {
+    "stem": "अश्विन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Ashvin, horseman",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "वरुण",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Varuna",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हरि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Hari; tawny, green, destroyer",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "नृ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "man, hero",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "वीर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hero, brave man",
+      "traditional": "अर्थः — पुरुषः"
+    }
+  },
+  {
+    "stem": "भी",
+    "ending": "II_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "fear",
+      "traditional": "अर्थः — भयम्"
+    }
+  },
+  {
+    "stem": "मातृ",
+    "ending": "A_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "mother",
+      "traditional": "अर्थः — माता"
+    }
+  },
+  {
+    "stem": "तनु",
+    "ending": "U_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "body, person, thin",
+      "traditional": "अर्थः — पुत्रः तथा जनः तथा शरीरम्"
+    }
+  },
+  {
+    "stem": "शूर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "heroic, brave",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "मर्त्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "mortal, human",
+      "traditional": "अर्थः — पुरुषः तथा मानवः"
+    }
+  },
+  {
+    "stem": "मानुष",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "human, man",
+      "traditional": "अर्थः — पुरुषः तथा मानवः"
+    }
+  },
+  {
+    "stem": "समुद्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "ocean, sea",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "आयुस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "life, lifespan",
+      "traditional": "अर्थः — आयुः"
+    }
+  },
+  {
+    "stem": "विद्वस्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "knowing, learned person",
+      "traditional": "अर्थः — पुत्रः तथा जनः"
+    }
+  },
+  {
+    "stem": "चक्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "wheel, discus, cycle",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "जात",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "born, produced, kind",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "गर्भ",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "womb, embryo, interior",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "श्रुत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "heard, famous",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हस्त",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hand, elephant",
+      "traditional": "अर्थः — हस्तः"
+    }
+  },
+  {
+    "stem": "स्तुति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "praise, hymn",
+      "traditional": "अर्थः — स्त्रीलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "यशस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "fame, glory",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "यम",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "restraint; Yama",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "जित्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "conqueror, victorious",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "वर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "boon, excellent, chosen",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "अघ",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sin, evil",
+      "traditional": "अर्थः — पापम् तथा अधर्मः"
+    }
+  },
+  {
+    "stem": "दूर",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "far, distant",
+      "traditional": "अर्थः — दूरम्"
+    }
+  },
+  {
+    "stem": "अङ्ग",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "limb, part, body",
+      "traditional": "अर्थः — शरीरम्"
+    }
+  },
+  {
+    "stem": "अनीक",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "face, army, battle front",
+      "traditional": "अर्थः — बाहुः तथा युद्धम् तथा सेना"
+    }
+  },
+  {
+    "stem": "अक्ष",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "axle, die, eye",
+      "traditional": "अर्थः — नेत्रम्"
+    }
+  },
+  {
+    "stem": "आयुध",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "weapon",
+      "traditional": "अर्थः — आयुधम्"
+    }
+  },
+  {
+    "stem": "भूमि",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "earth, ground, level",
+      "traditional": "अर्थः — पृथिवी"
+    }
+  },
+  {
+    "stem": "मृग",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "deer, animal",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "भोजन",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "food, eating",
+      "traditional": "अर्थः — अन्नम्"
+    }
+  },
+  {
+    "stem": "हृदय",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "heart, centre",
+      "traditional": "चित्तस्थानं रुधिरपिण्डश्च"
+    }
+  },
+  {
+    "stem": "भुज",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "arm, branch, enjoyer",
+      "traditional": "अर्थः — बाहुः तथा शाखा"
+    }
+  },
+  {
+    "stem": "पर्जन्य",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "rain cloud, rain god",
+      "traditional": "अर्थः — देवः"
+    }
+  },
+  {
+    "stem": "अश्मन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "stone, rock",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "हत",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "struck, slain, defeated",
+      "traditional": "अर्थः — नपुंसकलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "नीति",
+    "ending": "I_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "conduct, policy, ethics",
+      "traditional": "आचारशासनयुक्तिः"
+    }
+  },
+  {
+    "stem": "मन्त्र",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "sacred formula, counsel",
+      "traditional": "मननत्राणजनकं वैदिकवाक्यम्"
+    }
+  },
+  {
+    "stem": "पाद",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "foot, quarter, verse",
+      "traditional": "अर्थः — पादः"
+    }
+  },
+  {
+    "stem": "पाणि",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "hand",
+      "traditional": "हस्तः करश्च"
+    }
+  },
+  {
+    "stem": "ख",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sky, space, hole",
+      "traditional": "अर्थः — आकाशः"
+    }
+  },
+  {
+    "stem": "विष",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "poison",
+      "traditional": "अर्थः — पुत्रः"
+    }
+  },
+  {
+    "stem": "गन्धर्व",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "Gandharva",
+      "traditional": "अर्थः — पुंलिङ्गसंज्ञा"
+    }
+  },
+  {
+    "stem": "नभस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "sky, cloud",
+      "traditional": "अर्थः — आकाशः"
+    }
+  },
+  {
+    "stem": "असु",
+    "ending": "U_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "life, breath",
+      "traditional": "अर्थः — प्राणः तथा आयुः"
+    }
+  },
+  {
+    "stem": "बहुल",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "many, abundant, dark",
+      "traditional": "अर्थः — पुरुषः तथा बहवः"
+    }
+  },
+  {
+    "stem": "उदक",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "water, .; .; KātyŚr",
+      "traditional": "अर्थः — जलम्"
+    }
+  },
+  {
+    "stem": "श्वन्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "a dog, hound, cur",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "दत्त",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "given, gift",
+      "traditional": "अर्थः — दानम्"
+    }
+  },
+  {
+    "stem": "ज्यायस्",
+    "ending": "CONSONANT",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "greater, elder, better",
+      "traditional": "अर्थः — महत्त्वम्"
+    }
+  },
+  {
+    "stem": "अदृष्ट",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "unseen, fate",
+      "traditional": "अर्थः — अदृष्टम्"
+    }
+  },
+  {
+    "stem": "करण",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "act, instrument, organ",
+      "traditional": "साधनं कर्मेन्द्रियं च"
+    }
+  },
+  {
+    "stem": "कृपा",
+    "ending": "AA_STEM",
+    "gender": "FEMININE",
+    "meaning": {
+      "english": "pity, tenderness, compassion",
+      "traditional": "अर्थः — संज्ञापदम्"
+    }
+  },
+  {
+    "stem": "शुच्",
+    "ending": "CONSONANT",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "1. Suc cl. 1. P. Socati to shine, flame, gleam, glow, burn, .; Br.; ĀśvŚr.; to suffer violent heat or pain, be sorrowful or afflicted, grieve, mourn at or for , . ; to bewail, lament, regret , .; . ; to be absorbed in de",
+      "traditional": "अर्थः — शोकः तथा दुःखम्"
+    }
+  },
+  {
+    "stem": "कीर्ति",
+    "ending": "I_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "mention, making mention of, speech, report, . x, 54, 1",
+      "traditional": "अर्थः — राजा तथा वाक्"
+    }
+  }
+]

@@ -33,7 +33,7 @@ inline void to_json(json& j, const NominalMetadata& n) {
 }
 
 // --- 3. Root Metadata ---
-inline void to_json(json& j, const SanskritRoot &r) {
+inline void to_json(json& j, const Root &r) {
     if (r.isEmpty()) return;
     j = json{
         {"originalTagForm", r.originalTagForm},
@@ -76,6 +76,17 @@ inline void to_json(json& j, const Word& w) {
         {"text", w.text},
         {"cleanForm", w.cleanForm},
         {"analyses", w.analyses}
+    };
+}
+
+// --- 6. Stem Metadata ---
+inline void to_json(json& j, const NominalStem& n) {
+    j = json{
+        {"ending", n.ending},
+        {"gender", n.gender},
+        {"englishMeaning", n.meaning.english},
+        {"traditionalMeaning", n.meaning.traditional},
+        {"text", n.text}
     };
 }
 

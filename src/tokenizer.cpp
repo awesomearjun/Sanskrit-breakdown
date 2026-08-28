@@ -1,4 +1,5 @@
 #include "tokenizer.hpp"
+#include <memory>
 
 std::string trim(std::string s)
 {
@@ -61,10 +62,10 @@ void sanitize(std::string &token)
     }
 }
 
-std::vector<std::string> Tokenizer::tokenize(const std::string &shloka)
+WordList Tokenizer::tokenize(const std::string &shloka)
 {
     // vector to return
-    std::vector<std::string> tokens;
+    WordList tokens;
 
     // buffer to hold the current word
     std::string wordBuffer;
@@ -79,9 +80,12 @@ std::vector<std::string> Tokenizer::tokenize(const std::string &shloka)
             if (!wordBuffer.empty())
             {
                 sanitize(wordBuffer);
-                if (!wordBuffer.empty()) // Check again if sanitize made it empty
+                if (!wordBuffer
+                         .empty()) // Check again if sanitize made it empty
                 {
-                    tokens.push_back(wordBuffer);
+                    std::shared_ptr<Word> buf = std::make_shared<Word>();
+                    buf->text = wordBuffer;
+                    tokens.push_back(buf);
                 }
                 wordBuffer.clear();
             }
@@ -94,7 +98,10 @@ std::vector<std::string> Tokenizer::tokenize(const std::string &shloka)
     if (!wordBuffer.empty() || wordBuffer == "॥")
     {
         sanitize(wordBuffer);
-        tokens.push_back(wordBuffer);
+
+        std::shared_ptr<Word> buf = std::make_shared<Word>();
+        buf->text = wordBuffer;
+        tokens.push_back(buf);
     }
 
     return tokens;

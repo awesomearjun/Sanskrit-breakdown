@@ -11,8 +11,9 @@ RootDeriver::deriveRoots(const std::vector<SandhiCandidate> &nodes)
 {
     std::vector<ValidDerives> results;
 
-    for (const auto &word : nodes)
+    for (const SandhiCandidate &word : nodes)
     {
+        std::shared_ptr<WordListNode> wordNode = std::make_shared<WordListNode>();
         for (const auto &head : word)
         {
             if (!head)
@@ -21,10 +22,9 @@ RootDeriver::deriveRoots(const std::vector<SandhiCandidate> &nodes)
             RootDerivation::RootMemo memo;
             ValidDerives derivedRoots = recursiveDeriveRoots(head, memo);
 
-            if (derivedRoots.empty())
+            if (derivedRoots->empty())
                 continue;
 
-            results.push_back(derivedRoots);
         }
     }
 
@@ -40,7 +40,7 @@ RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
     if (it != memo.end())
         return it->second;
 
-    ValidDerives results;
+    ValidDerives result;
 
     // 2. Validate Current Surface Word
     auto currentNode = std::make_shared<WordListNode>();
@@ -53,7 +53,10 @@ RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
         {
             if (!component || !component->success)
                 continue;
-            for (const SanskritRoot &root : generateRootCandidates(component->original))
+
+            if (component->matchType == WordMatchType::NOMINAL)
+                continue;
+            for (const Root &root : generateRootCandidates(component->original))
             {
                 std::shared_ptr<WordAnalysis> componentAnalysis = std::make_shared<WordAnalysis>();
                 componentAnalysis->success = root.isEmpty();
@@ -65,14 +68,14 @@ RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
         }
     }
 
-    results.push_back(currentNode);
-    return memo[tree.get()] = results;
+    result = std::move(currentNode);
+    return memo[tree.get()] = result;
 }
 
 //  ======= HELPERS =======
 
 // Orchestrator function
-std::vector<SanskritRoot>
+std::vector<Root>
 RootDeriver::generateRootCandidates(const std::string &stem)
 {
     // 1. Pass initial candidates (from Stage 1 stripTinSuffix) into Stage 2
@@ -87,7 +90,7 @@ RootDeriver::generateRootCandidates(const std::string &stem)
     std::vector<std::string> rawRootCandidates = reverseGuna(shiftCandidates);
 
     // 4. Final Deduplication Pass
-    std::vector<SanskritRoot> finalCandidates;
+    std::vector<Root> finalCandidates;
     std::unordered_set<std::string> seenForms;
 
     for (const auto &candidate : rawRootCandidates)
@@ -100,7 +103,7 @@ RootDeriver::generateRootCandidates(const std::string &stem)
         seenForms.insert(form);
 
         // Lookup in Dhātupāṭha database
-        std::optional<SanskritRoot> root = db.rootExists(form);
+        std::optional<Root> root = db.rootExists(form);
 
         if (!root.has_value() || root->isEmpty())
             continue;

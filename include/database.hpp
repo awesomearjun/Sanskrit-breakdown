@@ -16,24 +16,30 @@ public:
     ~Database() = default;
 
     bool initialize(const std::string &rootsJsonPath,
-                    const std::string &constantsJsonPath);
+                    const std::string &constantsJsonPath,
+                    const std::string &stemsJsonPath);
 
-    bool isPrefix(const std::string &text) const;
-    bool isIndeclinable(const std::string &text) const;
+    std::optional<Prefix> isPrefix(const std::string &text) const;
+    std::optional<IndeclinableMetadata>
+    isIndeclinable(const std::string &text) const;
 
-    std::optional<std::vector<VerbMetadata>> tryMatchVerbalSuffix(const std::string &text) const;
-    std::optional<std::vector<NominalMetadata>> tryMatchNominalSuffix(const std::string &text) const;
-    std::optional<SanskritRoot> rootExists(const std::string &cleanRoot);
-    bool stemExists(const std::string &cleanStem) const;
+    std::optional<std::vector<VerbMetadata>>
+    tryMatchVerbalSuffix(const std::string &text) const;
+    std::optional<std::vector<NominalMetadata>>
+    tryMatchNominalSuffix(const std::string &text) const;
+    std::optional<Root> rootExists(const std::string &cleanRoot);
+    std::optional<NominalStem> stemExists(const std::string &cleanStem);
 
 private:
     void loadRoots(const rapidjson::Document &doc);
     void loadConstants(const rapidjson::Document &doc);
+    void loadStems(const rapidjson::Document &doc);
 
-    std::unordered_map<std::string, SanskritRoot> rootCache;
-    std::unordered_map<std::string, std::string> prefixCache;
-    std::unordered_map<std::string, std::string> indeclinableCache;
+    std::unordered_map<std::string, Root> rootCache;
+    std::unordered_map<std::string, Prefix> prefixCache;
+    std::unordered_map<std::string, IndeclinableMetadata> indeclinableCache;
     std::unordered_map<std::string, std::vector<VerbMetadata>> verbSuffixCache;
-    std::unordered_map<std::string, std::vector<NominalMetadata>> nominalSuffixCache;
-    std::unordered_set<std::string> stemsCache;
+    std::unordered_map<std::string, std::vector<NominalMetadata>>
+        nominalSuffixCache;
+    std::unordered_map<std::string, NominalStem> stemsCache;
 };

@@ -1,6 +1,7 @@
 #include "sandhi-splitter.hpp"
 #include "wordTypes.hpp"
 #include <cstddef>
+#include <iterator>
 #include <memory>
 #include <optional>
 #include <string>
@@ -182,19 +183,21 @@ void SandhiSplitter::initializePossibilities()
          }}};
 }
 
-std::vector<SandhiCandidate>
-SandhiSplitter::splitTree(std::vector<std::string> &tokens)
+WordList SandhiSplitter::splitTree(const WordList &tokens)
 {
-    std::vector<SandhiCandidate> output;
+    WordList output;
 
-    for (const std::string &token : tokens)
+    for (const std::shared_ptr<Word> &token : tokens)
     {
-        WordTreeCache memo;
+        MultiPathMemo memo;
 
-        if (SandhiCandidate tokenTrees = findSplits(token, memo);
-            !tokenTrees.empty())
+        if (std::vector<WordMetadata> tokenPossibilities =
+                findSplits(token->text, memo);
+            !tokenPossibilities.empty())
         {
-            output.push_back(tokenTrees);
+            std::shared_ptr<Word> newWord = std::move(token);
+            newWord->metadata = std::move(tokenPossibilities);
+            output.push_back(newWord);
         }
     }
     return output;
@@ -247,11 +250,10 @@ std::string replaceTrailingAnusvara(const std::string &str)
     return str; // Return unchanged if it doesn't end with Anusvāra
 }
 
-SandhiCandidate SandhiSplitter::findSplits(const std::string &token,
-                                           WordTreeCache &memo)
+std::vector<SplitPath> SandhiSplitter::findSplits(const std::string &token,
+                                                  MultiPathMemo &memo)
 {
-    SandhiCandidate results;
-    std::string targetString = token;
+    std::vector<SplitPath> results;
 
     // Base Case: Empty string returns empty vector
     if (token.empty())
@@ -261,38 +263,38 @@ SandhiCandidate SandhiSplitter::findSplits(const std::string &token,
     if (auto it = memo.find(token); it != memo.end())
         return it->second;
 
-    for (size_t pos = 0; pos < targetString.length(); ++pos)
+    std::string modToken = replaceTrailingAnusvara(token);
+
+    for (size_t pos = 0; pos < token.length(); ++pos)
     {
         // doesn't let incomplete bits get through
-        if (isUtf8ContinuationByte(targetString[pos]))
+        if (isUtf8ContinuationByte(token[pos]))
             continue;
-        for (size_t len = 1; len <= 12 && (pos + len) <= targetString.length();
-             ++len)
+        for (size_t len = 1; len <= 12 && (pos + len) <= token.length(); ++len)
         {
             // still doesn't let them through
-            if (pos + len < targetString.length() &&
-                isUtf8ContinuationByte(targetString[pos + len]))
+            if (pos + len < token.length() &&
+                isUtf8ContinuationByte(token[pos + len]))
             {
                 continue;
             }
 
             // skip if next character is a dependant one
             if (size_t endPos = pos + len;
-                endPos < targetString.length() &&
-                isCombiningMark(targetString, endPos))
+                endPos < token.length() && isCombiningMark(token, endPos))
             {
                 continue; // Skip! Don't let rightChunk inherit a stranded
                           // matra like 'ु'
             }
 
-            std::string potentialJunction = targetString.substr(pos, len);
+            std::string potentialJunction = token.substr(pos, len);
 
             auto it = rules.find(potentialJunction);
             if (it == rules.end())
                 continue;
 
-            std::string leftChunk = targetString.substr(0, pos);
-            std::string rightChunk = targetString.substr(pos + len);
+            std::string leftChunk = token.substr(0, pos);
+            std::string rightChunk = token.substr(pos + len);
 
             const auto &transformations = it->second;
             for (const auto &[leftRep, rightRep] : transformations)
@@ -300,35 +302,38 @@ SandhiCandidate SandhiSplitter::findSplits(const std::string &token,
                 std::string candidateLeft = leftChunk + leftRep;
                 std::string candidateRight = rightRep + rightChunk;
 
-                // if we add more mods in future then we can just easily add it here
-                std::string modLeft = replaceTrailingAnusvara(
-                    candidateLeft);
+                // if we add more mods in future then we can just easily add it
+                // here
+                std::string modLeft = replaceTrailingAnusvara(candidateLeft);
                 std::string modRight = replaceTrailingAnusvara(candidateRight);
 
                 // 1. Validate LEFT side
-                std::vector<WordAnalysis> leftAnalyses =
-                    isValidWord(modLeft);
+                std::vector<WordMetadata> leftAnalyses = isValidWord(modLeft);
                 if (leftAnalyses.empty())
-                    continue; // Left word is invalid, drop this split path
+                    continue;
 
                 // 2. Validate RIGHT side (recursively)
-                auto rightChildren = findSplits(modRight, memo);
-                if (rightChildren.empty())
+                auto rightPaths = findSplits(modRight, memo);
+                if (rightPaths.empty())
                 {
                     continue; // Right remainder cannot be validly parsed, drop
                               // this split path
                 }
 
-                // 3. BOTH are valid — bind them together into a tree node
-                auto node = std::make_shared<WordTreeNode>();
-                node->word.cleanForm = std::move(modLeft);
+                // combine vectors
+                for (const auto &leftAnalysis : leftAnalyses)
+                {
+                    for (const auto &rightPath : rightPaths)
+                    {
+                        SplitPath combinedPath;
+                        combinedPath.push_back(leftAnalysis); // Left word
+                        combinedPath.insert(
+                            combinedPath.end(), rightPath.begin(),
+                            rightPath.end()); // Rest of sequence
 
-                node->word.analyses =
-                    std::move(leftAnalyses); // Attach the valid left analyses
-
-                node->children =
-                    std::move(rightChildren); // Attach the validated right branches
-                results.push_back(node);
+                        results.push_back(std::move(combinedPath));
+                    }
+                }
             }
         }
     }
@@ -337,108 +342,126 @@ SandhiCandidate SandhiSplitter::findSplits(const std::string &token,
     // as node
     if (results.empty())
     {
-        std::shared_ptr<WordTreeNode> node = std::make_shared<WordTreeNode>();
+        std::vector<WordMetadata> direct = isValidWord(modToken);
 
-        // if we add more mods later
-        std::string modToken = replaceTrailingAnusvara(token);
-        node->word.cleanForm = modToken;
-        node->word.analyses = isValidWord(modToken);
+        if (direct.empty())
+        {
+            WordMetadata empty = WordMetadata{.matchType = WordMatchType::NONE};
+            WordMetadata identity = WordMetadata{
+                .original = modToken, .matchType = WordMatchType::IDENTITY};
+            return {empty, identity};
+        }
 
-        results.push_back(node);
+        results.insert(results.end(), std::make_move_iterator(direct.begin()),
+                       std::make_move_iterator(direct.end()));
     }
 
     return memo[token] = results;
 }
 
-std::vector<WordAnalysis> SandhiSplitter::isValidWord(const std::string &word)
+std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
 {
     // each head analysis will be one interpretation; the components are
-    // addition WordAnalysis objects that mean the sub-parts
-    std::vector<WordAnalysis> validInterpretations;
+    // addition WordMetadata objects that mean the sub-parts
+    std::vector<WordMetadata> validInterpretations;
 
     if (word.empty())
         return validInterpretations;
 
     // 1. Standalone Indeclinable Check (e.g., "अनु" or "अत्र" by itself)
-    if (db.isIndeclinable(word))
+    if (std::optional<IndeclinableMetadata> buf = db.isIndeclinable(word);
+        buf.has_value())
     {
-        std::shared_ptr<WordAnalysis> avyayaComponent =
-            std::make_shared<WordAnalysis>();
-        avyayaComponent->success = true;
-        avyayaComponent->original = word;
-        avyayaComponent->matchType = WordMatchType::INDECLINABLE;
-
-        WordAnalysis avyayaAnalysis;
+        WordMetadata avyayaAnalysis;
         avyayaAnalysis.success = true;
         avyayaAnalysis.original = word;
         avyayaAnalysis.matchType = WordMatchType::INDECLINABLE;
-        avyayaAnalysis.components.push_back(std::move(avyayaComponent));
+        avyayaAnalysis.metadata = std::move(buf);
 
-        validInterpretations.push_back(std::move(avyayaAnalysis));
+        validInterpretations.push_back(avyayaAnalysis);
+    }
+
+    if (std::optional<NominalStem> buf = db.stemExists(word); buf.has_value())
+    {
+        CoreMetadata stemComp;
+        stemComp.success = true;
+        stemComp.original = word; // "विद्या" stays intact as "विद्या"!
+        stemComp.metadata = std::move(buf);
+        stemComp.matchType = CoreMatchType::STEM;
+
+        WordMetadata directNominal;
+        directNominal.success = true;
+        directNominal.original = word;
+        directNominal.matchType = WordMatchType::NOMINAL;
+        directNominal.cores.push_back(std::move(stemComp));
+
+        validInterpretations.push_back(std::move(directNominal));
     }
 
     // Suffix / Prefix loop (UTF-8 byte step size of 3 for Devanagari)
     for (size_t len = 3; len <= 18 && len <= word.size(); len += 3)
     {
-        // 2. Verbal Suffix Match (e.g., "गच्छति" -> stem: "गच्छ", suffix: "ति")
+        // 2. Verbal Suffix Match (e.g., "गच्छति" -> candidateBase: "गच्छ",
+        // suffix: "ति")
         std::string vsuffix = word.substr(word.length() - len, len);
         auto verbInfo = db.tryMatchVerbalSuffix(vsuffix);
         if (verbInfo.has_value())
         {
-            std::string stem = word.substr(0, word.length() - len);
+            std::string candidateBase = word.substr(0, word.length() - len);
 
-            std::shared_ptr<WordAnalysis> stemComp =
-                std::make_shared<WordAnalysis>();
-            stemComp->success = true;
-            stemComp->original = stem;
-            stemComp->matchType = WordMatchType::VERB_STEM;
+            // Guard against empty or tiny sub-byte slices
+            if (!candidateBase.empty() && candidateBase.length() >= 3)
+            {
+                for (const auto &suffix : *verbInfo)
+                {
+                    WordMetadata verbAnalysis;
+                    verbAnalysis.success = true;
+                    verbAnalysis.original = word;
+                    verbAnalysis.matchType = WordMatchType::VERB;
 
-            std::shared_ptr<WordAnalysis> suffixComp =
-                std::make_shared<WordAnalysis>();
-            suffixComp->success = true;
-            suffixComp->original = vsuffix;
-            suffixComp->matchType = WordMatchType::SUFFIX;
+                    // Populate metadata struct fields
+                    verbAnalysis.metadata.suffix = suffix;
+                    verbAnalysis.metadata.stem = candidateBase;
 
-            WordAnalysis verbAnalysis;
-            verbAnalysis.success = true;
-            verbAnalysis.original = word;
-            verbAnalysis.verbInfo = verbInfo;
-            verbAnalysis.matchType = WordMatchType::VERB;
-            verbAnalysis.components.push_back(std::move(stemComp));
-            verbAnalysis.components.push_back(std::move(suffixComp));
-
-            validInterpretations.push_back(std::move(verbAnalysis));
+                    validInterpretations.push_back(std::move(verbAnalysis));
+                }
+            }
         }
 
-        // 3. Nominal Suffix Match (e.g., "रामेण" -> stem: "राम", suffix: "ेण")
+        // 3. Nominal Suffix Match (e.g., "रामेण" -> candidateStem: "राम",
+        // suffix: "ेण")
         std::string nsuffix = word.substr(word.length() - len, len);
         auto nominalInfo = db.tryMatchNominalSuffix(nsuffix);
         if (nominalInfo.has_value())
         {
-            std::string stem = word.substr(0, word.length() - len);
+            std::string candidateStem = word.substr(0, word.length() - len);
 
-            std::shared_ptr<WordAnalysis> stemComp =
-                std::make_shared<WordAnalysis>();
-            stemComp->success = true;
-            stemComp->original = stem;
-            stemComp->matchType = WordMatchType::NOMINAL_STEM;
+            // Strictly validate candidateStem against stems.json
+            if (auto stemBuf = db.stemExists(candidateStem);
+                stemBuf.has_value())
+            {
+                for (const auto &suffix : *nominalInfo)
+                {
+                    WordMetadata nominalAnalysis;
+                    nominalAnalysis.success = true;
+                    nominalAnalysis.original = word;
+                    nominalAnalysis.matchType = WordMatchType::NOMINAL;
 
-            std::shared_ptr<WordAnalysis> suffixComp =
-                std::make_shared<WordAnalysis>();
-            suffixComp->success = true;
-            suffixComp->original = nsuffix;
-            suffixComp->matchType = WordMatchType::SUFFIX;
+                    // Populate metadata struct fields
+                    nominalAnalysis.metadata.suffix = suffix;
+                    nominalAnalysis.metadata.stem = candidateStem;
 
-            WordAnalysis nominalAnalysis;
-            nominalAnalysis.success = true;
-            nominalAnalysis.original = word;
-            nominalAnalysis.nominalInfo = nominalInfo;
-            nominalAnalysis.matchType = WordMatchType::NOMINAL;
+                    // Hydrate and attach the verified nominal stem into cores
+                    CoreMetadata stemCore;
+                    stemCore.success = true;
+                    stemCore.original = candidateStem;
+                    stemCore.matchType = CoreMatchType::STEM;
+                    stemCore.metadata = std::move(stemBuf);
 
-            nominalAnalysis.components.push_back(std::move(stemComp));
-            nominalAnalysis.components.push_back(std::move(suffixComp));
-
-            validInterpretations.push_back(std::move(nominalAnalysis));
+                    nominalAnalysis.cores.push_back(std::move(stemCore));
+                    validInterpretations.push_back(std::move(nominalAnalysis));
+                }
+            }
         }
 
         // 4. Upasarga (Prefix) + Stem Compound Check (e.g., "अनुगच्छति" or
@@ -446,28 +469,21 @@ std::vector<WordAnalysis> SandhiSplitter::isValidWord(const std::string &word)
         if (len <= 12 && len < word.size())
         {
             std::string candidatePrefix = word.substr(0, len);
-            if (db.isPrefix(candidatePrefix))
+            if (std::optional<Prefix> prefix = db.isPrefix(candidatePrefix);
+                prefix.has_value())
             {
                 std::string remainingStem = word.substr(len);
 
                 // Recursively parse the remainder to catch stems or secondary
                 // prefixes
-                std::vector<WordAnalysis> stemResults =
+                std::vector<WordMetadata> stemResults =
                     isValidWord(remainingStem);
 
-                for (const auto &stemAnalysis : stemResults)
+                for (const auto &stemMetadata : stemResults)
                 {
-                    WordAnalysis combined = stemAnalysis;
+                    WordMetadata combined = std::move(stemMetadata);
                     combined.original = word; // Set total surface word
-
-                    std::shared_ptr<WordAnalysis> prefixComp =
-                        std::make_shared<WordAnalysis>();
-                    prefixComp->success = true;
-                    prefixComp->original = candidatePrefix;
-                    prefixComp->matchType = WordMatchType::PREFIX;
-
-                    // Prepend current prefix to the component tree
-                    combined.components.push_back(std::move(prefixComp));
+                    combined.metadata.prefix = std::move(prefix.value());
 
                     validInterpretations.push_back(std::move(combined));
                 }

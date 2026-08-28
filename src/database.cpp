@@ -5,6 +5,7 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -30,12 +31,23 @@ auto ConjugationStringToType(const std::string &str)
     return conjugationStringMap.at(str);
 }
 
+auto EndingStringToType(const std::string &str)
+{
+    static const std::unordered_map<std::string, EndingType> endingStringMap = {
+        {"A_STEM", EndingType::A_STEM}, {"AA_STEM", EndingType::AA_STEM},
+        {"I_STEM", EndingType::I_STEM}, {"II_STEM", EndingType::II_STEM},
+        {"U_STEM", EndingType::U_STEM}, {"CONSONANT", EndingType::CONSONANT}};
+
+    return endingStringMap.at(str);
+}
+
 auto NominalGenderToType(const std::string &str)
 {
     static const std::unordered_map<std::string, NominalGender>
         genderStringMap = {{"MASCULINE", NominalGender::MASCULINE},
                            {"FEMININE", NominalGender::FEMININE},
-                           {"NEUTER", NominalGender::NEUTER}};
+                           {"NEUTER", NominalGender::NEUTER},
+                           {"ANY", NominalGender::ANY}};
 
     return genderStringMap.at(str);
 }
@@ -110,7 +122,8 @@ auto VowelRuleStringToRule(const std::string &str)
 // ----- DATABASE IMPLEMENTATION -----
 
 bool Database::initialize(const std::string &rootsJsonPath,
-                          const std::string &constantsJsonPath)
+                          const std::string &constantsJsonPath,
+                          const std::string &stemsJsonPath)
 {
     rapidjson::Document buffer;
 
@@ -123,8 +136,8 @@ bool Database::initialize(const std::string &rootsJsonPath,
         return false;
     }
 
-    std::string rootsJson((std::istreambuf_iterator<char>(rootsFile)),
-                          std::istreambuf_iterator<char>());
+    auto buf = std::istreambuf_iterator<char>(rootsFile);
+    std::string rootsJson(buf, std::istreambuf_iterator<char>());
 
     buffer.Parse(rootsJson.c_str());
     if (buffer.HasParseError() || !buffer.IsArray())
@@ -138,6 +151,30 @@ bool Database::initialize(const std::string &rootsJsonPath,
     loadRoots(buffer);
     buffer.SetObject();
 
+    // stems
+    std::ifstream stemsFile(stemsJsonPath);
+    if (!stemsFile.is_open())
+    {
+        std::cerr << "Failed to open roots JSON file: " << rootsJsonPath
+                  << std::endl;
+        return false;
+    }
+
+    buf = std::istreambuf_iterator<char>(stemsFile);
+    std::string stemsJson(buf, std::istreambuf_iterator<char>());
+
+    buffer.Parse(stemsJson.c_str());
+    if (buffer.HasParseError() || !buffer.IsArray())
+    {
+        std::cerr << "Error parsing stems JSON file: " << rootsJsonPath
+                  << std::endl;
+        return false;
+    }
+    stemsFile.close();
+
+    loadStems(buffer);
+    buffer.SetObject();
+
     // constants
     std::ifstream constantsFile(constantsJsonPath);
     if (!constantsFile.is_open())
@@ -147,8 +184,8 @@ bool Database::initialize(const std::string &rootsJsonPath,
         return false;
     }
 
-    std::string constantsJson((std::istreambuf_iterator<char>(constantsFile)),
-                              std::istreambuf_iterator<char>());
+    buf = std::istreambuf_iterator<char>(constantsFile);
+    std::string constantsJson(buf, std::istreambuf_iterator<char>());
 
     buffer.Parse(constantsJson.c_str());
 
@@ -170,31 +207,37 @@ bool Database::initialize(const std::string &rootsJsonPath,
 /**
  * Checks if a given substring exists in the prefix cache.
  */
-bool Database::isPrefix(const std::string &text) const
+std::optional<Prefix> Database::isPrefix(const std::string &text) const
 {
-    return prefixCache.find(text) != prefixCache.end();
+    auto it = prefixCache.find(text);
+    if (it != prefixCache.end())
+        return it->second;
+    return std::nullopt;
 }
 
 /**
  * Checks if a given word exists in the indeclinable cache.
  */
-bool Database::isIndeclinable(const std::string &text) const
+std::optional<IndeclinableMetadata>
+Database::isIndeclinable(const std::string &text) const
 {
-    return indeclinableCache.find(text) != indeclinableCache.end();
+    auto it = indeclinableCache.find(text);
+    if (it != indeclinableCache.end())
+        return it->second;
+    return std::nullopt;
 }
 
 /**
  * Tries to find a matching verbal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-std::optional<std::vector<VerbMetadata>> Database::tryMatchVerbalSuffix(const std::string &text) const
+std::optional<std::vector<VerbMetadata>>
+Database::tryMatchVerbalSuffix(const std::string &text) const
 {
     auto it = verbSuffixCache.find(text);
 
     if (it != verbSuffixCache.end())
-    {
         return it->second;
-    }
     return std::nullopt;
 }
 
@@ -202,24 +245,29 @@ std::optional<std::vector<VerbMetadata>> Database::tryMatchVerbalSuffix(const st
  * Tries to find a matching nominal suffix.
  * If found, populates outMeta and returns true. Otherwise returns false.
  */
-std::optional<std::vector<NominalMetadata>> Database::tryMatchNominalSuffix(const std::string &text) const
+std::optional<std::vector<NominalMetadata>>
+Database::tryMatchNominalSuffix(const std::string &text) const
 {
     auto it = nominalSuffixCache.find(text);
 
     if (it != nominalSuffixCache.end())
-    {
         return it->second;
-    }
     return std::nullopt;
 }
 
-std::optional<SanskritRoot> Database::rootExists(const std::string &cleanRoot)
+std::optional<Root> Database::rootExists(const std::string &cleanRoot)
 {
     auto it = rootCache.find(cleanRoot);
     if (it != rootCache.end())
-    {
         return it->second; // Returns the root object
-    }
+    return std::nullopt;
+}
+
+std::optional<NominalStem> Database::stemExists(const std::string &cleanStem)
+{
+    auto it = stemsCache.find(cleanStem);
+    if (it != stemsCache.end())
+        return it->second; // Returns the root object
     return std::nullopt;
 }
 
@@ -232,7 +280,7 @@ void Database::loadRoots(const rapidjson::Document &doc)
         if (!rootEntry.IsObject())
             continue;
 
-        SanskritRoot root;
+        Root root;
         root.originalTagForm = rootEntry["originalTagForm"].GetString();
         root.cleanLookupForm = rootEntry["cleanLookupForm"].GetString();
         root.conjugationClass =
@@ -249,6 +297,54 @@ void Database::loadRoots(const rapidjson::Document &doc)
     }
 }
 
+void Database::loadStems(const rapidjson::Document &doc)
+{
+    if (!doc.IsArray())
+        return;
+
+    for (const auto &stemEntry : doc.GetArray())
+    {
+        if (!stemEntry.IsObject())
+            continue;
+
+        NominalStem stem;
+
+        // 1. Read "stem"
+        if (stemEntry.HasMember("stem") && stemEntry["stem"].IsString())
+            stem.text = stemEntry["stem"].GetString();
+
+        // 2. Read "ending"
+        if (stemEntry.HasMember("ending") && stemEntry["ending"].IsString())
+            stem.ending = EndingStringToType(stemEntry["ending"].GetString());
+
+        // 3. Read "gender"
+        if (stemEntry.HasMember("gender") && stemEntry["gender"].IsString())
+            stem.gender = NominalGenderToType(stemEntry["gender"].GetString());
+
+        // 4. Read "meaning" object
+        if (stemEntry.HasMember("meaning") && stemEntry["meaning"].IsObject())
+        {
+            const auto &meaningObj = stemEntry["meaning"].GetObject();
+
+            if (meaningObj.HasMember("english") &&
+                meaningObj["english"].IsString())
+            {
+                stem.meaning.english = meaningObj["english"].GetString();
+            }
+
+            if (meaningObj.HasMember("traditional") &&
+                meaningObj["traditional"].IsString())
+            {
+                stem.meaning.traditional =
+                    meaningObj["traditional"].GetString();
+            }
+        }
+
+        // 5. Cache entry
+        if (!stem.text.empty())
+            stemsCache[stem.text] = std::move(stem);
+    }
+}
 void Database::loadConstants(const rapidjson::Document &doc)
 {
     // Load prefixes from an array of objects
@@ -264,9 +360,11 @@ void Database::loadConstants(const rapidjson::Document &doc)
 
                 std::string prefixText = prefixObj["text"].GetString();
                 std::string meaning = prefixObj["englishMeaning"].GetString();
+                Prefix full =
+                    Prefix{.text = prefixText, .englishMeaning = meaning};
 
                 // Map the text key to its semantic meaning
-                prefixCache[prefixText] = meaning;
+                prefixCache[prefixText] = full;
             }
         }
     }
@@ -288,8 +386,11 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 std::string meaning =
                     indeclinableObj["englishMeaning"].GetString();
 
+                IndeclinableMetadata metadata = IndeclinableMetadata{
+                    .text = indeclinableText, .englishMeaning = meaning};
+
                 // Map the text key to its semantic meaning
-                indeclinableCache[indeclinableText] = meaning;
+                indeclinableCache[indeclinableText] = metadata;
             }
         }
     }
@@ -320,7 +421,8 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
+                verbSuffixCache[i["suffix"].GetString()].push_back(
+                    std::move(meta));
             }
         }
 
@@ -343,7 +445,8 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
+                verbSuffixCache[i["suffix"].GetString()].push_back(
+                    std::move(meta));
             }
         }
         // nominals
@@ -364,7 +467,8 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 meta.number =
                     NominalNumberStringToType(i["number"].GetString());
                 meta.gender = NominalGenderToType(i["gender"].GetString());
-                nominalSuffixCache[i["suffix"].GetString()].push_back(std::move(meta));
+                nominalSuffixCache[i["suffix"].GetString()].push_back(
+                    std::move(meta));
             }
         }
     }

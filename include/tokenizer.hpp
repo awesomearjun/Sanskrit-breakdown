@@ -1,5 +1,7 @@
 #pragma once
 
+#include "wordTypes.hpp"
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -9,5 +11,5 @@ class Tokenizer
 public:
     Tokenizer() = default;
     ~Tokenizer() = default;
-    std::vector<std::string> tokenize(const std::string& shloka);
+    WordList tokenize(const std::string &shloka);
 };
