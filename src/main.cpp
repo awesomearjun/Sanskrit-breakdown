@@ -2,8 +2,7 @@
 #include "list-pruner.hpp"
 #include "root-deriver.hpp" // Your header containing RootDeriver and related types
 #include "sandhi-splitter.hpp" // Your header containing SandhiSplitter and related types
-#include "stem-deriver.hpp"
-#include "toJson.hpp"    // Your header containing to_json functions
+#include "toJson.hpp"          // Your header containing to_json functions
 #include "tokenizer.hpp" // Your header containing
 #include "wordTypes.hpp" // Your header containing WordAnalysis and related types
 #include <fstream>
@@ -21,21 +20,15 @@ int main(int argc, char *argv[])
     db.initialize("./roots.json", "./grammar_constants.json", "./stems.json");
     SandhiSplitter splitter(db);
     splitter.initializePossibilities();
-    StemDeriver sDeriver(db);
     RootDeriver rDeriver(db);
     Tokenizer tok;
 
     std::string shlokaInput = "विद्या ददाति विनयं विनयाद्याति पात्रताम्";
 
-    std::vector<std::shared_ptr<Word>> tokenizerOutput =
-        tok.tokenize(shlokaInput);
-    SandhiCandidates sandhiCandidates = splitter.splitTree(tokenizerOutput);
-    std::vector<SandhiCandidate> candidates =
-        sDeriver.treeAssignStem(sandhiCandidates);
-    std::vector<ValidDerives> derivedChains = rDeriver.deriveRoots(candidates);
-
-    std::vector<ValidDerives> finalOutput =
-        ListPruner::pruneInvalidPaths(derivedChains);
+    WordList tokenizerOutput = tok.tokenize(shlokaInput);
+    WordList sandhiCandidates = splitter.splitTree(tokenizerOutput);
+    WordList derivedChains = rDeriver.deriveRoots(sandhiCandidates);
+    WordList finalOutput = ListPruner::pruneInvalidPaths(derivedChains);
 
     // 3. Serialize output to JSON
     json response;

@@ -2,23 +2,18 @@
 #include "wordTypes.hpp"
 #include <memory>
 
-std::vector<ValidDerives>
-ListPruner::pruneInvalidPaths(std::vector<ValidDerives> candidates)
+WordList ListPruner::pruneInvalidPaths(const WordList &candidates)
 {
-    std::vector<ValidDerives> validCandidates;
+    WordList validCandidates;
 
     for (auto &candidate : candidates)
     {
         bool candidateIsValid = true;
 
-        // Linearly check every word token in this candidate path
-        for (const auto &headNode : candidate)
+        if (!validateNode(candidate))
         {
-            if (!validateNode(headNode))
-            {
-                candidateIsValid = false;
-                break; // Prune this candidate path
-            }
+            candidateIsValid = false;
+            continue; // Prune this candidate path
         }
 
         if (candidateIsValid)
@@ -33,47 +28,36 @@ bool ListPruner::validateNode(const std::shared_ptr<Word> &node)
     if (!node)
         return false;
 
-    // A node is valid if AT LEAST ONE top-level analysis tree is valid
-    for (const auto &analysis : node->word.analyses)
-        if (validateAnalysisTree(analysis))
-            return true;
+    // A node is valid if AT LEAST ONE top-level metadata tree is valid
+    for (const auto &metadatas : node->metadata)
+    {
+        for (const auto &metadata : metadatas)
+            if (validateAnalysisTree(metadata))
+                return true;
+    }
 
     return false;
 }
 
 bool ListPruner::validateAnalysisTree(const WordMetadata &analysis)
 {
-    bool noValue =
-        !analysis.rootInfo.has_value() && !analysis.nominalInfo.has_value() &&
-        !analysis.stemInfo.has_value() && !analysis.verbInfo.has_value();
-    bool noType = analysis.matchType == WordMatchType::NONE;
-
-    if (noValue && noType)
-        return false; // Stem lookup failed or metadata is missing!
-
-    // Recursive Step: If this component has child subcomponents, validate
-    // all of them
-    if (!analysis.components.empty())
+    if (!analysis.metadata.has_value() &&
+        analysis.matchType == WordMatchType::NONE)
     {
-        for (const auto &childComponent : analysis.components)
-        {
-            if (!childComponent->rootInfo.has_value() &&
-                !childComponent->nominalInfo.has_value() &&
-                !childComponent->stemInfo.has_value() &&
-                !childComponent->verbInfo.has_value())
-            {
-                return false;
-            }
+        return false; // Stem lookup failed or metadata is missing!
+    }
 
-            if (childComponent->matchType == WordMatchType::NONE)
-                return false; // Stem lookup failed or metadata is missing!
+    // Recursive Step: If this component has child cores, validate
+    // all of them
+    if (analysis.cores.empty())
+        return true;
+    for (const auto &childComponent : analysis.cores)
+    {
+        if (!childComponent.metadata.has_value())
+            return false;
 
-            if (!childComponent || !validateAnalysisTree(*childComponent))
-            {
-                return false; // If ANY child subcomponent fails, this analysis
-                              // branch fails
-            }
-        }
+        if (childComponent.matchType == CoreMatchType::NONE)
+            return false; // Stem lookup failed or metadata is missing!
     }
 
     return true;

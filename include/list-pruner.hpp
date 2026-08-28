@@ -7,11 +7,9 @@
 class ListPruner
 {
 public:
-    static std::vector<ValidDerives>
-    pruneInvalidPaths(std::vector<ValidDerives> candidates);
+    static WordList pruneInvalidPaths(const WordList &candidates);
 
 private:
     static bool validateNode(const std::shared_ptr<Word> &node);
     static bool validateAnalysisTree(const WordMetadata &analysis);
 };
-

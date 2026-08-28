@@ -191,7 +191,7 @@ WordList SandhiSplitter::splitTree(const WordList &tokens)
     {
         MultiPathMemo memo;
 
-        if (std::vector<WordMetadata> tokenPossibilities =
+        if (std::vector<SplitPath> tokenPossibilities =
                 findSplits(token->text, memo);
             !tokenPossibilities.empty())
         {
@@ -342,18 +342,9 @@ std::vector<SplitPath> SandhiSplitter::findSplits(const std::string &token,
     // as node
     if (results.empty())
     {
-        std::vector<WordMetadata> direct = isValidWord(modToken);
+        WordMetadata empty = WordMetadata{.matchType = WordMatchType::NONE};
 
-        if (direct.empty())
-        {
-            WordMetadata empty = WordMetadata{.matchType = WordMatchType::NONE};
-            WordMetadata identity = WordMetadata{
-                .original = modToken, .matchType = WordMatchType::IDENTITY};
-            return {empty, identity};
-        }
-
-        results.insert(results.end(), std::make_move_iterator(direct.begin()),
-                       std::make_move_iterator(direct.end()));
+        results.push_back({empty});
     }
 
     return memo[token] = results;
@@ -420,8 +411,11 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
                     verbAnalysis.matchType = WordMatchType::VERB;
 
                     // Populate metadata struct fields
-                    verbAnalysis.metadata.suffix = suffix;
-                    verbAnalysis.metadata.stem = candidateBase;
+                    VerbMetadata vMeta = std::move(suffix);
+                    vMeta.suffix = vsuffix;
+                    vMeta.stem = candidateBase;
+
+                    verbAnalysis.metadata = vMeta;
 
                     validInterpretations.push_back(std::move(verbAnalysis));
                 }
@@ -448,8 +442,10 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
                     nominalAnalysis.matchType = WordMatchType::NOMINAL;
 
                     // Populate metadata struct fields
-                    nominalAnalysis.metadata.suffix = suffix;
-                    nominalAnalysis.metadata.stem = candidateStem;
+                    NominalMetadata nAnalysis = std::move(suffix);
+                    nAnalysis.suffix = nsuffix;
+                    nAnalysis.stem = candidateStem;
+                    nominalAnalysis.metadata = nAnalysis;
 
                     // Hydrate and attach the verified nominal stem into cores
                     CoreMetadata stemCore;
@@ -483,7 +479,22 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
                 {
                     WordMetadata combined = std::move(stemMetadata);
                     combined.original = word; // Set total surface word
-                    combined.metadata.prefix = std::move(prefix.value());
+
+                    if (combined.metadata.has_value())
+                    {
+                        auto &variantMeta = combined.metadata.value();
+
+                        if (auto *vMeta =
+                                std::get_if<VerbMetadata>(&variantMeta))
+                        {
+                            vMeta->prefix = prefix.value();
+                        }
+                        else if (auto *nMeta =
+                                     std::get_if<NominalMetadata>(&variantMeta))
+                        {
+                            nMeta->prefix = prefix.value();
+                        }
+                    }
 
                     validInterpretations.push_back(std::move(combined));
                 }

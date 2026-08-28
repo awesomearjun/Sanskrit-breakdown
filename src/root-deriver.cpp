@@ -1,82 +1,64 @@
 #include "root-deriver.hpp"
 #include "wordTypes.hpp"
+#include <iterator>
 #include <memory>
 #include <optional>
 #include <vector>
 
-using namespace RootDerivation;
-
-std::vector<ValidDerives>
-RootDeriver::deriveRoots(const std::vector<SandhiCandidate> &nodes)
+WordList RootDeriver::deriveRoots(const WordList &nodes)
 {
-    std::vector<ValidDerives> results;
+    WordList results = std::move(nodes);
 
-    for (const SandhiCandidate &word : nodes)
+    for (std::shared_ptr<Word> &word : results)
     {
-        std::shared_ptr<WordListNode> wordNode = std::make_shared<WordListNode>();
-        for (const auto &head : word)
+        if (!word)
+            continue;
+
+        for (std::vector<WordMetadata> &metadatas : word->metadata)
         {
-            if (!head)
-                continue;
+            for (WordMetadata &metadata : metadatas)
+            {
+                if (metadata.matchType != WordMatchType::VERB)
+                    continue;
 
-            RootDerivation::RootMemo memo;
-            ValidDerives derivedRoots = recursiveDeriveRoots(head, memo);
+                std::vector<CoreMetadata> derivedRoots = deriveRoot(
+                    std::get_if<VerbMetadata>(&metadata.metadata.value())
+                        ->stem);
 
-            if (derivedRoots->empty())
-                continue;
+                if (derivedRoots.empty())
+                    metadata.success = false;
 
+                metadata.cores.insert(
+                    metadata.cores.end(),
+                    std::make_move_iterator(derivedRoots.begin()),
+                    std::make_move_iterator(derivedRoots.end()));
+            }
         }
     }
 
     return results;
 }
 
-ValidDerives
-RootDeriver::recursiveDeriveRoots(const std::shared_ptr<WordTreeNode> &tree,
-                                  RootDerivation::RootMemo &memo)
+std::vector<CoreMetadata> RootDeriver::deriveRoot(const std::string &word)
 {
-    // 1. Memoization Hit
-    auto it = memo.find(tree.get());
-    if (it != memo.end())
-        return it->second;
+    std::vector<CoreMetadata> results;
 
-    ValidDerives result;
-
-    // 2. Validate Current Surface Word
-    auto currentNode = std::make_shared<WordListNode>();
-    currentNode->word = std::move(tree->word);
-    for (auto &analysis : currentNode->word.analyses)
+    for (const Root &root : generateRootCandidates(word))
     {
-        if (!analysis.success)
-            continue;
-        for (auto &component : analysis.components)
-        {
-            if (!component || !component->success)
-                continue;
-
-            if (component->matchType == WordMatchType::NOMINAL)
-                continue;
-            for (const Root &root : generateRootCandidates(component->original))
-            {
-                std::shared_ptr<WordAnalysis> componentAnalysis = std::make_shared<WordAnalysis>();
-                componentAnalysis->success = root.isEmpty();
-                componentAnalysis->original = root.cleanLookupForm;
-                componentAnalysis->rootInfo = root;
-                componentAnalysis->matchType = WordMatchType::ROOT;
-                component->components.push_back(std::move(componentAnalysis));
-            }
-        }
+        CoreMetadata metadata;
+        metadata.success = root.isEmpty();
+        metadata.original = root.cleanLookupForm;
+        metadata.metadata = std::move(root);
+        results.push_back(metadata);
     }
 
-    result = std::move(currentNode);
-    return memo[tree.get()] = result;
+    return results;
 }
 
 //  ======= HELPERS =======
 
 // Orchestrator function
-std::vector<Root>
-RootDeriver::generateRootCandidates(const std::string &stem)
+std::vector<Root> RootDeriver::generateRootCandidates(const std::string &stem)
 {
     // 1. Pass initial candidates (from Stage 1 stripTinSuffix) into Stage 2
     std::vector<std::string> thematicCandidates = stripThematicMarkers(stem);
