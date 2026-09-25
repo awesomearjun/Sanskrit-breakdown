@@ -517,52 +517,65 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
             // secondary suffix check
             else
             {
-                auto secEndingInfo = db.secondaryEndingExists(suffixStr);
-                if (!secEndingInfo.has_value())
-                    continue;
+                // Get Akshara boundaries for candidateBaseStr
+                std::string_view candidateView(candidateBaseStr);
+                const std::vector<size_t> aksharaOffsets = getAksharaByteOffsets(candidateView);
+                const size_t aksharaCount = aksharaOffsets.size() - 1;
 
-                // 2. Check if the underlying primary stem exists
-                auto underlyingStem = db.stemExists(candidateBaseStr);
-                if (!underlyingStem.has_value())
-                    continue;
-
-                // 3. Both stem and secondary ending exist: Build
-                // interpretations
-                for (const auto &nominal : *nominalInfo)
+                // Loop secondary suffix length from 1 to 3 Aksharas
+                for (size_t secLen = 1; secLen <= 3 && secLen < aksharaCount; ++secLen)
                 {
-                    for (const auto &secEnding : *secEndingInfo)
+                    size_t stemAksharaLen = aksharaCount - secLen;
+                    if (stemAksharaLen >= aksharaOffsets.size()) continue;
+
+                    size_t splitBytePos = aksharaOffsets[stemAksharaLen];
+
+                    std::string primaryStemCandidate(candidateView.substr(0, splitBytePos));
+                    std::string secSuffixCandidate(candidateView.substr(splitBytePos));
+
+                    // 1. Check if the secondary ending exists
+                    auto secEndingInfo = db.secondaryEndingExists(secSuffixCandidate);
+                    if (!secEndingInfo.has_value())
+                        continue;
+
+                    // 2. Check if the underlying primary stem exists
+                    auto underlyingStem = db.stemExists(primaryStemCandidate);
+                    if (!underlyingStem.has_value())
+                        continue;
+
+                    // 3. Both stem and secondary ending exist: Build interpretations
+                    for (const auto &nominal : *nominalInfo)
                     {
-                        WordMetadata nominalAnalysis;
-                        nominalAnalysis.success = true;
-                        nominalAnalysis.original = word;
-                        nominalAnalysis.matchType = WordMatchType::NOMINAL;
+                        for (const auto &secEnding : *secEndingInfo)
+                        {
+                            WordMetadata nominalAnalysis;
+                            nominalAnalysis.success = true;
+                            nominalAnalysis.original = word;
+                            nominalAnalysis.matchType = WordMatchType::NOMINAL;
 
-                        NominalMetadata nAnalysis = std::move(nominal);
-                        nAnalysis.suffix = suffixStr;
-                        nAnalysis.stem =
-                            candidateBaseStr; // Derived secondary stem
-                        nominalAnalysis.metadata = std::move(nAnalysis);
+                            NominalMetadata nAnalysis = nominal; // Copy nominal struct for this interpretation
+                            nAnalysis.suffix = suffixStr;
+                            nAnalysis.stem = candidateBaseStr; // Derived secondary base
+                            nominalAnalysis.metadata = std::move(nAnalysis);
 
-                        // Add Primary Stem to Cores
-                        CoreMetadata primaryCore;
-                        primaryCore.success = true;
-                        primaryCore.original = candidateBaseStr;
-                        primaryCore.matchType = CoreMatchType::STEM;
-                        primaryCore.metadata = underlyingStem;
-                        nominalAnalysis.cores.push_back(std::move(primaryCore));
+                            // Add Primary Stem to Cores
+                            CoreMetadata primaryCore;
+                            primaryCore.success = true;
+                            primaryCore.original = primaryStemCandidate;
+                            primaryCore.matchType = CoreMatchType::STEM;
+                            primaryCore.metadata = underlyingStem;
+                            nominalAnalysis.cores.push_back(std::move(primaryCore));
 
-                        // Add Secondary Ending to Cores
-                        CoreMetadata secondaryCore;
-                        secondaryCore.success = true;
-                        secondaryCore.original = suffixStr;
-                        secondaryCore.matchType =
-                            CoreMatchType::SECONDARY_ENDING;
-                        secondaryCore.metadata = secEnding;
-                        nominalAnalysis.cores.push_back(
-                            std::move(secondaryCore));
+                            // Add Secondary Ending to Cores
+                            CoreMetadata secondaryCore;
+                            secondaryCore.success = true;
+                            secondaryCore.original = secSuffixCandidate;
+                            secondaryCore.matchType = CoreMatchType::SECONDARY_ENDING;
+                            secondaryCore.metadata = secEnding;
+                            nominalAnalysis.cores.push_back(std::move(secondaryCore));
 
-                        validInterpretations.push_back(
-                            std::move(nominalAnalysis));
+                            validInterpretations.push_back(std::move(nominalAnalysis));
+                        }
                     }
                 }
             }

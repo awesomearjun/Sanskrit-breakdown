@@ -1033,7 +1033,125 @@
         {
             "text": "पात्रताम्",
             "paths": [
-                []
+                [
+                    {
+                        "original": "पात्रताम्",
+                        "matchType": "NOMINAL",
+                        "success": true,
+                        "metadata": {
+                            "nominalCase": "OBJECT",
+                            "number": "SINGULAR",
+                            "gender": "MASCULINE",
+                            "suffix": "म्",
+                            "stem": "पात्रता",
+                            "prefix": {
+                                "text": "",
+                                "englishMeaning": ""
+                            }
+                        },
+                        "cores": [
+                            {
+                                "original": "पात्र",
+                                "matchType": "STEM",
+                                "success": true,
+                                "metadata": {
+                                    "text": "पात्र",
+                                    "ending": 0,
+                                    "gender": "NEUTER",
+                                    "englishMeaning": "vessel, container, worthy person",
+                                    "traditionalMeaning": "भाजनम्, योग्यपात्रम्"
+                                }
+                            },
+                            {
+                                "original": "ता",
+                                "matchType": "SECONDARY_ENDING",
+                                "success": true,
+                                "metadata": {
+                                    "text": "ता",
+                                    "englishMeaning": "state of being, quality, -ness, -ity"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "original": "पात्रताम्",
+                        "matchType": "NOMINAL",
+                        "success": true,
+                        "metadata": {
+                            "nominalCase": "SUBJECT",
+                            "number": "SINGULAR",
+                            "gender": "NEUTER",
+                            "suffix": "म्",
+                            "stem": "पात्रता",
+                            "prefix": {
+                                "text": "",
+                                "englishMeaning": ""
+                            }
+                        },
+                        "cores": [
+                            {
+                                "original": "पात्र",
+                                "matchType": "STEM",
+                                "success": true,
+                                "metadata": {
+                                    "text": "पात्र",
+                                    "ending": 0,
+                                    "gender": "NEUTER",
+                                    "englishMeaning": "vessel, container, worthy person",
+                                    "traditionalMeaning": "भाजनम्, योग्यपात्रम्"
+                                }
+                            },
+                            {
+                                "original": "ता",
+                                "matchType": "SECONDARY_ENDING",
+                                "success": true,
+                                "metadata": {
+                                    "text": "ता",
+                                    "englishMeaning": "state of being, quality, -ness, -ity"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "original": "पात्रताम्",
+                        "matchType": "NOMINAL",
+                        "success": true,
+                        "metadata": {
+                            "nominalCase": "OBJECT",
+                            "number": "SINGULAR",
+                            "gender": "NEUTER",
+                            "suffix": "म्",
+                            "stem": "पात्रता",
+                            "prefix": {
+                                "text": "",
+                                "englishMeaning": ""
+                            }
+                        },
+                        "cores": [
+                            {
+                                "original": "पात्र",
+                                "matchType": "STEM",
+                                "success": true,
+                                "metadata": {
+                                    "text": "पात्र",
+                                    "ending": 0,
+                                    "gender": "NEUTER",
+                                    "englishMeaning": "vessel, container, worthy person",
+                                    "traditionalMeaning": "भाजनम्, योग्यपात्रम्"
+                                }
+                            },
+                            {
+                                "original": "ता",
+                                "matchType": "SECONDARY_ENDING",
+                                "success": true,
+                                "metadata": {
+                                    "text": "ता",
+                                    "englishMeaning": "state of being, quality, -ness, -ity"
+                                }
+                            }
+                        ]
+                    }
+                ]
             ]
         }
     ],
