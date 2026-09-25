@@ -3,3 +3,4 @@ build
 .stfolder
 include/rapidjson
 .DS_Store
+analysis_output.json
