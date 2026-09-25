@@ -43,9 +43,9 @@ include(FetchContent)
 
 FetchContent_Declare(
     json
-    URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+    GIT_REPOSITORY https://github.com/nlohmann/json.git
+    GIT_TAG        v3.11.3
 )
 FetchContent_MakeAvailable(json)
 
-# Replace 'my_target' with your executable or library target
 target_link_libraries(${PROJECT_NAME} PRIVATE nlohmann_json::nlohmann_json)

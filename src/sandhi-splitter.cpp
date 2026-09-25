@@ -1,10 +1,10 @@
 #include "sandhi-splitter.hpp"
 #include "wordTypes.hpp"
 #include <cstddef>
-#include <iterator>
 #include <memory>
 #include <optional>
 #include <string>
+#include <string_view>
 #include <unordered_map>
 #include <utility>
 #include <vector>
@@ -263,8 +263,6 @@ std::vector<SplitPath> SandhiSplitter::findSplits(const std::string &token,
     if (auto it = memo.find(token); it != memo.end())
         return it->second;
 
-    std::string modToken = replaceTrailingAnusvara(token);
-
     for (size_t pos = 0; pos < token.length(); ++pos)
     {
         // doesn't let incomplete bits get through
@@ -338,30 +336,87 @@ std::vector<SplitPath> SandhiSplitter::findSplits(const std::string &token,
         }
     }
 
-    // Cleanup / Fallback: If no splits were found at all, add the whole token
-    // as node
-    if (results.empty())
-    {
-        WordMetadata empty = WordMetadata{.matchType = WordMatchType::NONE};
+    // Cleanup / Fallback: Add whole token as node regardless of anything
+    std::string modToken = replaceTrailingAnusvara(token);
+    std::vector<WordMetadata> direct = isValidWord(modToken);
 
-        results.push_back({empty});
-    }
+    results.push_back(direct);
 
     return memo[token] = results;
+}
+// Returns byte offsets for the start of each Sanskrit Akshara (Grapheme
+// Cluster)
+static std::vector<size_t> getAksharaByteOffsets(std::string_view str)
+{
+    std::vector<size_t> offsets;
+    if (str.empty())
+        return {0};
+
+    offsets.push_back(0);
+
+    bool prevWasVirama = false;
+    size_t i = 0;
+
+    while (i < str.size())
+    {
+        uint32_t cp = 0;
+        unsigned char c = static_cast<unsigned char>(str[i]);
+        size_t cpLen = 1;
+
+        if ((c & 0x80) == 0)
+        {
+            cp = c;
+            cpLen = 1;
+        }
+        else if ((c & 0xE0) == 0xC0)
+        {
+            cp = ((c & 0x1F) << 6) | (str[i + 1] & 0x3F);
+            cpLen = 2;
+        }
+        else if ((c & 0xF0) == 0xE0)
+        {
+            cp = ((c & 0x0F) << 12) | ((str[i + 1] & 0x3F) << 6) |
+                 (str[i + 2] & 0x3F);
+            cpLen = 3;
+        }
+        else if ((c & 0xF8) == 0xF0)
+        {
+            cp = ((c & 0x07) << 18) | ((str[i + 1] & 0x3F) << 12) |
+                 ((str[i + 2] & 0x3F) << 6) | (str[i + 3] & 0x3F);
+            cpLen = 4;
+        }
+
+        // Combining marks: Matras (U+093A-094C, U+094E-0954), Anusvara/Visarga
+        // (U+0900-0903)
+        bool isCombining = (cp >= 0x093A && cp <= 0x0954 && cp != 0x094D) ||
+                           (cp >= 0x0900 && cp <= 0x0903);
+        bool isVirama = (cp == 0x094D); // Halant (्)
+
+        // If it's a new base consonant/independent vowel and NOT preceded by a
+        // Virama, mark a new Akshara
+        if (i > 0 && !isCombining && !isVirama)
+        {
+            if (!prevWasVirama)
+                offsets.push_back(i);
+        }
+
+        prevWasVirama = isVirama;
+        i += cpLen;
+    }
+
+    offsets.push_back(str.size());
+    return offsets;
 }
 
 std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
 {
-    // each head analysis will be one interpretation; the components are
-    // addition WordMetadata objects that mean the sub-parts
     std::vector<WordMetadata> validInterpretations;
 
     if (word.empty())
         return validInterpretations;
 
-    // 1. Standalone Indeclinable Check (e.g., "अनु" or "अत्र" by itself)
-    if (std::optional<IndeclinableMetadata> buf = db.isIndeclinable(word);
-        buf.has_value())
+    // 1. Standalone Indeclinable Check (e.g., "अनु" or "अत्र")
+    if (auto buf = db.isIndeclinable(word); buf.has_value())
     {
         WordMetadata avyayaAnalysis;
         avyayaAnalysis.success = true;
@@ -369,14 +424,15 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
         avyayaAnalysis.matchType = WordMatchType::INDECLINABLE;
         avyayaAnalysis.metadata = std::move(buf);
 
-        validInterpretations.push_back(avyayaAnalysis);
+        validInterpretations.push_back(std::move(avyayaAnalysis));
     }
 
-    if (std::optional<NominalStem> buf = db.stemExists(word); buf.has_value())
+    // Direct Bare Nominal Stem Check (e.g., "विद्या")
+    if (auto buf = db.stemExists(word); buf.has_value())
     {
         CoreMetadata stemComp;
         stemComp.success = true;
-        stemComp.original = word; // "विद्या" stays intact as "विद्या"!
+        stemComp.original = word;
         stemComp.metadata = std::move(buf);
         stemComp.matchType = CoreMatchType::STEM;
 
@@ -389,19 +445,28 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
         validInterpretations.push_back(std::move(directNominal));
     }
 
-    // Suffix / Prefix loop (UTF-8 byte step size of 3 for Devanagari)
-    for (size_t len = 3; len <= 18 && len <= word.size(); len += 3)
-    {
-        // 2. Verbal Suffix Match (e.g., "गच्छति" -> candidateBase: "गच्छ",
-        // suffix: "ति")
-        std::string vsuffix = word.substr(word.length() - len, len);
-        auto verbInfo = db.tryMatchVerbalSuffix(vsuffix);
-        if (verbInfo.has_value())
-        {
-            std::string candidateBase = word.substr(0, word.length() - len);
+    // Compute code point byte boundaries
+    std::string_view wordView(word);
+    const std::vector<size_t> offsets = getAksharaByteOffsets(wordView);
+    const size_t charCount = offsets.size() - 1; // Total Unicode code points
 
-            // Guard against empty or tiny sub-byte slices
-            if (!candidateBase.empty() && candidateBase.length() >= 3)
+    // Iterate by logical character lengths (1 to 6 code points)
+    for (size_t charLen = 1; charLen <= 6 && charLen <= charCount; ++charLen)
+    {
+        const size_t splitCharIdx = charCount - charLen;
+        const size_t splitBytePos = offsets[splitCharIdx];
+
+        std::string_view baseView = wordView.substr(0, splitBytePos);
+        std::string_view suffixView = wordView.substr(splitBytePos);
+
+        std::string suffixStr(suffixView);
+        std::string candidateBaseStr(baseView);
+
+        // 2. Verbal Suffix Match
+        if (auto verbInfo = db.tryMatchVerbalSuffix(suffixStr);
+            verbInfo.has_value())
+        {
+            if (!candidateBaseStr.empty())
             {
                 for (const auto &suffix : *verbInfo)
                 {
@@ -410,28 +475,21 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
                     verbAnalysis.original = word;
                     verbAnalysis.matchType = WordMatchType::VERB;
 
-                    // Populate metadata struct fields
-                    VerbMetadata vMeta = std::move(suffix);
-                    vMeta.suffix = vsuffix;
-                    vMeta.stem = candidateBase;
+                    VerbMetadata vMeta = suffix;
+                    vMeta.suffix = suffixStr;
+                    vMeta.stem = candidateBaseStr;
 
-                    verbAnalysis.metadata = vMeta;
-
+                    verbAnalysis.metadata = std::move(vMeta);
                     validInterpretations.push_back(std::move(verbAnalysis));
                 }
             }
         }
 
-        // 3. Nominal Suffix Match (e.g., "रामेण" -> candidateStem: "राम",
-        // suffix: "ेण")
-        std::string nsuffix = word.substr(word.length() - len, len);
-        auto nominalInfo = db.tryMatchNominalSuffix(nsuffix);
-        if (nominalInfo.has_value())
+        // 3. Nominal Suffix Match
+        if (auto nominalInfo = db.tryMatchNominalSuffix(suffixStr);
+            nominalInfo.has_value())
         {
-            std::string candidateStem = word.substr(0, word.length() - len);
-
-            // Strictly validate candidateStem against stems.json
-            if (auto stemBuf = db.stemExists(candidateStem);
+            if (auto stemBuf = db.stemExists(candidateBaseStr);
                 stemBuf.has_value())
             {
                 for (const auto &suffix : *nominalInfo)
@@ -441,63 +499,113 @@ std::vector<WordMetadata> SandhiSplitter::isValidWord(const std::string &word)
                     nominalAnalysis.original = word;
                     nominalAnalysis.matchType = WordMatchType::NOMINAL;
 
-                    // Populate metadata struct fields
-                    NominalMetadata nAnalysis = std::move(suffix);
-                    nAnalysis.suffix = nsuffix;
-                    nAnalysis.stem = candidateStem;
-                    nominalAnalysis.metadata = nAnalysis;
+                    NominalMetadata nAnalysis = suffix;
+                    nAnalysis.suffix = suffixStr;
+                    nAnalysis.stem = candidateBaseStr;
+                    nominalAnalysis.metadata = std::move(nAnalysis);
 
-                    // Hydrate and attach the verified nominal stem into cores
                     CoreMetadata stemCore;
                     stemCore.success = true;
-                    stemCore.original = candidateStem;
+                    stemCore.original = candidateBaseStr;
                     stemCore.matchType = CoreMatchType::STEM;
-                    stemCore.metadata = std::move(stemBuf);
+                    stemCore.metadata = stemBuf;
 
                     nominalAnalysis.cores.push_back(std::move(stemCore));
                     validInterpretations.push_back(std::move(nominalAnalysis));
                 }
             }
-        }
-
-        // 4. Upasarga (Prefix) + Stem Compound Check (e.g., "अनुगच्छति" or
-        // "सम्प्रजायते")
-        if (len <= 12 && len < word.size())
-        {
-            std::string candidatePrefix = word.substr(0, len);
-            if (std::optional<Prefix> prefix = db.isPrefix(candidatePrefix);
-                prefix.has_value())
+            // secondary suffix check
+            else
             {
-                std::string remainingStem = word.substr(len);
+                auto secEndingInfo = db.secondaryEndingExists(suffixStr);
+                if (!secEndingInfo.has_value())
+                    continue;
 
-                // Recursively parse the remainder to catch stems or secondary
-                // prefixes
-                std::vector<WordMetadata> stemResults =
-                    isValidWord(remainingStem);
+                // 2. Check if the underlying primary stem exists
+                auto underlyingStem = db.stemExists(candidateBaseStr);
+                if (!underlyingStem.has_value())
+                    continue;
 
-                for (const auto &stemMetadata : stemResults)
+                // 3. Both stem and secondary ending exist: Build
+                // interpretations
+                for (const auto &nominal : *nominalInfo)
                 {
-                    WordMetadata combined = std::move(stemMetadata);
-                    combined.original = word; // Set total surface word
-
-                    if (combined.metadata.has_value())
+                    for (const auto &secEnding : *secEndingInfo)
                     {
-                        auto &variantMeta = combined.metadata.value();
+                        WordMetadata nominalAnalysis;
+                        nominalAnalysis.success = true;
+                        nominalAnalysis.original = word;
+                        nominalAnalysis.matchType = WordMatchType::NOMINAL;
 
-                        if (auto *vMeta =
-                                std::get_if<VerbMetadata>(&variantMeta))
-                        {
-                            vMeta->prefix = prefix.value();
-                        }
-                        else if (auto *nMeta =
-                                     std::get_if<NominalMetadata>(&variantMeta))
-                        {
-                            nMeta->prefix = prefix.value();
-                        }
+                        NominalMetadata nAnalysis = std::move(nominal);
+                        nAnalysis.suffix = suffixStr;
+                        nAnalysis.stem =
+                            candidateBaseStr; // Derived secondary stem
+                        nominalAnalysis.metadata = std::move(nAnalysis);
+
+                        // Add Primary Stem to Cores
+                        CoreMetadata primaryCore;
+                        primaryCore.success = true;
+                        primaryCore.original = candidateBaseStr;
+                        primaryCore.matchType = CoreMatchType::STEM;
+                        primaryCore.metadata = underlyingStem;
+                        nominalAnalysis.cores.push_back(std::move(primaryCore));
+
+                        // Add Secondary Ending to Cores
+                        CoreMetadata secondaryCore;
+                        secondaryCore.success = true;
+                        secondaryCore.original = suffixStr;
+                        secondaryCore.matchType =
+                            CoreMatchType::SECONDARY_ENDING;
+                        secondaryCore.metadata = secEnding;
+                        nominalAnalysis.cores.push_back(
+                            std::move(secondaryCore));
+
+                        validInterpretations.push_back(
+                            std::move(nominalAnalysis));
                     }
-
-                    validInterpretations.push_back(std::move(combined));
                 }
+            }
+        }
+    }
+
+    // upasarga (prefix) check
+    // seperated so that stems with valid prefixes (eg vinaya) still register
+    for (size_t charLen = 1; charLen <= 4 && charLen < charCount; ++charLen)
+    {
+        const size_t prefixBytePos = offsets[charLen];
+        std::string_view prefixView = wordView.substr(0, prefixBytePos);
+        std::string_view remainingView = wordView.substr(prefixBytePos);
+
+        std::string candidatePrefixStr(prefixView);
+        std::string remainingStemStr(remainingView);
+
+        if (auto prefix = db.isPrefix(candidatePrefixStr); prefix.has_value())
+        {
+            std::vector<WordMetadata> stemResults =
+                isValidWord(remainingStemStr);
+
+            for (const auto &stemMetadata : stemResults)
+            {
+                WordMetadata combined = stemMetadata;
+                combined.original = word;
+
+                if (combined.metadata.has_value())
+                {
+                    auto &variantMeta = combined.metadata.value();
+
+                    if (auto *vMeta = std::get_if<VerbMetadata>(&variantMeta))
+                    {
+                        vMeta->prefix = prefix.value();
+                    }
+                    else if (auto *nMeta =
+                                 std::get_if<NominalMetadata>(&variantMeta))
+                    {
+                        nMeta->prefix = prefix.value();
+                    }
+                }
+
+                validInterpretations.push_back(std::move(combined));
             }
         }
     }

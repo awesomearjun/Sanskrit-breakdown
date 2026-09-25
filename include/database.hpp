@@ -29,6 +29,7 @@ public:
     tryMatchNominalSuffix(const std::string &text) const;
     std::optional<Root> rootExists(const std::string &cleanRoot);
     std::optional<NominalStem> stemExists(const std::string &cleanStem);
+    std::optional<std::vector<SecondaryEnding>> secondaryEndingExists(const std::string &cleanSuffix);
 
 private:
     void loadRoots(const rapidjson::Document &doc);
@@ -42,4 +43,5 @@ private:
     std::unordered_map<std::string, std::vector<NominalMetadata>>
         nominalSuffixCache;
     std::unordered_map<std::string, NominalStem> stemsCache;
+    std::unordered_map<std::string, std::vector<SecondaryEnding>> secondaryEndingCache;
 };

@@ -2,14 +2,19 @@
 
 #include <memory>
 #include <optional>
-#include <ostream>
 #include <string>
 #include <variant>
 #include <vector>
 
-// ----- FUNDAMENTAL (prefix, don't have anything else rn tbh) -----
+// ----- FUNDAMENTAL -----
 
 struct Prefix
+{
+    std::string text;
+    std::string englishMeaning;
+};
+
+struct Suffix
 {
     std::string text;
     std::string englishMeaning;
@@ -47,6 +52,11 @@ enum class NominalNumber
     PLURAL    // Three or more entities
 };
 
+struct SecondaryEnding
+{
+    Suffix suffix;
+};
+
 struct NominalMetadata
 {
     NominalCase nominalCase;
@@ -57,6 +67,7 @@ struct NominalMetadata
     std::string stem = "";
     Prefix
         prefix; // The specific prefix string that was matched to this verb form
+    SecondaryEnding secondaryEnding = {};
 };
 
 // ----- VERB TRACK -----
@@ -194,7 +205,8 @@ struct Root
 
     bool isEmpty() const
     {
-        return originalTagForm.empty() && cleanLookupForm.empty();
+        return (originalTagForm.empty() && cleanLookupForm.empty()) ||
+               (traditionalMeaning.empty() && englishMeaning.empty());
     }
 };
 
@@ -220,6 +232,11 @@ struct NominalStem
     EndingType ending;    // EndingType::A_STEM
     NominalGender gender; // Gender::MASCULINE
     StemMeaning meaning;  // English & traditional definitions
+    bool isEmpty() const
+    {
+        return text.empty() || meaning.english.empty() ||
+               meaning.traditional.empty();
+    }
 };
 
 // ---- ETC -----
@@ -232,7 +249,7 @@ struct IndeclinableMetadata
 
 using WordMetadataType =
     std::variant<NominalMetadata, VerbMetadata, IndeclinableMetadata>;
-using CoreMetadataType = std::variant<Root, NominalStem>;
+using CoreMetadataType = std::variant<Root, NominalStem, SecondaryEnding>;
 
 // ----- WORD -----
 
@@ -247,9 +264,10 @@ enum class WordMatchType
 
 enum class CoreMatchType
 {
-    NONE, // we don't know
-    ROOT, // root (mostly for verb)
-    STEM  // stem (mostly for nouns)
+    NONE,            // we don't know
+    ROOT,            // root (mostly for verb)
+    STEM,            // stem (mostly for nouns)
+    SECONDARY_ENDING // secondary ending (for nouns)
 };
 
 struct CoreMetadata
