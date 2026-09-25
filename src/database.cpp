@@ -155,7 +155,7 @@ bool Database::initialize(const std::string &rootsJsonPath,
     std::ifstream stemsFile(stemsJsonPath);
     if (!stemsFile.is_open())
     {
-        std::cerr << "Failed to open roots JSON file: " << rootsJsonPath
+        std::cerr << "Failed to open stems JSON file: " << stemsJsonPath
                   << std::endl;
         return false;
     }
@@ -166,7 +166,7 @@ bool Database::initialize(const std::string &rootsJsonPath,
     buffer.Parse(stemsJson.c_str());
     if (buffer.HasParseError() || !buffer.IsArray())
     {
-        std::cerr << "Error parsing stems JSON file: " << rootsJsonPath
+        std::cerr << "Error parsing stems JSON file: " << stemsJsonPath
                   << std::endl;
         return false;
     }
@@ -267,8 +267,57 @@ std::optional<NominalStem> Database::stemExists(const std::string &cleanStem)
 {
     auto it = stemsCache.find(cleanStem);
     if (it != stemsCache.end())
-        return it->second; // Returns the root object
+        return it->second; // Returns the nominal stem object
     return std::nullopt;
+}
+
+std::optional<std::vector<SecondaryEnding>> Database::secondaryEndingExists(const std::string &cleanSuffix)
+{
+    auto it = secondaryEndingCache.find(cleanSuffix);
+    if (it != secondaryEndingCache.end())
+        return it->second; // Returns the secondary ending object
+    return std::nullopt;
+}
+
+// Helper function to extract strings from RapidJSON with explicit lengths
+// and sanitize UTF-8 BOM, ZWJ (U+200D), and ZWNJ (U+200C) characters.
+static std::string getSanitizedJsonString(const rapidjson::Value &val)
+{
+    if (!val.IsString())
+        return "";
+
+    const char *strData = val.GetString();
+    size_t strLen = val.GetStringLength();
+
+    std::string result;
+    result.reserve(strLen);
+
+    size_t i = 0;
+
+    // 1. Strip UTF-8 BOM if present at the start (0xEF, 0xBB, 0xBF)
+    if (strLen >= 3 && static_cast<unsigned char>(strData[0]) == 0xEF &&
+        static_cast<unsigned char>(strData[1]) == 0xBB &&
+        static_cast<unsigned char>(strData[2]) == 0xBF)
+    {
+        i = 3;
+    }
+
+    // 2. Strip Zero-Width Joiner (U+200D = 0xE2 0x80 0x8D)
+    //    and Zero-Width Non-Joiner (U+200C = 0xE2 0x80 0x8C)
+    for (; i < strLen; ++i)
+    {
+        if (i + 2 < strLen && static_cast<unsigned char>(strData[i]) == 0xE2 &&
+            static_cast<unsigned char>(strData[i + 1]) == 0x80 &&
+            (static_cast<unsigned char>(strData[i + 2]) == 0x8D ||
+             static_cast<unsigned char>(strData[i + 2]) == 0x8C))
+        {
+            i += 2; // Skip ZWJ / ZWNJ bytes
+            continue;
+        }
+        result.push_back(strData[i]);
+    }
+
+    return result;
 }
 
 // ----- LOADERS -----
@@ -281,16 +330,20 @@ void Database::loadRoots(const rapidjson::Document &doc)
             continue;
 
         Root root;
-        root.originalTagForm = rootEntry["originalTagForm"].GetString();
-        root.cleanLookupForm = rootEntry["cleanLookupForm"].GetString();
-        root.conjugationClass =
-            ConjugationStringToType(rootEntry["conjugationClass"].GetString());
-        root.naturalVoiceType =
-            VoiceStringToType(rootEntry["naturalVoiceType"].GetString());
-        root.internalVowelRule =
-            VowelRuleStringToRule(rootEntry["internalVowelRule"].GetString());
-        root.traditionalMeaning = rootEntry["traditionalMeaning"].GetString();
-        root.englishMeaning = rootEntry["englishMeaning"].GetString();
+        root.originalTagForm =
+            getSanitizedJsonString(rootEntry["originalTagForm"]);
+        root.cleanLookupForm =
+            getSanitizedJsonString(rootEntry["cleanLookupForm"]);
+        root.conjugationClass = ConjugationStringToType(
+            getSanitizedJsonString(rootEntry["conjugationClass"]));
+        root.naturalVoiceType = VoiceStringToType(
+            getSanitizedJsonString(rootEntry["naturalVoiceType"]));
+        root.internalVowelRule = VowelRuleStringToRule(
+            getSanitizedJsonString(rootEntry["internalVowelRule"]));
+        root.traditionalMeaning =
+            getSanitizedJsonString(rootEntry["traditionalMeaning"]);
+        root.englishMeaning =
+            getSanitizedJsonString(rootEntry["englishMeaning"]);
 
         // Store the root in the cache
         rootCache[root.cleanLookupForm] = std::move(root);
@@ -311,15 +364,21 @@ void Database::loadStems(const rapidjson::Document &doc)
 
         // 1. Read "stem"
         if (stemEntry.HasMember("stem") && stemEntry["stem"].IsString())
-            stem.text = stemEntry["stem"].GetString();
+            stem.text = getSanitizedJsonString(stemEntry["stem"]);
 
         // 2. Read "ending"
         if (stemEntry.HasMember("ending") && stemEntry["ending"].IsString())
-            stem.ending = EndingStringToType(stemEntry["ending"].GetString());
+        {
+            stem.ending =
+                EndingStringToType(getSanitizedJsonString(stemEntry["ending"]));
+        }
 
         // 3. Read "gender"
         if (stemEntry.HasMember("gender") && stemEntry["gender"].IsString())
-            stem.gender = NominalGenderToType(stemEntry["gender"].GetString());
+        {
+            stem.gender = NominalGenderToType(
+                getSanitizedJsonString(stemEntry["gender"]));
+        }
 
         // 4. Read "meaning" object
         if (stemEntry.HasMember("meaning") && stemEntry["meaning"].IsObject())
@@ -329,14 +388,15 @@ void Database::loadStems(const rapidjson::Document &doc)
             if (meaningObj.HasMember("english") &&
                 meaningObj["english"].IsString())
             {
-                stem.meaning.english = meaningObj["english"].GetString();
+                stem.meaning.english =
+                    getSanitizedJsonString(meaningObj["english"]);
             }
 
             if (meaningObj.HasMember("traditional") &&
                 meaningObj["traditional"].IsString())
             {
                 stem.meaning.traditional =
-                    meaningObj["traditional"].GetString();
+                    getSanitizedJsonString(meaningObj["traditional"]);
             }
         }
 
@@ -345,6 +405,7 @@ void Database::loadStems(const rapidjson::Document &doc)
             stemsCache[stem.text] = std::move(stem);
     }
 }
+
 void Database::loadConstants(const rapidjson::Document &doc)
 {
     // Load prefixes from an array of objects
@@ -358,8 +419,10 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 prefixObj["englishMeaning"].IsString())
             {
 
-                std::string prefixText = prefixObj["text"].GetString();
-                std::string meaning = prefixObj["englishMeaning"].GetString();
+                std::string prefixText =
+                    getSanitizedJsonString(prefixObj["text"]);
+                std::string meaning =
+                    getSanitizedJsonString(prefixObj["englishMeaning"]);
                 Prefix full =
                     Prefix{.text = prefixText, .englishMeaning = meaning};
 
@@ -382,9 +445,9 @@ void Database::loadConstants(const rapidjson::Document &doc)
             {
 
                 std::string indeclinableText =
-                    indeclinableObj["text"].GetString();
+                    getSanitizedJsonString(indeclinableObj["text"]);
                 std::string meaning =
-                    indeclinableObj["englishMeaning"].GetString();
+                    getSanitizedJsonString(indeclinableObj["englishMeaning"]);
 
                 IndeclinableMetadata metadata = IndeclinableMetadata{
                     .text = indeclinableText, .englishMeaning = meaning};
@@ -415,14 +478,16 @@ void Database::loadConstants(const rapidjson::Document &doc)
 
                 VerbMetadata meta;
 
-                meta.suffix = i["suffix"].GetString();
-                meta.person = SuffixPersonStringToType(i["person"].GetString());
-                meta.number = SuffixNumberStringToType(i["number"].GetString());
+                std::string suffixStr = getSanitizedJsonString(i["suffix"]);
+                meta.suffix = suffixStr;
+                meta.person = SuffixPersonStringToType(
+                    getSanitizedJsonString(i["person"]));
+                meta.number = SuffixNumberStringToType(
+                    getSanitizedJsonString(i["number"]));
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()].push_back(
-                    std::move(meta));
+                verbSuffixCache[suffixStr].push_back(std::move(meta));
             }
         }
 
@@ -439,14 +504,16 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 assert(i.HasMember("suffix") && i["suffix"].IsString());
                 VerbMetadata meta;
 
-                meta.suffix = i["suffix"].GetString();
-                meta.person = SuffixPersonStringToType(i["person"].GetString());
-                meta.number = SuffixNumberStringToType(i["number"].GetString());
+                std::string suffixStr = getSanitizedJsonString(i["suffix"]);
+                meta.suffix = suffixStr;
+                meta.person = SuffixPersonStringToType(
+                    getSanitizedJsonString(i["person"]));
+                meta.number = SuffixNumberStringToType(
+                    getSanitizedJsonString(i["number"]));
                 meta.tenseOrMood = VerbTenseOrMood::PRESENT;
                 meta.voice = VerbVoice::ACTIVE;
 
-                verbSuffixCache[i["suffix"].GetString()].push_back(
-                    std::move(meta));
+                verbSuffixCache[suffixStr].push_back(std::move(meta));
             }
         }
         // nominals
@@ -460,15 +527,45 @@ void Database::loadConstants(const rapidjson::Document &doc)
                 assert(i.IsObject());
                 assert(i.HasMember("suffix") && i["suffix"].IsString());
                 NominalMetadata meta;
-                meta.suffix = i["suffix"].GetString();
-                meta.gender = NominalGenderToType(i["gender"].GetString());
+
+                std::string suffixStr = getSanitizedJsonString(i["suffix"]);
+                meta.suffix = suffixStr;
+                meta.gender =
+                    NominalGenderToType(getSanitizedJsonString(i["gender"]));
                 meta.nominalCase =
-                    NominalCaseToType(i["nominalCase"].GetString());
-                meta.number =
-                    NominalNumberStringToType(i["number"].GetString());
-                meta.gender = NominalGenderToType(i["gender"].GetString());
-                nominalSuffixCache[i["suffix"].GetString()].push_back(
-                    std::move(meta));
+                    NominalCaseToType(getSanitizedJsonString(i["nominalCase"]));
+                meta.number = NominalNumberStringToType(
+                    getSanitizedJsonString(i["number"]));
+
+                nominalSuffixCache[suffixStr].push_back(std::move(meta));
+            }
+        }
+        // Secondary Endings (Taddhita Suffixes)
+        if (inflectionObj.HasMember("secondaryEndings") &&
+            inflectionObj["secondaryEndings"].IsArray())
+        {
+            const auto &secondaryEndingsArray =
+                inflectionObj["secondaryEndings"].GetArray();
+
+            for (const auto &item : secondaryEndingsArray)
+            {
+                if (item.IsObject() && item.HasMember("suffix") &&
+                    item["suffix"].IsString() && item.HasMember("meaning") &&
+                    item["meaning"].IsString())
+                {
+                    std::string suffixStr =
+                        getSanitizedJsonString(item["suffix"]);
+                    std::string meaningStr =
+                        getSanitizedJsonString(item["meaning"]);
+
+                    SecondaryEnding ending{
+                        .suffix = Suffix{.text = suffixStr,
+                                         .englishMeaning = meaningStr}};
+
+                    // Insert into cache (keyed by suffix text)
+                    secondaryEndingCache[suffixStr].push_back(
+                        std::move(ending));
+                }
             }
         }
     }

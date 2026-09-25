@@ -20,8 +20,14 @@
     { "text": "प्रति", "englishMeaning": "against, back, in return, towards" },
     { "text": "परि", "englishMeaning": "around, about, fully" },
     { "text": "उप", "englishMeaning": "towards, near, auxiliary" },
-    { "text": "अ", "englishMeaning": "not, non-, opposite of (before consonants)" },
-    { "text": "अन्", "englishMeaning": "not, non-, opposite of (before vowels)" }
+    {
+      "text": "अ",
+      "englishMeaning": "not, non-, opposite of (before consonants)"
+    },
+    {
+      "text": "अन्",
+      "englishMeaning": "not, non-, opposite of (before vowels)"
+    }
   ],
   "indeclinables": [
     { "text": "च", "englishMeaning": "and" },
@@ -151,80 +157,582 @@
       { "suffix": "महे", "person": "FIRST", "number": "PLURAL" }
     ],
     "nominals": [
-      { "suffix": "ः", "nominalCase": "SUBJECT", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "म्", "nominalCase": "OBJECT", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "ेण", "nominalCase": "INSTRUMENTAL", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "ाय", "nominalCase": "RECIPIENT", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "ात्", "nominalCase": "ORIGIN", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "स्य", "nominalCase": "RELATION", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "े", "nominalCase": "CONTEXT", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "", "nominalCase": "ADDRESS", "number": "SINGULAR", "gender": "MASCULINE" },
-      { "suffix": "ौ", "nominalCase": "SUBJECT", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ौ", "nominalCase": "OBJECT", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "INSTRUMENTAL", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "RECIPIENT", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "ORIGIN", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "योः", "nominalCase": "RELATION", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "योः", "nominalCase": "CONTEXT", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ौ", "nominalCase": "ADDRESS", "number": "DUAL", "gender": "MASCULINE" },
-      { "suffix": "ाः", "nominalCase": "SUBJECT", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ान्", "nominalCase": "OBJECT", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ैः", "nominalCase": "INSTRUMENTAL", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ेभ्यः", "nominalCase": "RECIPIENT", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ेभ्यः", "nominalCase": "ORIGIN", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ानाम्", "nominalCase": "RELATION", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ेषु", "nominalCase": "CONTEXT", "number": "PLURAL", "gender": "MASCULINE" },
-      { "suffix": "ाः", "nominalCase": "ADDRESS", "number": "PLURAL", "gender": "MASCULINE" },
+      {
+        "suffix": "ः",
+        "nominalCase": "SUBJECT",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "म्",
+        "nominalCase": "OBJECT",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ेण",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाय",
+        "nominalCase": "RECIPIENT",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ात्",
+        "nominalCase": "ORIGIN",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "स्य",
+        "nominalCase": "RELATION",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "CONTEXT",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "",
+        "nominalCase": "ADDRESS",
+        "number": "SINGULAR",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ौ",
+        "nominalCase": "SUBJECT",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ौ",
+        "nominalCase": "OBJECT",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "RECIPIENT",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "ORIGIN",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "RELATION",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "CONTEXT",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ौ",
+        "nominalCase": "ADDRESS",
+        "number": "DUAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाः",
+        "nominalCase": "SUBJECT",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ान्",
+        "nominalCase": "OBJECT",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ैः",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ेभ्यः",
+        "nominalCase": "RECIPIENT",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ेभ्यः",
+        "nominalCase": "ORIGIN",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ानाम्",
+        "nominalCase": "RELATION",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ेषु",
+        "nominalCase": "CONTEXT",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
+      {
+        "suffix": "ाः",
+        "nominalCase": "ADDRESS",
+        "number": "PLURAL",
+        "gender": "MASCULINE"
+      },
 
-      { "suffix": "ा", "nominalCase": "SUBJECT", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "ाम्", "nominalCase": "OBJECT", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "या", "nominalCase": "INSTRUMENTAL", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "ायै", "nominalCase": "RECIPIENT", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "ायाः", "nominalCase": "ORIGIN", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "ायाः", "nominalCase": "RELATION", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "ायाम्", "nominalCase": "CONTEXT", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "े", "nominalCase": "ADDRESS", "number": "SINGULAR", "gender": "FEMININE" },
-      { "suffix": "े", "nominalCase": "SUBJECT", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "े", "nominalCase": "OBJECT", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "INSTRUMENTAL", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "RECIPIENT", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "ाभ्याम्", "nominalCase": "ORIGIN", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "योः", "nominalCase": "RELATION", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "योः", "nominalCase": "CONTEXT", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "े", "nominalCase": "ADDRESS", "number": "DUAL", "gender": "FEMININE" },
-      { "suffix": "ाः", "nominalCase": "SUBJECT", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ाः", "nominalCase": "OBJECT", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ाभिः", "nominalCase": "INSTRUMENTAL", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ाभ्यः", "nominalCase": "RECIPIENT", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ाभ्यः", "nominalCase": "ORIGIN", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ानाम्", "nominalCase": "RELATION", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ासु", "nominalCase": "CONTEXT", "number": "PLURAL", "gender": "FEMININE" },
-      { "suffix": "ाः", "nominalCase": "ADDRESS", "number": "PLURAL", "gender": "FEMININE" },
+      {
+        "suffix": "ा",
+        "nominalCase": "SUBJECT",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाम्",
+        "nominalCase": "OBJECT",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "या",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ायै",
+        "nominalCase": "RECIPIENT",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ायाः",
+        "nominalCase": "ORIGIN",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ायाः",
+        "nominalCase": "RELATION",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ायाम्",
+        "nominalCase": "CONTEXT",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "ADDRESS",
+        "number": "SINGULAR",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "SUBJECT",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "OBJECT",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "RECIPIENT",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "ORIGIN",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "RELATION",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "CONTEXT",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "ADDRESS",
+        "number": "DUAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाः",
+        "nominalCase": "SUBJECT",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाः",
+        "nominalCase": "OBJECT",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभिः",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभ्यः",
+        "nominalCase": "RECIPIENT",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाभ्यः",
+        "nominalCase": "ORIGIN",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ानाम्",
+        "nominalCase": "RELATION",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ासु",
+        "nominalCase": "CONTEXT",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
+      {
+        "suffix": "ाः",
+        "nominalCase": "ADDRESS",
+        "number": "PLURAL",
+        "gender": "FEMININE"
+      },
 
-      { "suffix": "म्", "nominalCase": "SUBJECT", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "म्", "nominalCase": "OBJECT", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "ेण", "nominalCase": "INSTRUMENTAL", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "ाय", "nominalCase": "RECIPIENT", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "ात्", "nominalCase": "ORIGIN", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "स्य", "nominalCase": "RELATION", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "े", "nominalCase": "CONTEXT", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "", "nominalCase": "ADDRESS", "number": "SINGULAR", "gender": "NEUTER" },
-      { "suffix": "े", "nominalCase": "SUBJECT", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "े", "nominalCase": "OBJECT", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "ाभ्याम्", "nominalCase": "INSTRUMENTAL", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "ाभ्याम्", "nominalCase": "RECIPIENT", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "ाभ्याम्", "nominalCase": "ORIGIN", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "योः", "nominalCase": "RELATION", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "योः", "nominalCase": "CONTEXT", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "े", "nominalCase": "ADDRESS", "number": "DUAL", "gender": "NEUTER" },
-      { "suffix": "ानि", "nominalCase": "SUBJECT", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ानि", "nominalCase": "OBJECT", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ैः", "nominalCase": "INSTRUMENTAL", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ेभ्यः", "nominalCase": "RECIPIENT", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ेभ्यः", "nominalCase": "ORIGIN", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ानाम्", "nominalCase": "RELATION", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ेषु", "nominalCase": "CONTEXT", "number": "PLURAL", "gender": "NEUTER" },
-      { "suffix": "ानि", "nominalCase": "ADDRESS", "number": "PLURAL", "gender": "NEUTER" }
+      {
+        "suffix": "म्",
+        "nominalCase": "SUBJECT",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "म्",
+        "nominalCase": "OBJECT",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ेण",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ाय",
+        "nominalCase": "RECIPIENT",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ात्",
+        "nominalCase": "ORIGIN",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "स्य",
+        "nominalCase": "RELATION",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "CONTEXT",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "",
+        "nominalCase": "ADDRESS",
+        "number": "SINGULAR",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "SUBJECT",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "OBJECT",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "RECIPIENT",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ाभ्याम्",
+        "nominalCase": "ORIGIN",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "RELATION",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "योः",
+        "nominalCase": "CONTEXT",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "े",
+        "nominalCase": "ADDRESS",
+        "number": "DUAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ानि",
+        "nominalCase": "SUBJECT",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ानि",
+        "nominalCase": "OBJECT",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ैः",
+        "nominalCase": "INSTRUMENTAL",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ेभ्यः",
+        "nominalCase": "RECIPIENT",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ेभ्यः",
+        "nominalCase": "ORIGIN",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ानाम्",
+        "nominalCase": "RELATION",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ेषु",
+        "nominalCase": "CONTEXT",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      },
+      {
+        "suffix": "ानि",
+        "nominalCase": "ADDRESS",
+        "number": "PLURAL",
+        "gender": "NEUTER"
+      }
+    ],
+    "secondaryEndings": [
+      {
+        "suffix": "ता",
+        "meaning": "state of being, quality, -ness, -ity"
+      },
+      {
+        "suffix": "त्व",
+        "meaning": "state of being, essence, -hood, -ness"
+      },
+      {
+        "suffix": "वत्",
+        "meaning": "possessing, endowed with, full of"
+      },
+      {
+        "suffix": "मत्",
+        "meaning": "possessing, endowed with"
+      },
+      {
+        "suffix": "इन्",
+        "meaning": "possessor of, having"
+      },
+      {
+        "suffix": "तर",
+        "meaning": "more (comparative degree), -er"
+      },
+      {
+        "suffix": "तम",
+        "meaning": "most (superlative degree), -est"
+      },
+      {
+        "suffix": "इक",
+        "meaning": "related to, pertaining to, practitioner of"
+      },
+      {
+        "suffix": "इय",
+        "meaning": "belonging to, originating from"
+      },
+      {
+        "suffix": "अ",
+        "meaning": "descendant of, son of (patronymic)"
+      },
+      {
+        "suffix": "एय",
+        "meaning": "son of (matronymic)"
+      },
+      {
+        "suffix": "मय",
+        "meaning": "made of, consisting of, full of"
+      },
+      {
+        "suffix": "मन्",
+        "meaning": "abstract quality, state of being"
+      },
+      {
+        "suffix": "इष्ठ",
+        "meaning": "most, extremely (superlative degree)"
+      },
+      {
+        "suffix": "ईयस्",
+        "meaning": "more, exceedingly (comparative degree)"
+      },
+      {
+        "suffix": "इमन्",
+        "meaning": "state of being, quality of (e.g., heaviness, lightness)"
+      },
+      {
+        "suffix": "क",
+        "meaning": "little, small (diminutive); or relating to"
+      },
+      {
+        "suffix": "आयन",
+        "meaning": "descendant of, lineage of"
+      },
+      {
+        "suffix": "इ",
+        "meaning": "descendant of (patronymic/lineage)"
+      },
+      {
+        "suffix": "व्य",
+        "meaning": "relation, relative (e.g., uncle, cousin)"
+      },
+      {
+        "suffix": "तस्",
+        "meaning": "from, out of (ablative adverbial)"
+      },
+      {
+        "suffix": "त्र",
+        "meaning": "in, at (locative adverbial of place)"
+      },
+      {
+        "suffix": "दा",
+        "meaning": "at the time of, when (temporal adverbial)"
+      },
+      {
+        "suffix": "था",
+        "meaning": "in the manner of, like (manner adverbial)"
+      },
+      {
+        "suffix": "धा",
+        "meaning": "fold, ways, kinds (multiplicative adverbial)"
+      },
+      {
+        "suffix": "शस्",
+        "meaning": "by, in groups of (distributive adverbial)"
+      },
+      {
+        "suffix": "वत्",
+        "meaning": "like, in the manner of, as (adverbial)"
+      },
+      {
+        "suffix": "अलु",
+        "meaning": "disposed to, inclined toward, habituated"
+      },
+      {
+        "suffix": "विन्",
+        "meaning": "possessing, having (possessive)"
+      },
+      {
+        "suffix": "मिन्",
+        "meaning": "possessing, having (possessive)"
+      },
+      {
+        "suffix": "त्य",
+        "meaning": "dwelling in, produced in, belonging to"
+      },
+      {
+        "suffix": "तन",
+        "meaning": "belonging to time (e.g., ancient, present, modern)"
+      },
+      {
+        "suffix": "र",
+        "meaning": "possessing, full of, endowed with"
+      },
+      {
+        "suffix": "ल",
+        "meaning": "possessing, having"
+      },
+      {
+        "suffix": "श",
+        "meaning": "possessing, having (e.g., hairy, leafy)"
+      }
     ]
   }
 }

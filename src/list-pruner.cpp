@@ -53,11 +53,34 @@ bool ListPruner::validateAnalysisTree(const WordMetadata &analysis)
         return true;
     for (const auto &childComponent : analysis.cores)
     {
+        if (!childComponent.success)
+            return false;
+
         if (!childComponent.metadata.has_value())
             return false;
 
+        if (const Root *r = std::get_if<Root>(&childComponent.metadata.value());
+            r != nullptr && r->isEmpty())
+        {
+            return false;
+        }
+
+        if (const NominalStem *n =
+                std::get_if<NominalStem>(&childComponent.metadata.value());
+            n != nullptr && n->isEmpty())
+        {
+            return false;
+        }
+
         if (childComponent.matchType == CoreMatchType::NONE)
             return false; // Stem lookup failed or metadata is missing!
+
+        const Root *root = std::get_if<Root>(&childComponent.metadata.value());
+
+        if (!root)
+            return false;
+        if (root->isEmpty())
+            return false;
     }
 
     return true;

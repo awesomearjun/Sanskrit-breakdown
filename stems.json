@@ -9,6 +9,24 @@
     }
   },
   {
+    "stem": "विनय",
+    "ending": "A_STEM",
+    "gender": "MASCULINE",
+    "meaning": {
+      "english": "humility, discipline, modesty, decorum",
+      "traditional": "नम्रता, शिष्टाचारः, अनुशासनम्"
+    }
+  },
+  {
+    "stem": "पात्र",
+    "ending": "A_STEM",
+    "gender": "NEUTER",
+    "meaning": {
+      "english": "vessel, container, worthy person",
+      "traditional": "भाजनम्, योग्यपात्रम्"
+    }
+  },
+  {
     "stem": "आत्मन्",
     "ending": "CONSONANT",
     "gender": "MASCULINE",

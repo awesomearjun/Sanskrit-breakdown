@@ -224,6 +224,9 @@ inline void to_json(json &j, const CoreMatchType &e)
     case CoreMatchType::STEM:
         j = "STEM";
         break;
+    case CoreMatchType::SECONDARY_ENDING:
+        j = "SECONDARY_ENDING";
+        break;
     default:
         j = "UNKNOWN";
         break;
@@ -245,6 +248,14 @@ inline void to_json(json &j, const NominalStem &n)
              {"gender", n.gender},
              {"englishMeaning", n.meaning.english},
              {"traditionalMeaning", n.meaning.traditional}};
+}
+
+inline void to_json(json &j, const SecondaryEnding &n)
+{
+    j = json{
+        {"text", n.suffix.text},
+        {"englishMeaning", n.suffix.englishMeaning},
+    };
 }
 
 inline void to_json(json &j, const Root &r)
